@@ -1,10 +1,10 @@
 import './globals.css'
 
-export default function RootLayout({
-  children,
+export default function RootLayout ({
+  children
 }: {
   children: React.ReactNode
-}) {
+}): React.ReactNode {
   return (
     <html lang="en">
       {/*
@@ -12,7 +12,7 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>{children}</body>
+      <body className="bg-primary text-white">{children}</body>
     </html>
   )
 }
