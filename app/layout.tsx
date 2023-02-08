@@ -1,5 +1,12 @@
+import { Poppins } from '@next/font/google'
 import Navbar from '@/components/Navbar'
 import './globals.css'
+
+const poppins = Poppins({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins'
+})
 
 const RootLayout = ({
   children
@@ -9,7 +16,7 @@ const RootLayout = ({
   return (
     <html lang="en">
       <head />
-      <body className="bg-primary text-white">
+      <body className={`${poppins.variable} bg-primary font-sans text-white`}>
         <header>
           <Navbar />
         </header>
