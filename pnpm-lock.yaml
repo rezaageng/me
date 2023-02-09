@@ -14,6 +14,7 @@ specifiers:
   autoprefixer: ^10.4.13
   eslint: 8.33.0
   eslint-config-next: 13.1.6
+  eslint-config-prettier: ^8.6.0
   eslint-config-standard-with-typescript: ^34.0.0
   eslint-plugin-import: ^2.27.5
   eslint-plugin-n: ^15.6.1
@@ -39,6 +40,7 @@ dependencies:
   '@types/react-dom': 18.0.10
   '@types/testing-library__jest-dom': 5.14.5
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
+  eslint-config-prettier: 8.6.0_eslint@8.33.0
   framer-motion: 9.0.2_biqbaboplfbrettd7655fr4n2y
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -2048,6 +2050,15 @@ packages:
     transitivePeerDependencies:
       - eslint-import-resolver-webpack
       - supports-color
+    dev: false
+
+  /eslint-config-prettier/8.6.0_eslint@8.33.0:
+    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.33.0
     dev: false
 
   /eslint-config-standard-with-typescript/34.0.0_frfgwa7fqjzszldru3sxumpviq:
