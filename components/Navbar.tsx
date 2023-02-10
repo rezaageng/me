@@ -6,6 +6,7 @@ import { motion, useAnimationControls, useScroll } from 'framer-motion'
 import NavbarUnderline from './NavbarUnderline'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
+import { useScrollBlock } from '@/hooks/useScrollBlock'
 
 const Navbar = (): JSX.Element => {
   const [isInitial, setIsInitial] = useState(true)
@@ -13,6 +14,7 @@ const Navbar = (): JSX.Element => {
   const [isSm, setIsSm] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
+  const [blockScroll, allowScroll] = useScrollBlock()
 
   const smallScreen = useMediaQuery({ query: '(min-width: 640px)' })
   const pathName = usePathname()
@@ -94,6 +96,14 @@ const Navbar = (): JSX.Element => {
       setIsInitial(false)
     }
   }, [smallScreen])
+
+  useEffect(() => {
+    if (isOpen) {
+      blockScroll()
+    } else {
+      allowScroll()
+    }
+  }, [allowScroll, blockScroll, isOpen])
 
   return (
     <motion.nav
