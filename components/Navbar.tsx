@@ -9,21 +9,26 @@ import { useMediaQuery } from 'react-responsive'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 
 const Navbar = (): JSX.Element => {
+  // * states
   const [isInitial, setIsInitial] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
   const [isSm, setIsSm] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
-  const [blockScroll, allowScroll] = useScrollBlock()
 
+  // * hooks
+  const [blockScroll, allowScroll] = useScrollBlock()
   const smallScreen = useMediaQuery({ query: '(min-width: 640px)' })
   const pathName = usePathname()
 
+  // * animation controls
   const navControl = useAnimationControls()
   const menuControl = useAnimationControls()
 
+  // * scrollYProgress
   const { scrollYProgress } = useScroll()
 
+  //  * navabar animation on scroll
   useEffect(() => {
     scrollYProgress.on('change', (progress) => {
       if (progress > previousScrollPosition + 0.1) {
@@ -60,6 +65,7 @@ const Navbar = (): JSX.Element => {
     }
   }, [isVisible, navControl])
 
+  // * nav menu animation on mobile
   useEffect(() => {
     if (isOpen && !isSm) {
       void menuControl.start({
@@ -90,6 +96,7 @@ const Navbar = (): JSX.Element => {
     }
   }, [isOpen, isSm, menuControl])
 
+  // * prevent navbar from animating on initial load
   useEffect(() => {
     setIsSm(smallScreen)
     if (smallScreen) {
@@ -97,6 +104,7 @@ const Navbar = (): JSX.Element => {
     }
   }, [smallScreen])
 
+  // * block scroll when nav menu is open
   useEffect(() => {
     if (isOpen) {
       blockScroll()
