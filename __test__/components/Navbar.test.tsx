@@ -34,7 +34,7 @@ test('navigation menu should be rendered', () => {
   render(<Navbar />)
   const button = screen.getByRole('button')
   fireEvent.click(button)
-  const menu = screen.getByRole('list')
+  const menu = screen.getByTestId('navbar-list')
 
   expect(menu).toBeInTheDocument()
 })
@@ -43,7 +43,7 @@ test('links should be rendered', async () => {
   render(<Navbar />)
   const button = screen.getByRole('button')
   fireEvent.click(button)
-  const links = await waitFor(() => screen.getAllByRole('link'))
+  const links = await waitFor(() => screen.getAllByTestId('navbar-list-link'))
 
   expect(links.length).toBe(4)
 })
@@ -77,4 +77,39 @@ test('underline animation should be rendered when it clicked', async () => {
   const underline = screen.getByTestId('navbar-underline')
 
   expect(underline).toBeInTheDocument()
+})
+
+test('navbar information should be rendered', () => {
+  render(<Navbar />)
+  const navbarInformation = screen.getByTestId('navbar-information')
+
+  expect(navbarInformation).toBeInTheDocument()
+})
+
+test('navbar art information should be rendered', () => {
+  render(<Navbar />)
+  const navbarArt = screen.getByTestId('navbar-art')
+
+  expect(navbarArt).toBeInTheDocument()
+})
+
+test('navbar art information should not be empty', () => {
+  render(<Navbar />)
+  const navbarArt = screen.getByTestId('navbar-art')
+
+  expect(navbarArt).toHaveTextContent('art by:')
+})
+
+test('navbar art link should be rendered', () => {
+  render(<Navbar />)
+  const navbarArtLink = screen.getByTestId('navbar-art-link')
+
+  expect(navbarArtLink).toBeInTheDocument()
+})
+
+test('navbar art link should not be empty', () => {
+  render(<Navbar />)
+  const navbarArtLink = screen.getByTestId('navbar-art-link')
+
+  expect(navbarArtLink.textContent).toBe('xe')
 })

@@ -12,6 +12,7 @@ const NavbarList = ({
     <li className="relative">
       {pathName === route ? <NavbarUnderline /> : null}
       <Link
+        data-testid="navbar-list-link"
         className={`${
           pathName === route ? 'text-accent-1' : ''
         } after:contents hover:animate-pulse`}

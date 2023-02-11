@@ -177,7 +177,10 @@ const Navbar = (): JSX.Element => {
           isInitial ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <ul className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  sm:flex-row sm:text-base sm:font-normal">
+        <ul
+          data-testid="navbar-list"
+          className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  sm:flex-row sm:text-base sm:font-normal"
+        >
           {navData.map(({ name, route }) => (
             <NavbarList
               key={uuidv4()}
