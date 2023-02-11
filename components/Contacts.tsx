@@ -11,7 +11,7 @@ const Contacts = ({ className, iconSize }: ContactsProps): JSX.Element => {
     <ul className={className}>
       <li>
         <a href="https://github.com/rezaageng" target="_blank" rel="noreferrer">
-          <FiGithub size={iconSize} />
+          <FiGithub data-testid="contact-icon" size={iconSize} />
         </a>
       </li>
       <li>
@@ -20,7 +20,7 @@ const Contacts = ({ className, iconSize }: ContactsProps): JSX.Element => {
           target="_blank"
           rel="noreferrer"
         >
-          <FiTwitter size={iconSize} />
+          <FiTwitter data-testid="contact-icon" size={iconSize} />
         </a>
       </li>
       <li>
@@ -29,7 +29,7 @@ const Contacts = ({ className, iconSize }: ContactsProps): JSX.Element => {
           target="_blank"
           rel="noreferrer"
         >
-          <FiInstagram size={iconSize} />
+          <FiInstagram data-testid="contact-icon" size={iconSize} />
         </a>
       </li>
       <li>
@@ -38,12 +38,12 @@ const Contacts = ({ className, iconSize }: ContactsProps): JSX.Element => {
           target="_blank"
           rel="noreferrer"
         >
-          <FiLinkedin size={iconSize} />
+          <FiLinkedin data-testid="contact-icon" size={iconSize} />
         </a>
       </li>
       <li>
         <a href="mailto:waiting@gmail.com" target="_blank" rel="noreferrer">
-          <FiMail size={iconSize} />
+          <FiMail data-testid="contact-icon" size={iconSize} />
         </a>
       </li>
     </ul>
