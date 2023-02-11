@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  motion,
-  type Transition,
-  useAnimationControls,
-  useScroll
-} from 'framer-motion'
+import { motion, useAnimationControls, useScroll } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
@@ -15,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import { IoMenu } from 'react-icons/io5'
 import NavbarInformation from './NavbarInformation'
 import { type NavbarListData } from '@/@types'
+import useFramerStore from '@/store/framerStore'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -24,6 +20,7 @@ const Navbar = (): JSX.Element => {
   const [isVisible, setIsVisible] = useState(true)
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
+  const { transition } = useFramerStore((state) => state)
 
   // * hooks
   const [blockScroll, allowScroll] = useScrollBlock()
@@ -66,13 +63,6 @@ const Navbar = (): JSX.Element => {
   }, [previousScrollPosition, scrollYProgress])
 
   useEffect(() => {
-    const transition: Transition = {
-      type: 'spring',
-      stiffness: 300,
-      damping: 50,
-      restDelta: 0.001
-    }
-
     if (isVisible) {
       void navControl.start({
         y: 0,
@@ -84,30 +74,20 @@ const Navbar = (): JSX.Element => {
         transition
       })
     }
-  }, [isVisible, navControl])
+  }, [isVisible, navControl, transition])
 
   // * nav menu animation on mobile
   useEffect(() => {
     if (isOpen && !isSm) {
       void menuControl.start({
         x: [windowWidth, 0],
-        transition: {
-          type: 'spring',
-          stiffness: 300,
-          damping: 50,
-          restDelta: 0.001
-        }
+        transition
       })
     }
     if (!isOpen && !isSm) {
       void menuControl.start({
         x: [0, windowWidth],
-        transition: {
-          type: 'spring',
-          stiffness: 300,
-          damping: 50,
-          restDelta: 0.001
-        }
+        transition
       })
     }
     if (isSm) {
@@ -115,7 +95,7 @@ const Navbar = (): JSX.Element => {
         x: 0
       })
     }
-  }, [isOpen, isSm, menuControl, windowWidth])
+  }, [isOpen, isSm, menuControl, transition, windowWidth])
 
   // * prevent navbar from animating on initial load
   useEffect(() => {
