@@ -1,12 +1,12 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { motion, useAnimationControls, useScroll } from 'framer-motion'
-import NavbarUnderline from './NavbarUnderline'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
+import { v4 as uuidv4 } from 'uuid'
+import NavbarList from './NavbarList'
+import { usePathname } from 'next/navigation'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -15,6 +15,7 @@ const Navbar = (): JSX.Element => {
   const [isSm, setIsSm] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
 
   // * hooks
   const [blockScroll, allowScroll] = useScrollBlock()
@@ -27,6 +28,21 @@ const Navbar = (): JSX.Element => {
 
   // * scrollYProgress
   const { scrollYProgress } = useScroll()
+
+  // * set window width
+  useEffect(() => {
+    setWindowWidth(window.innerWidth)
+
+    window.addEventListener('resize', () => {
+      setWindowWidth(window.innerWidth)
+    })
+
+    return () => {
+      window.removeEventListener('resize', () => {
+        setWindowWidth(window.innerWidth)
+      })
+    }
+  }, [])
 
   //  * navabar animation on scroll
   useEffect(() => {
@@ -69,7 +85,7 @@ const Navbar = (): JSX.Element => {
   useEffect(() => {
     if (isOpen && !isSm) {
       void menuControl.start({
-        x: [650, 0],
+        x: [windowWidth, 0],
         transition: {
           type: 'spring',
           stiffness: 300,
@@ -80,11 +96,11 @@ const Navbar = (): JSX.Element => {
     }
     if (!isOpen && !isSm) {
       void menuControl.start({
-        x: [0, 650],
+        x: [0, windowWidth],
         transition: {
           type: 'spring',
           stiffness: 300,
-          damping: 100,
+          damping: 50,
           restDelta: 0.001
         }
       })
@@ -94,7 +110,7 @@ const Navbar = (): JSX.Element => {
         x: 0
       })
     }
-  }, [isOpen, isSm, menuControl])
+  }, [isOpen, isSm, menuControl, windowWidth])
 
   // * prevent navbar from animating on initial load
   useEffect(() => {
@@ -112,6 +128,26 @@ const Navbar = (): JSX.Element => {
       allowScroll()
     }
   }, [allowScroll, blockScroll, isOpen])
+
+  // * navbar data
+  const navData: NavbarListData[] = [
+    {
+      name: 'Home',
+      route: '/'
+    },
+    {
+      name: 'Projects',
+      route: '/projects'
+    },
+    {
+      name: 'Another Side',
+      route: '/another-side'
+    },
+    {
+      name: 'About',
+      route: '/about'
+    }
+  ]
 
   return (
     <motion.nav
@@ -131,57 +167,24 @@ const Navbar = (): JSX.Element => {
           </button>
         ) : null}
       </div>
-      {!isInitial ? (
-        <motion.ul
-          animate={menuControl}
-          className="fixed top-0 left-0 flex h-screen w-full flex-col items-center justify-center gap-5 bg-secondary-800 text-2xl font-bold sm:static sm:h-auto sm:w-auto sm:flex-row sm:bg-transparent sm:text-base sm:font-normal"
-        >
-          <li className="relative">
-            {pathName === '/' ? <NavbarUnderline /> : null}
-            <Link
-              className={`${
-                pathName === '/' ? 'text-accent-1' : ''
-              } after:contents hover:animate-pulse`}
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
-          <motion.li className="relative">
-            {pathName === '/projects' ? <NavbarUnderline /> : null}
-            <Link
-              className={`${
-                pathName === '/projects' ? 'text-accent-1' : ''
-              } hover:animate-pulse`}
-              href="/projects"
-            >
-              Projects
-            </Link>
-          </motion.li>
-          <motion.li className="relative">
-            {pathName === '/another-side' ? <NavbarUnderline /> : null}
-            <Link
-              className={`${
-                pathName === '/another-side' ? 'text-accent-1' : ''
-              } hover:animate-pulse`}
-              href="/another-side"
-            >
-              Another Side
-            </Link>
-          </motion.li>
-          <li className="relative">
-            {pathName === '/about' ? <NavbarUnderline /> : null}
-            <Link
-              className={`${
-                pathName === '/about' ? 'text-accent-1' : ''
-              } hover:animate-pulse`}
-              href="/about"
-            >
-              About
-            </Link>
-          </li>
-        </motion.ul>
-      ) : null}
+      <motion.ul
+        animate={menuControl}
+        className={`fixed top-0 left-0 flex h-screen w-full flex-col items-center justify-center gap-5 bg-secondary-800 text-2xl font-bold sm:static sm:h-auto sm:w-auto sm:flex-row sm:bg-transparent sm:text-base sm:font-normal ${
+          isInitial ? 'opacity-0' : 'opacity-100'
+        }`}
+      >
+        {navData.map(({ name, route }) => (
+          <NavbarList
+            key={uuidv4()}
+            name={name}
+            route={route}
+            pathName={pathName}
+            onClick={() => {
+              setIsOpen(false)
+            }}
+          />
+        ))}
+      </motion.ul>
     </motion.nav>
   )
 }
