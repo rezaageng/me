@@ -1,6 +1,11 @@
 'use client'
 
-import { motion, useAnimationControls, useScroll } from 'framer-motion'
+import {
+  motion,
+  type Transition,
+  useAnimationControls,
+  useScroll
+} from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
@@ -58,25 +63,22 @@ const Navbar = (): JSX.Element => {
   }, [previousScrollPosition, scrollYProgress])
 
   useEffect(() => {
+    const transition: Transition = {
+      type: 'spring',
+      stiffness: 300,
+      damping: 100,
+      restDelta: 0.001
+    }
+
     if (isVisible) {
       void navControl.start({
         y: 0,
-        transition: {
-          type: 'spring',
-          stiffness: 300,
-          damping: 50,
-          restDelta: 0.001
-        }
+        transition
       })
     } else {
       void navControl.start({
         y: -100,
-        transition: {
-          type: 'spring',
-          stiffness: 300,
-          damping: 100,
-          restDelta: 0.001
-        }
+        transition
       })
     }
   }, [isVisible, navControl])
