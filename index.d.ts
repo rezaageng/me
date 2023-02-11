@@ -1,3 +1,6 @@
+// * global
+type ClassName = string | undefined
+
 // * navbar
 interface NavbarListData {
   name: string
@@ -7,4 +10,9 @@ interface NavbarListData {
 interface NavbarListProps extends NavbarListData {
   pathName: string | null
   onClick: () => void
+}
+
+interface ContactsProps {
+  className: ClassName
+  iconSize: number
 }
