@@ -12,6 +12,7 @@ import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
 import NavbarList from './NavbarList'
 import { usePathname } from 'next/navigation'
+import { IoMenu } from 'react-icons/io5'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -156,7 +157,7 @@ const Navbar = (): JSX.Element => {
       animate={navControl}
       className="fixed top-0 left-0 flex w-full justify-between bg-primary p-4"
     >
-      <div className="z-10 flex w-full justify-between text-accent-1 sm:block sm:w-auto sm:justify-start">
+      <div className="z-10 flex w-full justify-between text-xl text-accent-1 sm:block sm:w-auto sm:justify-start">
         <h1>rezaa</h1>
         {!isSm ? (
           <button
@@ -165,28 +166,30 @@ const Navbar = (): JSX.Element => {
               setIsInitial(false)
             }}
           >
-            menu
+            <IoMenu size={32} />
           </button>
         ) : null}
       </div>
-      <motion.ul
+      <motion.div
         animate={menuControl}
-        className={`fixed top-0 left-0 flex h-screen w-full flex-col items-center justify-center gap-5 bg-secondary-800 text-2xl font-bold sm:static sm:h-auto sm:w-auto sm:flex-row sm:bg-transparent sm:text-base sm:font-normal ${
+        className={`fixed top-0 left-0 flex h-screen w-full flex-col bg-secondary-800 sm:static sm:h-auto sm:w-auto sm:bg-transparent ${
           isInitial ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        {navData.map(({ name, route }) => (
-          <NavbarList
-            key={uuidv4()}
-            name={name}
-            route={route}
-            pathName={pathName}
-            onClick={() => {
-              setIsOpen(false)
-            }}
-          />
-        ))}
-      </motion.ul>
+        <ul className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  sm:flex-row sm:text-base sm:font-normal">
+          {navData.map(({ name, route }) => (
+            <NavbarList
+              key={uuidv4()}
+              name={name}
+              route={route}
+              pathName={pathName}
+              onClick={() => {
+                setIsOpen(false)
+              }}
+            />
+          ))}
+        </ul>
+      </motion.div>
     </motion.nav>
   )
 }
