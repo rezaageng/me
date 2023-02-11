@@ -13,6 +13,6 @@ interface NavbarListProps extends NavbarListData {
 }
 
 interface ContactsProps {
-  className: ClassName
-  iconSize: number
+  className?: ClassName
+  iconSize?: number
 }
