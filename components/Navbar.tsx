@@ -68,7 +68,7 @@ const Navbar = (): JSX.Element => {
     const transition: Transition = {
       type: 'spring',
       stiffness: 300,
-      damping: 100,
+      damping: 50,
       restDelta: 0.001
     }
 
@@ -79,7 +79,7 @@ const Navbar = (): JSX.Element => {
       })
     } else {
       void navControl.start({
-        y: -100,
+        y: -64,
         transition
       })
     }
