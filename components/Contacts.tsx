@@ -1,3 +1,4 @@
+import { type ContactsProps } from '@/@types'
 import {
   FiGithub,
   FiInstagram,

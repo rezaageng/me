@@ -14,6 +14,7 @@ import NavbarList from './NavbarList'
 import { usePathname } from 'next/navigation'
 import { IoMenu } from 'react-icons/io5'
 import NavbarInformation from './NavbarInformation'
+import { type NavbarListData } from '@/@types'
 
 const Navbar = (): JSX.Element => {
   // * states

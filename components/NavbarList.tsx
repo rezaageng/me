@@ -1,3 +1,4 @@
+import { type NavbarListProps } from '@/@types'
 import Link from 'next/link'
 
 import NavbarUnderline from './NavbarUnderline'

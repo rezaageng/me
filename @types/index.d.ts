@@ -1,3 +1,5 @@
+import { type Transition } from 'framer-motion'
+
 // * global
 type ClassName = string | undefined
 
@@ -12,7 +14,13 @@ interface NavbarListProps extends NavbarListData {
   onClick: () => void
 }
 
+// * Contacts
 interface ContactsProps {
   className?: ClassName
   iconSize?: number
+}
+
+// * framerStore
+interface FramerState {
+  transition: Transition
 }
