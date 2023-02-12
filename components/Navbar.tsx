@@ -154,7 +154,7 @@ const Navbar = (): JSX.Element => {
       </div>
       <motion.div
         animate={menuControl}
-        className={`fixed top-0 left-0 flex h-screen w-full flex-col bg-secondary-800 p-12 sm:static sm:h-auto sm:w-auto sm:bg-transparent sm:p-0 ${
+        className={`fixed top-0 left-0 flex h-screen w-full flex-col bg-secondary-800 p-24 sm:static sm:h-auto sm:w-auto sm:bg-transparent sm:p-0 ${
           isInitial ? 'opacity-0' : 'opacity-100'
         }`}
       >
