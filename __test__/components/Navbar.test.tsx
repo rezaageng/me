@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar'
 import NavbarUnderline from '@/components/NavbarUnderline'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 test('renders should be rendered', () => {
   render(<Navbar />)
@@ -43,9 +43,9 @@ test('links should be rendered', async () => {
   render(<Navbar />)
   const button = screen.getByRole('button')
   fireEvent.click(button)
-  const links = await waitFor(() => screen.getAllByTestId('navbar-list-link'))
+  const links = await screen.findAllByTestId('navbar-list-link')
 
-  expect(links.length).toBe(4)
+  expect(links).toHaveLength(4)
 })
 
 test('links texts should not be empty', () => {

@@ -10,19 +10,19 @@ test('contacts should be rendered', () => {
 test('contacts should have 5 items', () => {
   render(<Contacts />)
   const contacts = screen.getAllByRole('listitem')
-  expect(contacts.length).toBe(5)
+  expect(contacts).toHaveLength(5)
 })
 
 test('contacts should have 5 links', () => {
   render(<Contacts />)
   const contacts = screen.getAllByRole('link')
-  expect(contacts.length).toBe(5)
+  expect(contacts).toHaveLength(5)
 })
 
 test('contacts should have 5 icons', () => {
   render(<Contacts />)
   const contacts = screen.getAllByTestId('contact-icon')
-  expect(contacts.length).toBe(5)
+  expect(contacts).toHaveLength(5)
 })
 
 test('contacts should have 5 links with href', () => {
