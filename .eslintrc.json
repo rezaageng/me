@@ -6,8 +6,10 @@
   "extends": [
     "plugin:react/recommended",
     "standard-with-typescript",
-    "next/core-web-vitals",
-    "prettier"
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "prettier",
+    "next/core-web-vitals"
   ],
   "overrides": [],
   "parserOptions": {
