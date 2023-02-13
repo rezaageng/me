@@ -8,6 +8,7 @@
     "standard-with-typescript",
     "plugin:jest/recommended",
     "plugin:jest/style",
+    "plugin:testing-library/react",
     "prettier",
     "next/core-web-vitals"
   ],
