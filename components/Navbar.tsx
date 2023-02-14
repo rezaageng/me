@@ -137,7 +137,7 @@ const Navbar = (): JSX.Element => {
   return (
     <motion.nav
       animate={navControl}
-      className="fixed top-0 left-0 flex w-full justify-between bg-primary p-4"
+      className="fixed top-0 left-0 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter sm:px-24"
     >
       <div className="z-10 flex w-full justify-between text-xl text-accent-1 sm:block sm:w-auto sm:justify-start">
         <h1>rezaa</h1>
