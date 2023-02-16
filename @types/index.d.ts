@@ -18,6 +18,7 @@ interface NavbarListProps extends NavbarListData {
 interface ContactsProps {
   className?: ClassName
   iconSize?: number
+  animate: boolean
 }
 
 // * framerStore
