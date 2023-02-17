@@ -18,7 +18,7 @@ import useFramerStore from '@/store/framerStore'
 const Contacts = ({
   className,
   iconSize,
-  animate
+  animate = false
 }: ContactsProps): JSX.Element => {
   const { transition } = useFramerStore((state) => state)
 
@@ -70,10 +70,6 @@ const Contacts = ({
       </motion.li>
     </motion.ul>
   )
-}
-
-Contacts.defaultProps = {
-  animate: false
 }
 
 export default Contacts
