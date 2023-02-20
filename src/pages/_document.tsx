@@ -7,7 +7,7 @@ const Document = (): JSX.Element => {
         <meta name="description" content="hii im rezaa" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <body>
+      <body className="bg-primary">
         <Main />
         <NextScript />
       </body>
