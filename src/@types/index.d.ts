@@ -33,7 +33,7 @@ interface FramerState {
 
 // * API
 interface HomeResponse {
-  data: {
+  data?: {
     id: number
     attributes: {
       title: string

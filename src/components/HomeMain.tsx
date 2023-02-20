@@ -16,7 +16,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
           alt="rezaa"
         />
       </div>
-      <h1>{data.attributes.title}</h1>
+      <h1>{data?.attributes.title}</h1>
     </div>
   )
 }
