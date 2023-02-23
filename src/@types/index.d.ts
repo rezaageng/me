@@ -31,6 +31,15 @@ interface FramerState {
   transition: Transition
 }
 
+// * useResponsive
+interface Responsive {
+  isSm: boolean
+  isMd: boolean
+  isLg: boolean
+  isXl: boolean
+  is2xl: boolean
+}
+
 // * API
 interface HomeResponse {
   data?: {
