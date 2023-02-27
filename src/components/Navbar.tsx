@@ -1,6 +1,5 @@
 import { motion, useAnimationControls, useScroll } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { useMediaQuery } from 'react-responsive'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
 import NavbarList from './NavbarList'
@@ -9,20 +8,20 @@ import { IoMenu } from 'react-icons/io5'
 import NavbarInformation from './NavbarInformation'
 import { type NavbarListData } from '@/@types'
 import useFramerStore from '@/store/framerStore'
+import { useResponsive } from '@/hooks/useResponsive'
 
 const Navbar = (): JSX.Element => {
   // * states
   const [isInitial, setIsInitial] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-  const [isSm, setIsSm] = useState(true)
   const [isVisible, setIsVisible] = useState(true)
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
   const { transition } = useFramerStore((state) => state)
 
   // * hooks
+  const { isLg } = useResponsive()
   const [blockScroll, allowScroll] = useScrollBlock()
-  const smallScreen = useMediaQuery({ query: '(min-width: 640px)' })
   const pathName = usePathname()
 
   // * animation controls
@@ -76,32 +75,35 @@ const Navbar = (): JSX.Element => {
 
   // * nav menu animation on mobile
   useEffect(() => {
-    if (isOpen && !isSm) {
+    if (isOpen && !isLg) {
       void menuControl.start({
         x: [windowWidth, 0],
         transition
       })
     }
-    if (!isOpen && !isSm) {
+    if (!isOpen && !isLg) {
       void menuControl.start({
         x: [0, windowWidth],
         transition
       })
     }
-    if (isSm) {
+    if (isLg) {
       void menuControl.start({
         x: 0
       })
     }
-  }, [isOpen, isSm, menuControl, transition, windowWidth])
+  }, [isOpen, isLg, menuControl, transition, windowWidth])
 
   // * prevent navbar from animating on initial load
   useEffect(() => {
-    setIsSm(smallScreen)
-    if (smallScreen) {
+    if (isLg && isOpen) {
       setIsInitial(false)
     }
-  }, [smallScreen])
+    if (!isLg) {
+      setIsInitial(false)
+    }
+    console.log(isLg)
+  }, [isLg, isOpen])
 
   // * block scroll when nav menu is open
   useEffect(() => {
@@ -135,11 +137,11 @@ const Navbar = (): JSX.Element => {
   return (
     <motion.nav
       animate={navControl}
-      className="fixed top-0 left-0 z-10 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter sm:px-8"
+      className="fixed top-0 left-0 z-10 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter lg:px-8"
     >
-      <div className="z-20 flex w-full justify-between text-xl text-accent-1 sm:block sm:w-auto sm:justify-start">
+      <div className="z-20 flex w-full justify-between text-xl text-accent-1 lg:block lg:w-auto lg:justify-start">
         <h1>rezaa</h1>
-        {!isSm ? (
+        {!isLg ? (
           <button
             onClick={() => {
               setIsOpen((state) => !state)
@@ -152,13 +154,13 @@ const Navbar = (): JSX.Element => {
       </div>
       <motion.div
         animate={menuControl}
-        className={`fixed top-0 left-0 flex h-screen w-full flex-col bg-secondary-800 p-24 sm:static sm:h-auto sm:w-auto sm:bg-transparent sm:p-0 ${
+        className={`fixed top-0 left-0 flex h-screen w-full flex-col bg-secondary-800 p-24 lg:static lg:h-auto lg:w-auto lg:bg-transparent lg:p-0 ${
           isInitial ? 'opacity-0' : 'opacity-100'
         }`}
       >
         <ul
           data-testid="navbar-list"
-          className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  sm:flex-row sm:text-base sm:font-normal"
+          className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  lg:flex-row lg:text-base lg:font-normal"
         >
           {navData.map(({ name, route }) => (
             <NavbarList
@@ -172,7 +174,7 @@ const Navbar = (): JSX.Element => {
             />
           ))}
         </ul>
-        {!isSm ? <NavbarInformation /> : null}
+        {!isLg ? <NavbarInformation /> : null}
       </motion.div>
     </motion.nav>
   )
