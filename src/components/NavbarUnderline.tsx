@@ -1,8 +1,8 @@
-import { useResponsive } from '@/hooks/useResponsive'
+import { useMediaQuery } from 'react-responsive'
 import { motion } from 'framer-motion'
 
 const NavbarUnderline = (): JSX.Element => {
-  const { isLg } = useResponsive()
+  const isLg = useMediaQuery({ query: '(min-width: 1024px)' })
 
   return (
     <motion.div

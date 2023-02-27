@@ -8,7 +8,7 @@ import { IoMenu } from 'react-icons/io5'
 import NavbarInformation from './NavbarInformation'
 import { type NavbarListData } from '@/@types'
 import useFramerStore from '@/store/framerStore'
-import { useResponsive } from '@/hooks/useResponsive'
+import { useMediaQuery } from 'react-responsive'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -18,11 +18,13 @@ const Navbar = (): JSX.Element => {
   const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
   const { transition } = useFramerStore((state) => state)
+  const [isLg, setIsLg] = useState(false)
 
   // * hooks
-  const { isLg } = useResponsive()
+
   const [blockScroll, allowScroll] = useScrollBlock()
   const pathName = usePathname()
+  const largeScreen = useMediaQuery({ query: '(min-width: 1024px)' })
 
   // * animation controls
   const navControl = useAnimationControls()
@@ -96,14 +98,11 @@ const Navbar = (): JSX.Element => {
 
   // * prevent navbar from animating on initial load
   useEffect(() => {
-    if (isLg && isOpen) {
+    setIsLg(largeScreen)
+    if (largeScreen) {
       setIsInitial(false)
     }
-    if (!isLg) {
-      setIsInitial(false)
-    }
-    console.log(isLg)
-  }, [isLg, isOpen])
+  }, [isLg, isOpen, largeScreen])
 
   // * block scroll when nav menu is open
   useEffect(() => {
