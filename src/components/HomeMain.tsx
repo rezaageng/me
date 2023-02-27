@@ -5,7 +5,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   return (
     <div
       data-testid="home-main"
-      className="relative m-auto flex min-h-[90vh] max-w-7xl flex-col justify-center px-8 py-4 lg:static lg:min-h-screen lg:flex-row lg:items-center lg:justify-evenly"
+      className="relative m-auto flex min-h-[100dvh] max-w-7xl flex-col justify-center px-8 py-4 lg:static lg:min-h-screen lg:flex-row lg:items-center lg:justify-evenly"
     >
       <Image
         data-testid="main-character"
