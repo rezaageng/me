@@ -10,7 +10,6 @@ export const useResponsive = (): Responsive => {
 
   const responsiveHandler = (): void => {
     const width = window.innerWidth
-    console.log(width)
     if (width <= 640) {
       setIsSm(false)
       setIsMd(false)
