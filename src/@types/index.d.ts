@@ -40,9 +40,16 @@ interface Responsive {
   is2xl: boolean
 }
 
+// * useSmooth
+type Smooth = (
+  value: MotionValue<number>,
+  input: number[],
+  output: number[]
+) => MotionValue<any>
+
 // * API
 interface HomeResponse {
-  data?: {
+  data: {
     id: number
     attributes: {
       title: string
