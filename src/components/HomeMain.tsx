@@ -5,24 +5,38 @@ import {
   motion,
   useScroll,
   type MotionStyle,
-  useTransform
+  useTransform,
+  useAnimationControls
 } from 'framer-motion'
 import useFramerStore from '@/store/framerStore'
-import { useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useSmooth from '@/hooks/useSmooth'
 
 const HomeMain = ({ data }: HomeResponse): JSX.Element => {
+  // * hooks
+  const [isAnimate, setIsAnimate] = useState(false)
+
   const ref = useRef<HTMLDivElement>(null)
 
-  const { transition } = useFramerStore((state) => state)
+  const titleControl = useAnimationControls()
+  const subtitleControl = useAnimationControls()
+  const descriptionControl = useAnimationControls()
+  const buttonControl = useAnimationControls()
 
-  const initial: AnimationProps['initial'] = { y: 100, opacity: 0 }
-  const animate: AnimationProps['animate'] = { y: 0, opacity: 1 }
+  const { transition } = useFramerStore((state) => state)
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['100vh', '0vh']
   })
+
+  // * animation
+  const initial: AnimationProps['initial'] = useMemo(() => {
+    return { y: 100, opacity: 0 }
+  }, [])
+  const animate: AnimationProps['animate'] = useMemo(() => {
+    return { y: 0, opacity: 1 }
+  }, [])
 
   const mc: MotionStyle = {
     scale: useSmooth(scrollYProgress, [0, 1], [0.9, 1]),
@@ -40,8 +54,58 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   }
 
   scrollYProgress.on('change', (progress) => {
-    console.log(progress)
+    if (progress <= 0.2) {
+      setIsAnimate(true)
+    } else {
+      setIsAnimate(false)
+    }
   })
+  useEffect(() => {
+    if (isAnimate) {
+      void titleControl.start({
+        ...initial,
+        transition: { ...transition, delay: 0.4 }
+      })
+      void subtitleControl.start({
+        ...initial,
+        transition: { ...transition, delay: 0.3 }
+      })
+      void descriptionControl.start({
+        ...initial,
+        transition: { ...transition, delay: 0.2 }
+      })
+      void buttonControl.start({
+        ...initial,
+        transition: { ...transition, delay: 0 }
+      })
+    } else {
+      void titleControl.start({
+        ...animate,
+        transition: { ...transition, delay: 0.2 }
+      })
+      void subtitleControl.start({
+        ...animate,
+        transition: { ...transition, delay: 0.4 }
+      })
+      void descriptionControl.start({
+        ...animate,
+        transition: { ...transition, delay: 0.6 }
+      })
+      void buttonControl.start({
+        ...animate,
+        transition: { ...transition, delay: 0.8 }
+      })
+    }
+  }, [
+    animate,
+    buttonControl,
+    descriptionControl,
+    initial,
+    isAnimate,
+    subtitleControl,
+    titleControl,
+    transition
+  ])
 
   return (
     <div ref={ref} className="min-h-[100dvh] ">
@@ -85,8 +149,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
             <div className="flex flex-col gap-4 bg-primary">
               <motion.h1
                 initial={initial}
-                animate={animate}
-                transition={{ ...transition, delay: 0.2 }}
+                animate={titleControl}
                 data-testid="title"
                 className="w-auto text-4xl font-bold lg:text-5xl"
               >
@@ -94,8 +157,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               </motion.h1>
               <motion.h2
                 initial={initial}
-                animate={animate}
-                transition={{ ...transition, delay: 0.4 }}
+                animate={subtitleControl}
                 data-testid="subtitle"
                 className="text-2xl font-bold opacity-75"
               >
@@ -103,8 +165,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               </motion.h2>
               <motion.p
                 initial={initial}
-                animate={animate}
-                transition={{ ...transition, delay: 0.6 }}
+                animate={descriptionControl}
                 data-testid="description"
                 className="lg:max-w-sm"
               >
@@ -112,8 +173,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               </motion.p>
               <motion.button
                 initial={initial}
-                animate={animate}
-                transition={{ ...transition, delay: 0.8 }}
+                animate={buttonControl}
                 className="self-start rounded-full bg-accent-1 px-8 py-2 text-2xl"
               >
                 Start
