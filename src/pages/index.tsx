@@ -1,12 +1,15 @@
 import HomeMain from '@/components/HomeMain'
+import HomeSkills from '@/components/HomeSkills'
 import { type GetStaticProps } from 'next'
 import { type HomeResponse } from '../@types'
 
 const Home = ({ data }: HomeResponse): JSX.Element => {
   return (
-    <>
+    <section>
       <HomeMain data={data} />
-    </>
+      <HomeSkills />
+      {/* <div className="min-h-screen" id="two" /> */}
+    </section>
   )
 }
 
