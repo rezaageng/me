@@ -13,6 +13,7 @@
     "lint-staged": "lint-staged"
   },
   "dependencies": {
+    "@juggle/resize-observer": "^3.4.0",
     "@next/font": "13.1.6",
     "@react-three/drei": "^9.57.2",
     "@react-three/fiber": "^8.12.0",
