@@ -1,3 +1,4 @@
+import { type Vector3 } from '@react-three/fiber'
 import { type Transition } from 'framer-motion'
 
 // * global
@@ -58,4 +59,13 @@ interface HomeResponse {
       anotherSide: string
     }
   }
+}
+
+// * helpers
+type IsFloat = (number: number) => boolean
+
+// * home
+interface HomeSkillsIconProps {
+  icon: string
+  position: Vector3
 }
