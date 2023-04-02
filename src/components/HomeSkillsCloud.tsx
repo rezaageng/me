@@ -26,13 +26,15 @@ const HomeSkillsCloud = (): JSX.Element => {
       <Icons.SiTailwindcss key={uuidv4()} />,
       <Icons.SiStyledcomponents key={uuidv4()} />,
       <Icons.SiFramer key={uuidv4()} />,
+      <Icons.SiThreedotjs key={uuidv4()} />,
       <Icons.SiStrapi key={uuidv4()} />,
       <Icons.SiJest key={uuidv4()} />,
       <Icons.SiTestinglibrary key={uuidv4()} />,
       <Icons.SiFigma key={uuidv4()} />,
       <Icons.SiGit key={uuidv4()} />,
       <Icons.SiGithub key={uuidv4()} />,
-      <Icons.SiVisualstudiocode key={uuidv4()} />
+      <Icons.SiVisualstudiocode key={uuidv4()} />,
+      <Icons.SiIntellijidea key={uuidv4()} />
     ]
 
     const lengthSqrt = Math.sqrt(skills.length)
@@ -61,7 +63,7 @@ const HomeSkillsCloud = (): JSX.Element => {
   }, [])
 
   return (
-    <group>
+    <group scale={0.7}>
       {icons.map(([pos, icon]) => (
         <HomeSkillsIcon key={uuidv4()} position={pos} icon={icon} />
       ))}

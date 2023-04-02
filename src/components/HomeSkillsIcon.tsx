@@ -1,5 +1,5 @@
 import { type HomeSkillsIconProps } from '@/@types'
-import { Svg } from '@react-three/drei'
+import { Svg, type SvgProps } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import { type Object3D } from 'three'
@@ -8,9 +8,10 @@ const HomeSkillsIcon = ({
   icon,
   position
 }: HomeSkillsIconProps): JSX.Element => {
-  const ref = useRef<Object3D>(null)
+  const ref = useRef<Object3D & SvgProps>(null)
 
   useFrame(({ camera }) => {
+    if (ref.current === null) return
     ref.current?.quaternion.copy(camera.quaternion)
   })
 
@@ -20,7 +21,9 @@ const HomeSkillsIcon = ({
       src={icon}
       position={position}
       scale={0.2}
-      fillMaterial={{ color: 'white' }}
+      fillMaterial={{
+        color: '#fff'
+      }}
     />
   )
 }

@@ -13,7 +13,7 @@ const HomeSkills = (): JSX.Element => {
         resize={{ polyfill: ResizeObserver }}
         data-testid="3d-canvas"
       >
-        <fog attach="fog" args={['#202025', 0, 80]} />
+        <fog attach="fog" args={['#0D0409', 0, 80]} />
         <HomeSkillsCloud />
         <TrackballControls rotateSpeed={5} noPan noZoom />
       </Canvas>
