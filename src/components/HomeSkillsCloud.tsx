@@ -63,7 +63,7 @@ const HomeSkillsCloud = (): JSX.Element => {
   }, [])
 
   return (
-    <group scale={0.7}>
+    <group scale={1.2}>
       {icons.map(([pos, icon]) => (
         <HomeSkillsIcon key={uuidv4()} position={pos} icon={icon} />
       ))}
