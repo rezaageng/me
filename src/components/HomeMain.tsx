@@ -112,7 +112,7 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
       <div className="fixed w-full">
         <div
           data-testid="home-main"
-          className="relative m-auto flex min-h-[100dvh] max-w-7xl flex-col justify-center px-8 py-4 lg:static lg:min-h-screen lg:flex-row lg:items-center lg:justify-evenly"
+          className="relative flex min-h-[100dvh] max-w-7xl flex-col justify-center px-8 py-4 lg:static lg:min-h-screen lg:flex-row lg:items-center lg:justify-between"
         >
           <motion.div
             initial={{
@@ -133,9 +133,9 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               duration: 1
             }}
             style={mc}
+            className="flex justify-center sm:justify-start"
           >
             <Image
-              className="self-center"
               data-testid="main-character"
               src="/assets/images/mc.png"
               width={512}
