@@ -12,13 +12,19 @@ const poppins = Poppins({
 const Layout = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <>
-      <header className={`${poppins.variable} bg-primary font-sans text-white`}>
+      <header
+        className={`${poppins.variable} bg-primary font-sans text-lg text-white`}
+      >
         <Navbar />
       </header>
-      <main className={`${poppins.variable} bg-primary font-sans text-white`}>
+      <main
+        className={`${poppins.variable} bg-primary font-sans text-lg text-white`}
+      >
         {children}
       </main>
-      <aside className={`${poppins.variable} bg-primary font-sans text-white`}>
+      <aside
+        className={`${poppins.variable} bg-primary font-sans text-lg text-white`}
+      >
         <Sidebar />
       </aside>
     </>
