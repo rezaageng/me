@@ -1,9 +1,9 @@
 import HomeSkills from '@/components/HomeSkills'
 import { render, screen } from '@testing-library/react'
 
-test('hand should be rendered', () => {
+test('skills title should be rendered', () => {
   render(<HomeSkills />)
-  const component = screen.getByTestId('hand')
+  const component = screen.getByTestId('skills-title')
   expect(component).toBeInTheDocument()
 })
 
