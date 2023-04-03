@@ -5,8 +5,8 @@ import { ResizeObserver } from '@juggle/resize-observer'
 
 const HomeSkills = (): JSX.Element => {
   return (
-    <div className="flex h-[100dvh] w-full flex-col justify-center px-8">
-      <div className="flex flex-col gap-4">
+    <div className="flex h-[100dvh] w-full flex-col items-center justify-center px-8 sm:flex-row">
+      <div className="flex w-full flex-col gap-4 sm:flex-1">
         <h1
           className="w-auto text-4xl font-bold text-accent-1 lg:text-5xl"
           data-testid="skills-title"
@@ -20,7 +20,7 @@ const HomeSkills = (): JSX.Element => {
           sequi facilis. Voluptate, earum.
         </p>
       </div>
-      <div className="aspect-square w-full">
+      <div className="aspect-square w-full sm:flex-1">
         <Canvas
           dpr={[1, 2]}
           camera={{ position: [0, 0, 35], fov: 90 }}
