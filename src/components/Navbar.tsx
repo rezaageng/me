@@ -1,4 +1,4 @@
-import { motion, useAnimationControls, useScroll } from 'framer-motion'
+import { motion, useAnimationControls } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
@@ -14,8 +14,6 @@ const Navbar = (): JSX.Element => {
   // * states
   const [isInitial, setIsInitial] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [previousScrollPosition, setPreviousScrollPosition] = useState(0)
   const [windowWidth, setWindowWidth] = useState(0)
   const { transition } = useFramerStore((state) => state)
   const [isLg, setIsLg] = useState(false)
@@ -27,11 +25,7 @@ const Navbar = (): JSX.Element => {
   const largeScreen = useMediaQuery({ query: '(min-width: 1024px)' })
 
   // * animation controls
-  const navControl = useAnimationControls()
   const menuControl = useAnimationControls()
-
-  // * scrollYProgress
-  const { scrollYProgress } = useScroll()
 
   // * set window width
   useEffect(() => {
@@ -47,33 +41,6 @@ const Navbar = (): JSX.Element => {
       })
     }
   }, [])
-
-  //  * navabar animation on scroll
-  useEffect(() => {
-    scrollYProgress.on('change', (progress) => {
-      if (progress > previousScrollPosition + 0.1) {
-        setIsVisible(false)
-        setPreviousScrollPosition(scrollYProgress.get())
-      } else if (progress < previousScrollPosition - 0.1) {
-        setIsVisible(true)
-        setPreviousScrollPosition(scrollYProgress.get())
-      }
-    })
-  }, [previousScrollPosition, scrollYProgress])
-
-  useEffect(() => {
-    if (isVisible) {
-      void navControl.start({
-        y: 0,
-        transition
-      })
-    } else {
-      void navControl.start({
-        y: -64,
-        transition
-      })
-    }
-  }, [isVisible, navControl, transition])
 
   // * nav menu animation on mobile
   useEffect(() => {
@@ -134,10 +101,7 @@ const Navbar = (): JSX.Element => {
   ]
 
   return (
-    <motion.nav
-      animate={navControl}
-      className="fixed top-0 left-0 z-10 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter lg:px-8"
-    >
+    <nav className="fixed top-0 left-0 z-10 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter lg:px-8">
       <div className="z-20 flex w-full justify-between text-xl text-accent-1 lg:block lg:w-auto lg:justify-start">
         <h1>rezaa</h1>
         {!isLg ? (
@@ -175,7 +139,7 @@ const Navbar = (): JSX.Element => {
         </ul>
         {!isLg ? <NavbarInformation /> : null}
       </motion.div>
-    </motion.nav>
+    </nav>
   )
 }
 
