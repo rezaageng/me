@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: ReactNode }): JSX.Element => {
         <Navbar />
       </header>
       <main
-        className={`${poppins.variable} bg-primary font-sans text-lg text-white`}
+        className={`${poppins.variable} m-auto max-w-7xl bg-primary font-sans text-lg text-white`}
       >
         {children}
       </main>

@@ -5,11 +5,11 @@ import { type HomeResponse } from '../@types'
 
 const Home = ({ data }: HomeResponse): JSX.Element => {
   return (
-    <section className="m-auto max-w-7xl">
+    <>
       <HomeMain data={data} />
       <HomeSkills />
       {/* <div className="min-h-screen" id="two" /> */}
-    </section>
+    </>
   )
 }
 
