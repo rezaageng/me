@@ -1,5 +1,5 @@
 import { type Vector3 } from '@react-three/fiber'
-import { type Transition } from 'framer-motion'
+import { type SpringOptions, type Transition } from 'framer-motion'
 
 // * global
 type ClassName = string | undefined
@@ -45,7 +45,8 @@ interface Responsive {
 type Smooth = (
   value: MotionValue<number>,
   input: number[],
-  output: number[]
+  output: number[],
+  config?: SpringOptions
 ) => MotionValue<any>
 
 // * API
