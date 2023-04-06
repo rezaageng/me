@@ -9,40 +9,53 @@ import {
   useAnimationControls
 } from 'framer-motion'
 import useFramerStore from '@/store/framerStore'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import useSmooth from '@/hooks/useSmooth'
 
 const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   // * hooks
-  const [isAnimate, setIsAnimate] = useState(false)
-
+  const [isActive, setIsActive] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const titleControl = useAnimationControls()
-  const subtitleControl = useAnimationControls()
-  const descriptionControl = useAnimationControls()
-  const buttonControl = useAnimationControls()
-
   const { transition } = useFramerStore((state) => state)
-
+  const squareControl = useAnimationControls()
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['100vh', '0vh']
+    offset: ['0', '1']
   })
 
-  // * animation
-  const initial: AnimationProps['initial'] = useMemo(() => {
-    return { y: 100, opacity: 0 }
-  }, [])
-  const animate: AnimationProps['animate'] = useMemo(() => {
-    return { y: 0, opacity: 1 }
-  }, [])
+  // * check is section active
+  scrollYProgress.on('change', (value) => {
+    if (value >= 0 && value < 1) {
+      setIsActive(true)
+    } else {
+      setIsActive(false)
+    }
+  })
+
+  // * animation variables
+  const initial: AnimationProps['initial'] = { y: 100, opacity: 0 }
+  const animate: AnimationProps['animate'] = { y: 0, opacity: 1 }
+
+  // * scroll animation
+  const text: MotionStyle = {
+    opacity: useSmooth(scrollYProgress, [0, 1], [1, 0])
+  }
+
+  const mcWrapper: MotionStyle = {
+    y: useSmooth(scrollYProgress, [0, 0.1], [350, 0], {
+      stiffness: 150,
+      damping: 30,
+      restDelta: 0.001
+    }),
+    opacity: useSmooth(scrollYProgress, [0.9, 1], [1, 0])
+  }
 
   const mc: MotionStyle = {
-    scale: useSmooth(scrollYProgress, [0, 1], [0.9, 1]),
+    scale: useSmooth(scrollYProgress, [0.1, 1], [0.9, 1]),
     filter: useTransform(
       scrollYProgress,
-      [0, 0.2, 0.4, 1],
+      [0.1, 0.2, 0.4, 0.6],
       [
         'brightness(0) opacity(0)',
         'brightness(0)',
@@ -53,136 +66,98 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
     opacity: useSmooth(scrollYProgress, [0, 0.1], [0, 1])
   }
 
-  scrollYProgress.on('change', (progress) => {
-    if (progress <= 0.2) {
-      setIsAnimate(true)
-    } else {
-      setIsAnimate(false)
-    }
-  })
+  // * idle animation
   useEffect(() => {
-    if (isAnimate) {
-      void titleControl.start({
-        ...initial,
-        transition: { ...transition, delay: 0.4 }
-      })
-      void subtitleControl.start({
-        ...initial,
-        transition: { ...transition, delay: 0.3 }
-      })
-      void descriptionControl.start({
-        ...initial,
-        transition: { ...transition, delay: 0.2 }
-      })
-      void buttonControl.start({
-        ...initial,
-        transition: { ...transition, delay: 0 }
+    if (isActive) {
+      void squareControl.start({
+        rotate: [0, 360, 0],
+        transition: {
+          repeat: Infinity,
+          duration: 20,
+          ease: 'backInOut'
+        }
       })
     } else {
-      void titleControl.start({
-        ...animate,
-        transition: { ...transition, delay: 0.2 }
-      })
-      void subtitleControl.start({
-        ...animate,
-        transition: { ...transition, delay: 0.4 }
-      })
-      void descriptionControl.start({
-        ...animate,
-        transition: { ...transition, delay: 0.6 }
-      })
-      void buttonControl.start({
-        ...animate,
-        transition: { ...transition, delay: 0.8 }
-      })
+      squareControl.stop()
     }
-  }, [
-    animate,
-    buttonControl,
-    descriptionControl,
-    initial,
-    isAnimate,
-    subtitleControl,
-    titleControl,
-    transition
-  ])
+
+    return () => {
+      squareControl.stop()
+    }
+  }, [isActive, squareControl])
 
   return (
-    <div ref={ref} className="min-h-[100dvh] ">
+    <section
+      ref={ref}
+      className="min-h-[150dvh]  max-w-7xl"
+      data-testid="home-main"
+    >
       <div className="fixed w-full">
-        <div
-          data-testid="home-main"
-          className="relative flex min-h-[100dvh] max-w-7xl flex-col justify-center px-8 py-4 lg:static lg:min-h-screen lg:flex-row lg:items-center lg:justify-between"
-        >
-          <motion.div
-            initial={{
-              scale: 0.9,
-              filter: 'brightness(0) opacity(0)',
-              opacity: 1
-            }}
-            animate={{
-              scale: 1,
-              filter: [
-                'brightness(0) opacity(0)',
-                'brightness(0)',
-                'brightness(0.2)',
-                'brightness(1)'
-              ]
-            }}
-            transition={{
-              duration: 1
-            }}
-            style={mc}
-            className="flex justify-center sm:justify-start"
-          >
-            <Image
-              data-testid="main-character"
-              src="/assets/images/mc.png"
-              width={512}
-              height={748}
-              alt="rezaa"
-              priority
-            />
-          </motion.div>
-          <div className="absolute bottom-4 flex flex-col pr-8 lg:static lg:pr-0">
-            <div className="h-48 w-full bg-gradient-to-t from-primary lg:hidden" />
-            <div className="flex flex-col gap-4 bg-primary">
+        <div className="flex flex-col justify-center px-6 py-4">
+          <div className="flex h-[50dvh] flex-col  items-center justify-center">
+            <motion.div
+              style={text}
+              className="flex flex-col justify-center gap-2 bg-primary sm:max-w-md"
+            >
               <motion.h1
                 initial={initial}
-                animate={titleControl}
+                animate={animate}
+                transition={transition}
                 data-testid="title"
-                className="w-auto text-4xl font-bold lg:text-5xl"
+                className="w-auto text-6xl font-bold"
               >
                 {data?.attributes.title}
               </motion.h1>
               <motion.h2
                 initial={initial}
-                animate={subtitleControl}
+                animate={animate}
+                transition={{ ...transition, delay: 0.2 }}
                 data-testid="subtitle"
-                className="text-2xl font-bold opacity-75"
+                className="text-white/75"
               >
                 {data?.attributes.subtitle}
               </motion.h2>
-              <motion.p
+              {/* <motion.p
                 initial={initial}
                 animate={descriptionControl}
                 data-testid="description"
                 className="lg:max-w-sm"
               >
                 {data?.attributes.description}
-              </motion.p>
-              <motion.button
+              </motion.p> */}
+              {/* <motion.button
                 initial={initial}
                 animate={buttonControl}
                 className="self-start rounded-full bg-accent-1 px-8 py-2 text-2xl"
               >
                 Start
-              </motion.button>
-            </div>
+              </motion.button> */}
+            </motion.div>
+          </div>
+          <div className="fixed top-0 left-0  h-[100dvh] w-full">
+            <motion.div
+              style={mcWrapper}
+              className="relative flex h-full items-center justify-center"
+            >
+              <motion.div
+                animate={squareControl}
+                className="absolute aspect-square w-72 rounded-[3rem] bg-accent-1 sm:w-96 sm:rounded-[4rem]"
+              />
+              <motion.div style={mc} className="absolute w-96 sm:w-[28rem]">
+                <Image
+                  data-testid="main-character"
+                  src="/assets/images/mc.png"
+                  width={512}
+                  height={748}
+                  alt="rezaa"
+                  priority
+                />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 export default HomeMain

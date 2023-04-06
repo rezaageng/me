@@ -7,8 +7,8 @@ const Home = ({ data }: HomeResponse): JSX.Element => {
   return (
     <>
       <HomeMain data={data} />
+      <div className="min-h-[60dvh]" id="two" />
       <HomeSkills />
-      {/* <div className="min-h-screen" id="two" /> */}
     </>
   )
 }
