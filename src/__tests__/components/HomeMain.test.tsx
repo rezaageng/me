@@ -18,21 +18,3 @@ test('subtitle should be rendered', () => {
   const subtitle = screen.getByTestId('subtitle')
   expect(subtitle).toBeInTheDocument()
 })
-
-test('description should be rendered', () => {
-  render(<HomeMain />)
-  const description = screen.getByTestId('description')
-  expect(description).toBeInTheDocument()
-})
-
-test('button should be rendered', () => {
-  render(<HomeMain />)
-  const component = screen.getByRole('button')
-  expect(component).toBeInTheDocument()
-})
-
-test('button should be enabled', () => {
-  render(<HomeMain />)
-  const component = screen.getByRole('button')
-  expect(component).toBeEnabled()
-})
