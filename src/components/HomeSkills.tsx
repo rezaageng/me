@@ -1,3 +1,5 @@
+'use client'
+
 import { Float, TrackballControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import HomeSkillsCloud from './HomeSkillsCloud'

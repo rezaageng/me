@@ -45,7 +45,7 @@ type Smooth = (
 
 // * API
 interface HomeResponse {
-  data?: {
+  data: {
     id: number
     attributes: {
       title: string
@@ -53,7 +53,7 @@ interface HomeResponse {
       description: string
       anotherSide: string
     }
-  }
+  } | null
 }
 
 // * helpers
