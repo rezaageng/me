@@ -1,3 +1,5 @@
+'use client'
+
 import { type Social, type ContactsProps } from '@/@types'
 import {
   FiGithub,

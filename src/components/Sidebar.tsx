@@ -1,3 +1,5 @@
+'use client'
+
 import Contacts from './Contacts'
 
 const Sidebar = (): JSX.Element => {

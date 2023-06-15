@@ -1,3 +1,5 @@
+'use client'
+
 import { motion, useAnimationControls } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useScrollBlock } from '@/hooks/useScrollBlock'

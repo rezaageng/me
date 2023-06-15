@@ -1,5 +1,6 @@
+import Home from '@/app/page'
 import { render, screen } from '@testing-library/react'
-import Home from '@/pages/index'
+
 // import { setupServer } from 'msw/node'
 // import { type DefaultBodyType, type PathParams, rest } from 'msw'
 // import { type HomeResponse } from '@/@types'
@@ -34,8 +35,8 @@ import Home from '@/pages/index'
 //   server.close()
 // })
 
-test('home page should be rendered', () => {
-  render(<Home />)
+test('home page should be rendered', async () => {
+  render(await Home())
   const component = screen.getByTestId('home-main')
   expect(component).toBeInTheDocument()
 })
