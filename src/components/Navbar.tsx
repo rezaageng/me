@@ -112,6 +112,7 @@ const Navbar = (): JSX.Element => {
               setIsOpen((state) => !state)
               setIsInitial(false)
             }}
+            className="block lg:hidden"
           >
             <IoMenu size={32} />
           </button>
