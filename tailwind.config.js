@@ -17,9 +17,10 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-poppins)']
+        sans: ['var(--font-poppins)'],
+        mono: ['var(--font-hacknf)']
       }
     }
   },
-  plugins: []
+  plugins: [require('tailwind-scrollbar')({ nocompatible: true })]
 }
