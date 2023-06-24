@@ -43,19 +43,6 @@ type Smooth = (
   config?: SpringOptions
 ) => MotionValue<any>
 
-// * API
-interface HomeResponse {
-  data: {
-    id: number
-    attributes: {
-      title: string
-      subtitle: string
-      description: string
-      anotherSide: string
-    }
-  } | null
-}
-
 // * helpers
 type IsFloat = (number: number) => boolean
 
