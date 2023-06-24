@@ -50,6 +50,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  react-hook-form:
+    specifier: ^7.44.3
+    version: 7.44.3(react@18.2.0)
   react-icons:
     specifier: ^4.8.0
     version: 4.8.0(react@18.2.0)
@@ -133,6 +136,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: ^0.2.4
     version: 0.2.4(prettier@2.8.3)
+  tailwind-scrollbar:
+    specifier: ^3.0.4
+    version: 3.0.4(tailwindcss@3.2.7)
   tailwindcss:
     specifier: ^3.2.7
     version: 3.2.7(postcss@8.4.21)
@@ -7017,6 +7023,18 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-hook-form@7.44.3(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-/tHId6p2ViAka1wECMw8FEPn/oz/w226zehHrJyQ1oIzCBNMIJCaj6ZkQcv+MjDxYh9MWR7RQic7Qqwe4a5nkw==
+      }
+    engines: { node: '>=12.22.0' }
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-icons@4.8.0(react@18.2.0):
     resolution:
       {
@@ -7826,6 +7844,18 @@ packages:
     dependencies:
       '@pkgr/utils': 2.3.1
       tslib: 2.5.0
+    dev: true
+
+  /tailwind-scrollbar@3.0.4(tailwindcss@3.2.7):
+    resolution:
+      {
+        integrity: sha512-X/QBsn/C5u9x6/YvTc1Zo7b09Gqs5BfDe0UK/8LDQUv8IEBKF+p2ISTRwvAr50MH0hn/wTyCEOann7uXoa1/2Q==
+      }
+    engines: { node: '>=12.13.0' }
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.2.7(postcss@8.4.21)
     dev: true
 
   /tailwindcss@3.2.7(postcss@8.4.21):
