@@ -5,7 +5,7 @@ interface HomeResponse {
     attributes: {
       title: string
       subtitle: string
-      description: string
+      summary: string
       anotherSide: string
       createdAt: string
       publishedAt: string

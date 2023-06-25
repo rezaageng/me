@@ -1,5 +1,5 @@
 interface Prompt {
-  isActive: boolean
+  isActive?: boolean
   inputValue?: string
   children?: JSX.Element | null
 }

@@ -51,3 +51,13 @@ interface HomeSkillsIconProps {
   icon: string
   position: Vector3
 }
+
+// * api meta
+interface Meta {
+  pagination: {
+    page: number
+    pageSize: number
+    pageCount: number
+    total: number
+  }
+}
