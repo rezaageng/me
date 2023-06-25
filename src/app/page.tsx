@@ -1,8 +1,7 @@
-import { type HomeResponse } from '@/@types'
 import HomeMain from '@/components/HomeMain'
 import HomeSkills from '@/components/HomeSkills'
 
-const getHomeData = async (): Promise<HomeResponse['data'] | null> => {
+const getHomeData = async (): Promise<HomeResponse> => {
   const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
     method: 'get',
     headers: {
@@ -13,13 +12,13 @@ const getHomeData = async (): Promise<HomeResponse['data'] | null> => {
     }
   })
 
-  const { data }: HomeResponse = await res.json()
+  const data: HomeResponse = await res.json()
 
   return data
 }
 
 const Home = async (): Promise<JSX.Element> => {
-  const data: HomeResponse['data'] = await getHomeData()
+  const { data } = await getHomeData()
 
   return (
     <>
