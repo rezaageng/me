@@ -1,4 +1,4 @@
-import useTerminalStore from '@/store/terminal-store'
+import useTerminalStore from '@/stores/terminal-store'
 import { act, renderHook } from '@testing-library/react'
 
 test('should add a new prompt', () => {

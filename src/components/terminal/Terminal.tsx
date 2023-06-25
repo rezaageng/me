@@ -1,4 +1,4 @@
-import useTerminalStore from '@/store/terminal-store'
+import useTerminalStore from '@/stores/terminal-store'
 import TerminalPrompt from './TerminalPrompt'
 import { v4 as uuidv4 } from 'uuid'
 

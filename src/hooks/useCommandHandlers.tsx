@@ -2,7 +2,7 @@ import TerminalError from '@/components/terminal/TerminalError'
 import TerminalHelp from '@/components/terminal/TerminalHelp'
 import TerminalSkills from '@/components/terminal/TerminalSkills'
 import TerminalSummary from '@/components/terminal/TerminalSummary'
-import useTerminalStore from '@/store/terminal-store'
+import useTerminalStore from '@/stores/terminal-store'
 import { shallow } from 'zustand/shallow'
 
 type CommandHandlers = (index: number, input: string) => void

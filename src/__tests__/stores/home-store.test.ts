@@ -1,4 +1,4 @@
-import useHomeStore from '@/store/home-store'
+import useHomeStore from '@/stores/home-store'
 import { act, renderHook } from '@testing-library/react'
 
 test('should initialize with null homeData', () => {
@@ -14,7 +14,7 @@ test('should update homeData when setHomeData is called', () => {
       attributes: {
         title: 'rezaa',
         subtitle: 'this is subtitle',
-        description: 'description of me',
+        summary: 'description of me',
         anotherSide: 'another side',
         createdAt: '2023-02-06T07:37:17.769Z',
         publishedAt: '2023-02-06T07:44:18.682Z',

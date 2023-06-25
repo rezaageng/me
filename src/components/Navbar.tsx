@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation'
 import { IoMenu } from 'react-icons/io5'
 import NavbarInformation from './NavbarInformation'
 import { type NavbarListData } from '@/@types'
-import useFramerStore from '@/store/framerStore'
+import useFramerStore from '@/stores/framerStore'
 import { useMediaQuery } from 'react-responsive'
 
 const Navbar = (): JSX.Element => {
