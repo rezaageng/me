@@ -1,14 +1,36 @@
 import { NextResponse } from 'next/server'
 
-export const GET = async (): Promise<NextResponse> => {
-  const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
-    method: 'get',
-    headers: {
-      authorization: `Bearer ${process.env.API_KEY}`
+export const GET = async (): Promise<Response> => {
+  try {
+    const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      }
+    })
+
+    if (res.status !== 200) throw new Error('Internal Server Error')
+
+    const data: HomeResponse = await res.json()
+
+    return NextResponse.json(data)
+  } catch (error) {
+    let errorMessage = 'Something went wrong'
+    if (error instanceof Error) {
+      errorMessage = error.message
     }
-  })
 
-  const data: HomeResponse = await res.json()
-
-  return NextResponse.json(data)
+    return NextResponse.json(
+      {
+        data: null,
+        error: {
+          status: 500,
+          message: errorMessage
+        }
+      },
+      {
+        status: 500
+      }
+    )
+  }
 }
