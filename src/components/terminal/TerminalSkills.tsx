@@ -11,6 +11,8 @@ const TerminalSkills = ({
     queryFn: async () => {
       const res: Response = await fetch('/api/skill-categories')
 
+      if (!res.ok) throw new Error('Network response was not ok')
+
       const { data }: SkillCategoriesResponse = await res.json()
 
       return data
@@ -26,8 +28,10 @@ const TerminalSkills = ({
         {data
           ?.filter((skillCategory) => skillCategory.id === categoryId)
           .map((skillCategory: SkillCategory) => (
-            <div key={uuidv4()}>
-              <span>{skillCategory.attributes.category}</span>
+            <div key={uuidv4()} data-testid="skill-category">
+              <span data-testid="category-title">
+                {skillCategory.attributes.category}
+              </span>
               <ul className="mb-1 pl-4">
                 {skillCategory.attributes.skills.data.map((skill: Skill) => (
                   <li key={uuidv4()}>{skill.attributes.name}</li>
@@ -41,7 +45,7 @@ const TerminalSkills = ({
   return (
     <>
       {data?.map((skillCategory: SkillCategory) => (
-        <div key={uuidv4()}>
+        <div key={uuidv4()} data-testid="skill-category">
           <span>{skillCategory.attributes.category}</span>
           <ul className="mb-1 pl-4">
             {skillCategory.attributes.skills.data.map((skill: Skill) => (
