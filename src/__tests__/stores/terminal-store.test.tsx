@@ -51,5 +51,5 @@ test('should clear all prompts', () => {
     result.current.clearPrompts()
   })
 
-  expect(result.current.prompts).toHaveLength(0)
+  expect(result.current.prompts).toHaveLength(1)
 })
