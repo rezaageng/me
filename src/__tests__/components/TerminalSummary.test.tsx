@@ -36,13 +36,13 @@ afterEach(() => {
   queryCache.clear()
 })
 
-test('renders loading state', async () => {
+test('should renders loading state', async () => {
   render(<TerminalSummary />, { wrapper })
 
   expect(screen.getByText('Loading...')).toBeInTheDocument()
 })
 
-test('renders error state', async () => {
+test('should renders error state', async () => {
   server.use(
     rest.get(
       '/api/home',
@@ -67,7 +67,7 @@ test('renders error state', async () => {
   expect(await screen.findByTestId('summary-error')).toBeInTheDocument()
 })
 
-test('renders summary', async () => {
+test('should renders summary', async () => {
   render(<TerminalSummary />, { wrapper })
 
   expect(await screen.findByTestId('summary')).toBeInTheDocument()
