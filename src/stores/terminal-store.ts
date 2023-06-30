@@ -19,8 +19,6 @@ const useTerminalStore = create<TerminalState>()((set, get) => ({
     set((state) => ({ prompts: [...state.prompts, defaultPrompt] }))
   },
   updatePrompt: (index, prompt) => {
-    if (get().prompts[index] === undefined) return
-
     set((state) => {
       const prompts = [...state.prompts]
       prompts[index] = { ...prompts[index], ...prompt }
@@ -28,7 +26,7 @@ const useTerminalStore = create<TerminalState>()((set, get) => ({
     })
   },
   clearPrompts: () => {
-    set({ prompts: [] })
+    set({ prompts: [defaultPrompt] })
   }
 }))
 

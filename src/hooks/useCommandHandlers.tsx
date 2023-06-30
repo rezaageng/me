@@ -81,11 +81,13 @@ const useCommandHandlers = (): CommandHandlers => {
       })
     } else if (input === 'clear') {
       clearPrompts()
+      return
     } else {
       updatePrompt(index, {
         children: <TerminalError command={command} />
       })
     }
+
     updatePrompt(index, {
       isActive: false,
       inputValue: input
