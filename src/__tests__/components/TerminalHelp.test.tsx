@@ -13,7 +13,10 @@ test('should render the correct usage message', () => {
 
 test('should render the correct list of options', () => {
   render(<TerminalHelp />)
-  const optionsList = screen.getByRole('list')
-  expect(optionsList).toBeInTheDocument()
-  expect(within(optionsList).getAllByRole('listitem')).toHaveLength(7)
+  const optionsList = screen.getAllByRole('list')
+  expect(optionsList[0]).toBeInTheDocument()
+  expect(optionsList[1]).toBeInTheDocument()
+
+  expect(within(optionsList[0]).getAllByRole('listitem')).toHaveLength(6)
+  expect(within(optionsList[1]).getAllByRole('listitem')).toHaveLength(1)
 })

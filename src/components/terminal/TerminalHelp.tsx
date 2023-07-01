@@ -14,6 +14,11 @@ const TerminalHelp = (): JSX.Element => {
           <li>projects</li>
           <li>educations</li>
           <li>contact</li>
+        </ul>
+      </div>
+      <div className="mt-2">
+        <span>other commands:</span>
+        <ul className="pl-4">
           <li>clear</li>
         </ul>
       </div>
