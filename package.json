@@ -26,6 +26,7 @@
     "@types/testing-library__jest-dom": "^5.14.5",
     "@types/three": "^0.149.0",
     "@types/uuid": "^9.0.1",
+    "date-fns": "^2.30.0",
     "eslint-config-prettier": "^8.7.0",
     "framer-motion": "^9.1.7",
     "next": "13.4.5",
