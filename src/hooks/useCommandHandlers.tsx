@@ -1,4 +1,5 @@
 import TerminalError from '@/components/terminal/TerminalError'
+import TerminalExperience from '@/components/terminal/TerminalExperience'
 import TerminalHelp from '@/components/terminal/TerminalHelp'
 import TerminalSkills from '@/components/terminal/TerminalSkills'
 import TerminalSummary from '@/components/terminal/TerminalSummary'
@@ -56,7 +57,7 @@ const useCommandHandlers = (): CommandHandlers => {
         })
       } else if (option === 'experience') {
         updatePrompt(index, {
-          children: <p>experience</p>
+          children: <TerminalExperience />
         })
       } else if (option === 'projects') {
         updatePrompt(index, {
