@@ -3,11 +3,11 @@ interface Experience {
   attributes: {
     title: string
     employmentType: string
-    company: string
-    location: string
-    locationType: string
+    companyName: string | null
+    location: string | null
+    locationType: string | null
     startDate: string
-    endDate: string
+    endDate: string | null
     currentlyEmployed: boolean
     description: string
     createdAt: string
