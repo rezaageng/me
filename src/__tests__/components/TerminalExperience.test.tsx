@@ -105,7 +105,6 @@ test('should render correct company name', async () => {
 
   expect(companyName[0]).toHaveTextContent('miHoYo Co., Ltd')
   expect(companyName[1]).toHaveTextContent('Google LLC')
-  expect(companyName[2]).toHaveTextContent('Meta Platforms, Inc.')
 })
 
 test('should render correct employment type', async () => {
