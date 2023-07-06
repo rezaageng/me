@@ -1,3 +1,4 @@
+import { type HomeResponse } from '@/@types/home'
 import useHomeStore from '@/stores/home-store'
 import { act, renderHook } from '@testing-library/react'
 

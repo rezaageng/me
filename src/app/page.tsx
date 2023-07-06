@@ -1,3 +1,4 @@
+import { type HomeResponse } from '@/@types/home'
 import HomeMain from '@/components/HomeMain'
 import HomeSkills from '@/components/HomeSkills'
 

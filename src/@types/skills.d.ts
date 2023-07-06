@@ -1,3 +1,5 @@
+import { type Meta } from '.'
+
 interface Skill {
   id: number
   attributes: {

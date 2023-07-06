@@ -1,4 +1,4 @@
-import { type ApiImage } from '.'
+import { type Meta, type ApiImage } from '.'
 
 interface Project {
   id: number

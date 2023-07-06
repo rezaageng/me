@@ -1,3 +1,4 @@
+import { type HomeResponse } from '@/@types/home'
 import { create } from 'zustand'
 
 interface HomeState {

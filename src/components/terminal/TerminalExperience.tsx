@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { v4 as uuidv4 } from 'uuid'
 import { format } from 'date-fns'
+import { type ExperiencesResponse } from '@/@types/experiences'
 
 const TerminalExperience = (): JSX.Element => {
   const { data, isLoading, isError } = useQuery({

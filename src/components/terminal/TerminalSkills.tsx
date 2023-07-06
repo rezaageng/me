@@ -1,3 +1,8 @@
+import {
+  type Skill,
+  type SkillCategory,
+  type SkillCategoriesResponse
+} from '@/@types/skills'
 import { useQuery } from '@tanstack/react-query'
 import { v4 as uuidv4 } from 'uuid'
 

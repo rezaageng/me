@@ -54,7 +54,7 @@ interface HomeSkillsIconProps {
 
 // * api response
 interface Meta {
-  pagination: {
+  pagination?: {
     page: number
     pageSize: number
     pageCount: number

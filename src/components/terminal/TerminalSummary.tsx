@@ -1,5 +1,6 @@
 'use client'
 
+import { type HomeResponse } from '@/@types/home'
 import { useQuery } from '@tanstack/react-query'
 
 const TerminalSummary = (): JSX.Element => {

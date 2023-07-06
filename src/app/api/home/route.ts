@@ -1,3 +1,4 @@
+import { type HomeResponse } from '@/@types/home'
 import { NextResponse } from 'next/server'
 
 export const GET = async (): Promise<Response> => {

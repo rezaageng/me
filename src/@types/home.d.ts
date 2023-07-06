@@ -1,3 +1,5 @@
+import { type Meta } from '.'
+
 // * API
 interface HomeResponse {
   data: {
@@ -12,4 +14,5 @@ interface HomeResponse {
       updatedAt: string
     }
   } | null
+  meta?: Meta
 }
