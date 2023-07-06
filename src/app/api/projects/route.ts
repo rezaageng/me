@@ -9,6 +9,9 @@ export const GET = async (): Promise<NextResponse> => {
         method: 'get',
         headers: {
           authorization: `Bearer ${process.env.API_KEY}`
+        },
+        next: {
+          revalidate: 10
         }
       }
     )
