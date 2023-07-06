@@ -1,6 +1,9 @@
+import TerminalContact from '@/components/terminal/TerminalContact'
+import TerminalEducations from '@/components/terminal/TerminalEducations'
 import TerminalError from '@/components/terminal/TerminalError'
 import TerminalExperience from '@/components/terminal/TerminalExperience'
 import TerminalHelp from '@/components/terminal/TerminalHelp'
+import TerminalProjects from '@/components/terminal/TerminalProjects'
 import TerminalSkills from '@/components/terminal/TerminalSkills'
 import TerminalSummary from '@/components/terminal/TerminalSummary'
 import useTerminalStore from '@/stores/terminal-store'
@@ -61,15 +64,15 @@ const useCommandHandlers = (): CommandHandlers => {
         })
       } else if (option === 'projects') {
         updatePrompt(index, {
-          children: <p>projects</p>
+          children: <TerminalProjects />
         })
       } else if (option === 'educations') {
         updatePrompt(index, {
-          children: <p>educations</p>
+          children: <TerminalEducations />
         })
       } else if (option === 'contact') {
         updatePrompt(index, {
-          children: <p>contact</p>
+          children: <TerminalContact />
         })
       } else {
         updatePrompt(index, {
