@@ -106,7 +106,8 @@ test('should has correct link', async () => {
 test('should render description with 3 max lines', async () => {
   render(<TerminalProjects />, { wrapper })
 
-  const description = await screen.findByTestId('project-description')
+  const descriptions = await screen.findAllByTestId('project-description')
 
-  expect(description).toHaveClass('line-clamp-3')
+  expect(descriptions[0]).toHaveClass('line-clamp-3')
+  expect(descriptions[1]).toHaveClass('line-clamp-3')
 })
