@@ -52,7 +52,7 @@ interface HomeSkillsIconProps {
   position: Vector3
 }
 
-// * api meta
+// * api response
 interface Meta {
   pagination: {
     page: number
@@ -60,4 +60,35 @@ interface Meta {
     pageCount: number
     total: number
   }
+}
+
+interface ImageFormat {
+  name: string
+  hash: string
+  ext: string
+  mime: string
+  path: string | null
+  width: number
+  height: number
+  size: number
+  url: string
+}
+
+interface ApiImage {
+  id: number
+  attributes: {
+    alternativeText: string | null
+    caption: string | null
+    formats: {
+      thumbnail: ImageFormat
+      small: ImageFormat
+      medium: ImageFormat
+      large: ImageFormat
+    }
+    previewUrl: string | null
+    provider: string
+    provider_metadata: string | null
+    createdAt: string
+    updatedAt: string
+  } & ImageFormat
 }
