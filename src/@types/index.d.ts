@@ -67,7 +67,6 @@ interface ImageFormat {
   hash: string
   ext: string
   mime: string
-  path: string | null
   width: number
   height: number
   size: number
@@ -80,10 +79,10 @@ interface ApiImage {
     alternativeText: string | null
     caption: string | null
     formats: {
-      thumbnail: ImageFormat
-      small: ImageFormat
-      medium: ImageFormat
-      large: ImageFormat
+      thumbnail: ImageFormat & { path: string | null }
+      small: ImageFormat & { path: string | null }
+      medium: ImageFormat & { path: string | null }
+      large: ImageFormat & { path: string | null }
     }
     previewUrl: string | null
     provider: string

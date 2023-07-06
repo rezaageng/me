@@ -12,7 +12,9 @@ interface Project {
     skills: {
       data: Skill[]
     }
-    cover: ApiImage
+    cover: {
+      data: ApiImage
+    }
   }
 }
 
