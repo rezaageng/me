@@ -102,3 +102,11 @@ test('should has correct link', async () => {
   expect(links[0]).toHaveAttribute('href', '/projects/1')
   expect(links[1]).toHaveAttribute('href', '/projects/2')
 })
+
+test('should render description with 3 max lines', async () => {
+  render(<TerminalProjects />, { wrapper })
+
+  const description = await screen.findByTestId('project-description')
+
+  expect(description).toHaveClass('line-clamp-3')
+})
