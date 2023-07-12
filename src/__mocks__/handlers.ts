@@ -1,3 +1,4 @@
+import { type EducationsResponse } from '@/@types/educations'
 import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
 import { type ProjectsResponse } from '@/@types/projects'
@@ -779,6 +780,104 @@ export const handlers = [
                     }
                   }
                 }
+              }
+            }
+          ],
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: 25,
+              pageCount: 1,
+              total: 2
+            }
+          }
+        })
+      )
+  ),
+  rest.get(
+    `${process.env.API_KEY}/api/educations`,
+    async (_req, res, ctx) =>
+      await res(
+        ctx.status(200),
+        ctx.json<EducationsResponse>({
+          data: [
+            {
+              id: 1,
+              attributes: {
+                name: 'Katapang Public Vocational High School 1',
+                degree: null,
+                study: 'Software Engineering',
+                gpa: null,
+                location: 'Bandung, Indonesia',
+                startDate: '2018-07-16',
+                endDate: '2021-06-02',
+                description: 'i learn software engineering',
+                createdAt: '2023-07-06T12:02:53.368Z',
+                updatedAt: '2023-07-06T12:02:53.368Z'
+              }
+            },
+            {
+              id: 2,
+              attributes: {
+                name: 'Pasundan University',
+                degree: 'Majoring in',
+                study: 'Informatics Engineering',
+                gpa: 3.66,
+                location: 'Bandung, Indonesia',
+                startDate: '2022-09-26',
+                endDate: '2026-09-30',
+                description: 'i learn code',
+                createdAt: '2023-07-06T12:10:42.206Z',
+                updatedAt: '2023-07-06T12:10:42.206Z'
+              }
+            }
+          ],
+          meta: {
+            pagination: {
+              page: 1,
+              pageSize: 25,
+              pageCount: 1,
+              total: 2
+            }
+          }
+        })
+      )
+  ),
+  rest.get(
+    '/api/educations',
+    async (_req, res, ctx) =>
+      await res(
+        ctx.status(200),
+        ctx.json<EducationsResponse>({
+          data: [
+            {
+              id: 1,
+              attributes: {
+                name: 'Katapang Public Vocational High School 1',
+                degree: null,
+                study: 'Software Engineering',
+                gpa: null,
+                location: 'Bandung, Indonesia',
+                startDate: '2018-07-16',
+                endDate: '2021-06-02',
+                description: 'i learn software engineering',
+                createdAt: '2023-07-06T12:02:53.368Z',
+                updatedAt: '2023-07-06T12:02:53.368Z'
+              }
+            },
+            {
+              id: 2,
+              attributes: {
+                name: 'Pasundan University',
+                degree: 'Majoring in',
+                study: 'Informatics Engineering',
+                gpa: 3.66,
+                location: 'Bandung, Indonesia',
+                startDate: '2022-09-26',
+                endDate: '2026-09-30',
+                description: 'i learn code',
+                createdAt: '2023-07-06T12:10:42.206Z',
+                updatedAt: '2023-07-06T12:10:42.206Z'
               }
             }
           ],
