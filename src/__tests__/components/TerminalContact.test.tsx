@@ -46,7 +46,7 @@ test('should render loading on initial', () => {
 test('should render error message on error', async () => {
   server.use(
     rest.get(
-      '/api/contact',
+      '/api/contacts',
       async (_req, res, ctx) =>
         await res(
           ctx.status(500),
@@ -87,7 +87,7 @@ test('should render corrent contact', async () => {
   expect(contact[1]).toHaveTextContent('Twitter')
   expect(contact[2]).toHaveTextContent('Instagram')
   expect(contact[3]).toHaveTextContent('LinkedIn')
-  expect(contact[4]).toHaveTextContent('rezaageng47@gmail.com')
+  expect(contact[4]).toHaveTextContent('Email')
 })
 
 test('should render correct link', async () => {
@@ -97,10 +97,13 @@ test('should render correct link', async () => {
 
   expect(contact[0]).toHaveAttribute('href', 'https://github.com/rezaageng')
   expect(contact[1]).toHaveAttribute('href', 'https://twitter.com/rezaageng_')
-  expect(contact[2]).toHaveAttribute('href', 'https://instagram.com/rezaageng_')
+  expect(contact[2]).toHaveAttribute(
+    'href',
+    'https://www.instagram.com/rezaageng_/'
+  )
   expect(contact[3]).toHaveAttribute(
     'href',
-    'https://linkedin.com/in/rezaageng'
+    'https://www.linkedin.com/in/rezaageng/'
   )
   expect(contact[4]).toHaveAttribute('href', 'mailto:rezaageng47@gmail.com')
 })
