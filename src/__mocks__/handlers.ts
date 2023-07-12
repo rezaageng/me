@@ -939,7 +939,7 @@ export const handlers = [
             {
               id: 5,
               attributes: {
-                name: 'rezaageng47@gmail.com',
+                name: 'Email',
                 link: 'mailto:rezaageng47@gmail.com',
                 createdAt: '2023-07-12T08:54:11.453Z',
                 updatedAt: '2023-07-12T08:54:11.453Z'
@@ -1003,7 +1003,7 @@ export const handlers = [
             {
               id: 5,
               attributes: {
-                name: 'rezaageng47@gmail.com',
+                name: 'Email',
                 link: 'mailto:rezaageng47@gmail.com',
                 createdAt: '2023-07-12T08:54:11.453Z',
                 updatedAt: '2023-07-12T08:54:11.453Z'
