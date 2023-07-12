@@ -806,7 +806,7 @@ export const handlers = [
               attributes: {
                 name: 'Katapang Public Vocational High School 1',
                 degree: null,
-                study: 'Software Engineering',
+                major: 'Software Engineering',
                 gpa: null,
                 location: 'Bandung, Indonesia',
                 startDate: '2018-07-16',
@@ -821,7 +821,7 @@ export const handlers = [
               attributes: {
                 name: 'Pasundan University',
                 degree: 'Majoring in',
-                study: 'Informatics Engineering',
+                major: 'Informatics Engineering',
                 gpa: 3.66,
                 location: 'Bandung, Indonesia',
                 startDate: '2022-09-26',
@@ -855,7 +855,7 @@ export const handlers = [
               attributes: {
                 name: 'Katapang Public Vocational High School 1',
                 degree: null,
-                study: 'Software Engineering',
+                major: 'Software Engineering',
                 gpa: null,
                 location: 'Bandung, Indonesia',
                 startDate: '2018-07-16',
@@ -870,7 +870,7 @@ export const handlers = [
               attributes: {
                 name: 'Pasundan University',
                 degree: 'Majoring in',
-                study: 'Informatics Engineering',
+                major: 'Informatics Engineering',
                 gpa: 3.66,
                 location: 'Bandung, Indonesia',
                 startDate: '2022-09-26',

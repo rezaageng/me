@@ -5,7 +5,7 @@ interface Education {
   attributes: {
     name: string
     degree: string | null
-    study: string
+    major: string
     gpa: number | null
     location: string
     startDate: string
