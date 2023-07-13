@@ -1,12 +1,38 @@
 import useTerminalStore from '@/stores/terminal-store'
 import TerminalPrompt from './TerminalPrompt'
 import { v4 as uuidv4 } from 'uuid'
+import { useScroll } from 'framer-motion'
+import { useEffect, useRef } from 'react'
 
 const Terminal = (): JSX.Element => {
   const prompts = useTerminalStore((state) => state.prompts)
 
+  const terminalRef = useRef<HTMLDivElement>(null)
+  const promptRef = useRef<HTMLInputElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: terminalRef,
+    offset: ['0', '1']
+  })
+
+  scrollYProgress.on('change', (val) => {
+    if (val === 1) {
+      promptRef.current?.blur()
+    }
+  })
+
+  useEffect(() => {
+    promptRef.current?.focus()
+  }, [prompts.length])
+
+  useEffect(() => {
+    promptRef.current?.focus()
+  }, [])
+
   return (
     <div
+      ref={terminalRef}
+      onClick={() => promptRef.current?.focus()}
       className="h-96 w-full overflow-hidden rounded-lg border border-white font-mono text-sm"
       data-testid="terminal"
     >
@@ -31,6 +57,7 @@ const Terminal = (): JSX.Element => {
             inputValue={inputValue}
             isActive={isActive}
             index={index}
+            ref={promptRef}
           >
             {children}
           </TerminalPrompt>
