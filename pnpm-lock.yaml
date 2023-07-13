@@ -65,6 +65,9 @@ dependencies:
   react-icons:
     specifier: ^4.8.0
     version: 4.8.0(react@18.2.0)
+  react-merge-refs:
+    specifier: ^2.0.2
+    version: 2.0.2
   react-responsive:
     specifier: ^9.0.2
     version: 9.0.2(react@18.2.0)
@@ -7966,6 +7969,13 @@ packages:
     resolution:
       {
         integrity: sha512-alTKsjEL0dKH/ru1Iyn7vliS2QRcBp9zZPGoWxUOvRGWPUYgjo+V01is7p04It6KhgrzhJGnIj9GgX8W4bZoCQ==
+      }
+    dev: false
+
+  /react-merge-refs@2.0.2:
+    resolution:
+      {
+        integrity: sha512-V5BGTwGa2r+/t0A/BZMS6L7VPXY0CU8xtAhkT3XUoI1WJJhhtvulvoiZkJ5Jt9YAW23m4xFWmhQ+C5HwjtTFhQ==
       }
     dev: false
 
