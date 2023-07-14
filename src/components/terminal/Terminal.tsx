@@ -22,12 +22,9 @@ const Terminal = (): JSX.Element => {
   })
 
   useEffect(() => {
+    if (prompts.length === 1) return
     promptRef.current?.focus()
   }, [prompts.length])
-
-  useEffect(() => {
-    promptRef.current?.focus()
-  }, [])
 
   return (
     <div
