@@ -13,7 +13,7 @@ import {
   type TargetAndTransition,
   type VariantLabels
 } from 'framer-motion'
-import useFramerStore from '@/store/framerStore'
+import useFramerStore from '@/stores/framerStore'
 import { v4 as uuidv4 } from 'uuid'
 
 const Contacts = ({
