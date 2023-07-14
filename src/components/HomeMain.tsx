@@ -1,6 +1,5 @@
 'use client'
 
-import { type HomeResponse } from '@/@types'
 import Image from 'next/image'
 import {
   type AnimationProps,
@@ -10,9 +9,10 @@ import {
   useTransform,
   useAnimationControls
 } from 'framer-motion'
-import useFramerStore from '@/store/framerStore'
+import useFramerStore from '@/stores/framerStore'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import useSmooth from '@/hooks/useSmooth'
+import { type HomeResponse } from '@/@types/home'
 
 const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   // * hooks
@@ -118,17 +118,17 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
       data-testid="home-main"
     >
       <div className="flex flex-col justify-center px-6 py-4">
-        <div className="flex h-[50dvh] flex-col  items-center justify-center">
+        <div className="flex h-[50dvh] flex-col  items-center justify-center lg:h-[64dvh]">
           <motion.div
             style={text}
-            className="flex flex-col justify-center gap-2 bg-primary sm:max-w-md"
+            className="flex flex-col justify-center gap-2 bg-primary sm:max-w-md lg:max-w-2xl"
           >
             <motion.h1
               initial={initial}
               animate={animate}
               transition={transition}
               data-testid="title"
-              className="w-auto text-6xl font-bold"
+              className="w-auto text-6xl font-bold lg:text-9xl"
             >
               {data?.attributes.title}
             </motion.h1>
@@ -137,13 +137,13 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               animate={animate}
               transition={{ ...transition, delay: 0.2 }}
               data-testid="subtitle"
-              className="text-white/75"
+              className="font-light text-white/75 lg:text-2xl"
             >
               {data?.attributes.subtitle}
             </motion.h2>
           </motion.div>
         </div>
-        <div className="fixed top-0 left-0  h-[100dvh] w-full">
+        <div className="fixed left-0 top-0  h-[100dvh] w-full">
           <motion.div
             style={mcWrapper}
             className="relative flex h-full items-center justify-center"
