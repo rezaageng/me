@@ -1,10 +1,15 @@
 import useTerminalStore from '@/stores/terminal-store'
 import TerminalPrompt from './TerminalPrompt'
 import { v4 as uuidv4 } from 'uuid'
-import { useScroll } from 'framer-motion'
+import { useScroll, type MotionStyle, motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 
-const Terminal = (): JSX.Element => {
+interface TerminalProps {
+  className?: string
+  style?: MotionStyle
+}
+
+const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
   const prompts = useTerminalStore((state) => state.prompts)
 
   const terminalRef = useRef<HTMLDivElement>(null)
@@ -27,10 +32,11 @@ const Terminal = (): JSX.Element => {
   }, [prompts.length])
 
   return (
-    <div
+    <motion.div
+      style={style}
       ref={terminalRef}
       onClick={() => promptRef.current?.focus()}
-      className="h-96 w-full overflow-hidden rounded-lg border border-white font-mono text-sm"
+      className={`${className} h-[32rem] w-full overflow-hidden rounded-lg border border-white bg-primary font-mono text-sm`}
       data-testid="terminal"
     >
       <div className="sticky flex gap-2 p-3">
@@ -60,7 +66,7 @@ const Terminal = (): JSX.Element => {
           </TerminalPrompt>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
