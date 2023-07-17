@@ -24,7 +24,6 @@ const Home = async (): Promise<JSX.Element> => {
   return (
     <>
       <HomeMain data={data} />
-      <div className="min-h-[60dvh]" id="two" />
       <HomeSkills />
     </>
   )

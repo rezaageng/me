@@ -1,48 +1,25 @@
 'use client'
 
-import Image from 'next/image'
 import {
   type AnimationProps,
   motion,
   useScroll,
-  type MotionStyle,
-  useTransform,
-  useAnimationControls
+  type MotionStyle
 } from 'framer-motion'
 import useFramerStore from '@/stores/framerStore'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useRef } from 'react'
 import useSmooth from '@/hooks/useSmooth'
+import Terminal from './terminal/Terminal'
 import { type HomeResponse } from '@/@types/home'
 
 const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   // * hooks
-  const [isActive, setIsActive] = useState(false)
-
-  const windowHeight = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerHeight / 2
-    }
-
-    return 0
-  }, [])
-
-  const [height, setHeight] = useState(windowHeight)
   const ref = useRef<HTMLDivElement>(null)
 
   const { transition } = useFramerStore((state) => state)
-  const squareControl = useAnimationControls()
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['0', '1']
-  })
-
-  // * check is section active
-  scrollYProgress.on('change', (value) => {
-    if (value >= 0 && value < 1) {
-      setIsActive(true)
-    } else {
-      setIsActive(false)
-    }
   })
 
   // * animation variables
@@ -51,83 +28,31 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
 
   // * scroll animation
   const text: MotionStyle = {
-    opacity: useSmooth(scrollYProgress, [0, 1], [1, 0])
+    opacity: useSmooth(scrollYProgress, [0, 0.2], [1, 0])
   }
 
-  const mcWrapper: MotionStyle = {
-    y: useSmooth(scrollYProgress, [0, 0.1], [height, 0], {
-      stiffness: 150,
-      damping: 30,
-      restDelta: 0.001
-    }),
-    opacity: useSmooth(scrollYProgress, [0.9, 1], [1, 0])
+  const terminal: MotionStyle = {
+    rotateX: useSmooth(scrollYProgress, [0, 0.2], [3, 0]),
+    scale: useSmooth(scrollYProgress, [0, 0.2], [0.8, 1])
   }
-
-  const mc: MotionStyle = {
-    scale: useSmooth(scrollYProgress, [0.1, 1], [0.9, 1]),
-    filter: useTransform(
-      scrollYProgress,
-      [0.1, 0.2, 0.4, 0.6],
-      [
-        'brightness(0) opacity(0)',
-        'brightness(0)',
-        'brightness(0.2)',
-        'brightness(1)'
-      ]
-    ),
-    opacity: useSmooth(scrollYProgress, [0, 0.1], [0, 1])
-  }
-
-  // * idle animation
-  useEffect(() => {
-    if (isActive) {
-      void squareControl.start({
-        rotate: [0, 360, 0],
-        transition: {
-          repeat: Infinity,
-          duration: 20,
-          ease: 'backInOut'
-        }
-      })
-    } else {
-      squareControl.stop()
-    }
-
-    return () => {
-      squareControl.stop()
-    }
-  }, [isActive, squareControl])
-
-  // * screen height controller
-  useEffect(() => {
-    window.addEventListener('resize', () => {
-      setHeight(windowHeight)
-    })
-
-    return () => {
-      window.removeEventListener('resize', () => {
-        setHeight(windowHeight)
-      })
-    }
-  }, [windowHeight])
 
   return (
     <section
       ref={ref}
-      className="relative  min-h-[150dvh] max-w-7xl"
+      className="relative  min-h-[100dvh] max-w-5xl"
       data-testid="home-main"
     >
       <div className="flex flex-col justify-center px-6 py-4">
-        <div className="flex h-[50dvh] flex-col  items-center justify-center lg:h-[64dvh]">
+        <div className="flex h-[50dvh] flex-col items-center justify-center lg:h-[64dvh]">
           <motion.div
             style={text}
-            className="flex flex-col justify-center gap-2 bg-primary sm:max-w-md lg:max-w-2xl"
+            className="fixed flex flex-col justify-center gap-2 bg-primary px-6 py-4 sm:max-w-md lg:max-w-2xl"
           >
             <motion.h1
               initial={initial}
               animate={animate}
               transition={transition}
-              data-testid="title"
+              data-testid="home-title"
               className="w-auto text-6xl font-bold lg:text-9xl"
             >
               {data?.attributes.title}
@@ -136,34 +61,15 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
               initial={initial}
               animate={animate}
               transition={{ ...transition, delay: 0.2 }}
-              data-testid="subtitle"
+              data-testid="home-subtitle"
               className="font-light text-white/75 lg:text-2xl"
             >
               {data?.attributes.subtitle}
             </motion.h2>
           </motion.div>
         </div>
-        <div className="fixed left-0 top-0  h-[100dvh] w-full">
-          <motion.div
-            style={mcWrapper}
-            className="relative flex h-full items-center justify-center"
-          >
-            <motion.div
-              animate={squareControl}
-              className="absolute aspect-square w-72 rounded-[3rem] bg-accent-1 sm:w-96 sm:rounded-[4rem]"
-            />
-            <motion.div style={mc} className="absolute w-96 sm:w-[28rem]">
-              <Image
-                data-testid="main-character"
-                src="/assets/images/mc.png"
-                width={512}
-                height={748}
-                alt="rezaa"
-                priority
-                draggable={false}
-              />
-            </motion.div>
-          </motion.div>
+        <div style={{ perspective: '20em' }}>
+          <Terminal style={terminal} className="z-10 object-bottom" />
         </div>
       </div>
     </section>
