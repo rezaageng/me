@@ -6,6 +6,7 @@ import { type Metadata } from 'next'
 import Sidebar from '@/components/Sidebar'
 import QueryProvider from './query-provider'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import GrainyTexture from '@/components/GrainyTexture'
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -45,6 +46,7 @@ const RootLayout = ({
             <Sidebar />
           </aside>
         </QueryProvider>
+        <GrainyTexture />
       </body>
     </html>
   )
