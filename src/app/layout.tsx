@@ -7,6 +7,7 @@ import Sidebar from '@/components/Sidebar'
 import QueryProvider from './query-provider'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GrainyTexture from '@/components/GrainyTexture'
+import PageProgressBar from '@/components/PageProgressBar'
 
 const poppins = Poppins({
   weight: ['400', '700'],
@@ -36,6 +37,7 @@ const RootLayout = ({
     <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
       <head />
       <body className="bg-primary font-sans text-white scrollbar-thin scrollbar-track-secondary-900 scrollbar-thumb-accent-1 scrollbar-thumb-rounded">
+        <PageProgressBar />
         <QueryProvider>
           <ReactQueryDevtools initialIsOpen={false} />
           <header>
