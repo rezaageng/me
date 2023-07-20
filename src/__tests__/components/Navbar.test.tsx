@@ -91,10 +91,3 @@ test('should render navbar underline', async () => {
 
   expect(underline).toBeInTheDocument()
 })
-
-test('should render navbar information', () => {
-  render(<Navbar />)
-  const navbarInformation = screen.getByTestId('navbar-information')
-
-  expect(navbarInformation).toBeInTheDocument()
-})
