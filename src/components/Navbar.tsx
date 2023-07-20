@@ -1,147 +1,163 @@
 'use client'
 
-import { motion, useAnimationControls } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
 import NavbarList from './NavbarList'
 import { usePathname } from 'next/navigation'
-import { IoMenu } from 'react-icons/io5'
-import NavbarInformation from './NavbarInformation'
 import { type NavbarListData } from '@/@types'
-import useFramerStore from '@/stores/framerStore'
-import { useMediaQuery } from 'react-responsive'
+import useResponsive from '@/hooks/useResponsive'
+import {
+  GiMagicGate,
+  GiFizzingFlask,
+  GiDelighted,
+  GiSuspicious
+} from 'react-icons/gi'
+import Contacts from './Contacts'
 
 const Navbar = (): JSX.Element => {
   // * states
-  const [isInitial, setIsInitial] = useState(true)
   const [isOpen, setIsOpen] = useState(false)
-  const [windowWidth, setWindowWidth] = useState(0)
-  const { transition } = useFramerStore((state) => state)
-  const [isLg, setIsLg] = useState(false)
+  const [isInitial, setIsInitial] = useState(true)
 
   // * hooks
-
   const [blockScroll, allowScroll] = useScrollBlock()
   const pathName = usePathname()
-  const largeScreen = useMediaQuery({ query: '(min-width: 1024px)' })
+  const isLg = useResponsive(1024)
 
-  // * animation controls
-  const menuControl = useAnimationControls()
-
-  // * set window width
   useEffect(() => {
-    setWindowWidth(window.innerWidth)
-
-    window.addEventListener('resize', () => {
-      setWindowWidth(window.innerWidth)
-    })
-
-    return () => {
-      window.removeEventListener('resize', () => {
-        setWindowWidth(window.innerWidth)
-      })
-    }
+    setIsInitial(false)
   }, [])
 
-  // * nav menu animation on mobile
-  useEffect(() => {
-    if (isOpen && !isLg) {
-      void menuControl.start({
-        x: [windowWidth, 0],
-        transition
-      })
-    }
-    if (!isOpen && !isLg) {
-      void menuControl.start({
-        x: [0, windowWidth],
-        transition
-      })
-    }
-    if (isLg) {
-      void menuControl.start({
-        x: 0
-      })
-    }
-  }, [isOpen, isLg, menuControl, transition, windowWidth])
-
-  // * prevent navbar from animating on initial load
-  useEffect(() => {
-    setIsLg(largeScreen)
-    if (largeScreen) {
-      setIsInitial(false)
-    }
-  }, [isLg, isOpen, largeScreen])
-
-  // * block scroll when nav menu is open
-  useEffect(() => {
-    if (isOpen) {
+  // * handler
+  const toggleMenu = (): void => {
+    if (!isOpen) {
       blockScroll()
+      setIsOpen(true)
     } else {
       allowScroll()
+      setIsOpen(false)
     }
-  }, [allowScroll, blockScroll, isOpen])
+  }
 
   // * navbar data
   const navData: NavbarListData[] = [
     {
       name: 'Home',
-      route: '/'
+      route: '/',
+      icon: <GiMagicGate size={24} data-testid="navbar-icon" />
     },
     {
       name: 'Projects',
-      route: '/projects'
+      route: '/projects',
+      icon: <GiFizzingFlask size={24} data-testid="navbar-icon" />
     },
     {
       name: 'Another Side',
-      route: '/another-side'
+      route: '/another-side',
+      icon: <GiDelighted size={24} data-testid="navbar-icon" />
     },
     {
       name: 'About',
-      route: '/about'
+      route: '/about',
+      icon: <GiSuspicious size={24} data-testid="navbar-icon" />
     }
   ]
 
   return (
-    <nav className="fixed top-0 left-0 z-10 flex w-full justify-between bg-primary bg-opacity-50 p-4 backdrop-blur-sm backdrop-filter lg:px-8">
-      <div className="z-20 flex w-full justify-between text-xl text-accent-1 lg:block lg:w-auto lg:justify-start">
-        <h1>rezaa</h1>
-        {!isLg ? (
-          <button
-            onClick={() => {
-              setIsOpen((state) => !state)
-              setIsInitial(false)
+    <nav>
+      {!isLg && isOpen ? (
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 0.8
             }}
-            className="block lg:hidden"
+            exit={{
+              opacity: 0
+            }}
+            onClick={toggleMenu}
+            className="fixed left-0 top-0 z-10 min-h-[100dvh] w-full bg-primary"
+          />
+        </AnimatePresence>
+      ) : null}
+      <div className="fixed left-0 top-0 z-10 flex w-full justify-center px-2 py-8">
+        <div className="w-full max-w-5xl px-4 lg:px-6">
+          <motion.div
+            whileTap={{ scale: 0.98 }}
+            className="flex flex-col rounded-3xl border-[0.5px] border-white border-opacity-20 bg-primary bg-opacity-50 p-4 backdrop-blur-lg backdrop-filter lg:px-8"
           >
-            <IoMenu size={32} />
-          </button>
-        ) : null}
+            <div className="z-20 flex w-full justify-between text-xl text-accent-1">
+              <h1>rezaa</h1>
+              {isLg ? (
+                <ul
+                  data-testid="navbar-list"
+                  className="flex items-center justify-center gap-5  text-2xl  font-bold   lg:text-base lg:font-normal"
+                >
+                  {navData.map(({ name, route, icon }) => (
+                    <NavbarList
+                      key={uuidv4()}
+                      name={name}
+                      route={route}
+                      pathName={pathName}
+                      icon={icon}
+                    />
+                  ))}
+                </ul>
+              ) : (
+                <button onClick={toggleMenu} className="block lg:hidden">
+                  {navData.filter(({ route }) => route === pathName)[0].icon}
+                </button>
+              )}
+            </div>
+          </motion.div>
+          <AnimatePresence>
+            {isInitial || (isOpen && !isLg) ? (
+              <motion.div
+                layoutId="menu"
+                initial={{ opacity: 0, y: -15 }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 10,
+                    restDelta: 0.001
+                  }
+                }}
+                exit={{
+                  opacity: 0,
+                  y: -15
+                }}
+                className={`${
+                  isInitial ? 'hidden' : 'flex'
+                } mt-4 w-full flex-col gap-6 rounded-3xl border-[0.5px] border-white border-opacity-20 bg-primary bg-opacity-50 px-4 py-6 backdrop-blur-lg backdrop-filter`}
+              >
+                <ul
+                  data-testid="navbar-list"
+                  className="flex flex-1 flex-col items-start justify-start gap-5 text-base font-normal"
+                >
+                  {navData.map(({ name, route, icon }) => (
+                    <NavbarList
+                      key={uuidv4()}
+                      name={name}
+                      route={route}
+                      pathName={pathName}
+                      underline={false}
+                      onClick={toggleMenu}
+                      icon={icon}
+                    />
+                  ))}
+                </ul>
+                <div className="border-t-[0.5px] border-white border-opacity-20" />
+                <Contacts className="flex justify-center gap-4" iconSize={20} />
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
       </div>
-      <motion.div
-        animate={menuControl}
-        className={`fixed top-0 left-0 flex h-[100dvh] w-full flex-col bg-secondary-800 p-16 lg:static lg:h-auto lg:w-auto lg:bg-transparent lg:p-0 ${
-          isInitial ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
-        <ul
-          data-testid="navbar-list"
-          className="flex flex-1 flex-col items-center justify-center gap-5  text-2xl  font-bold  lg:flex-row lg:text-base lg:font-normal"
-        >
-          {navData.map(({ name, route }) => (
-            <NavbarList
-              key={uuidv4()}
-              name={name}
-              route={route}
-              pathName={pathName}
-              onClick={() => {
-                setIsOpen(false)
-              }}
-            />
-          ))}
-        </ul>
-        {!isLg ? <NavbarInformation /> : null}
-      </motion.div>
     </nav>
   )
 }
