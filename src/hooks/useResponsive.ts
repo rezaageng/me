@@ -1,24 +1,41 @@
-import { type Responsive } from '@/@types'
+'use client'
+
 import { useEffect, useState } from 'react'
 
-export const useResponsive: Responsive = (query) => {
-  const [state, setState] = useState(false)
+interface ResponsiveState {
+  windowWidth: number
+  isDesiredWidth: boolean
+}
+
+const useResponsive = (minWidth: number): boolean => {
+  const [state, setState] = useState<ResponsiveState>({
+    windowWidth: 0,
+    isDesiredWidth: false
+  })
 
   useEffect(() => {
-    const media = window.matchMedia(`(min-width: ${query}px)`)
+    const currentWindowWidth = window.innerWidth
+    const isDesiredWidth = currentWindowWidth > minWidth
 
-    if (media.matches !== state) setState(media.matches)
+    setState({ windowWidth: currentWindowWidth, isDesiredWidth })
+  }, [minWidth])
 
-    const listener = (): void => {
-      setState(media.matches)
+  useEffect(() => {
+    const resizeHandler = (): void => {
+      const currentWindowWidth = window.innerWidth
+      const isDesiredWidth = currentWindowWidth > minWidth
+
+      setState({ windowWidth: currentWindowWidth, isDesiredWidth })
     }
 
-    media.addEventListener('change', listener)
+    window.addEventListener('resize', resizeHandler)
 
-    return (): void => {
-      media.removeEventListener('change', listener)
+    return () => {
+      window.removeEventListener('resize', resizeHandler)
     }
-  }, [query, state])
+  }, [minWidth, state.windowWidth])
 
-  return state
+  return state.isDesiredWidth
 }
+
+export default useResponsive
