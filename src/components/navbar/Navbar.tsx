@@ -14,7 +14,7 @@ import {
   GiDelighted,
   GiSuspicious
 } from 'react-icons/gi'
-import Contacts from './Contacts'
+import Contacts from '../Contacts'
 
 const Navbar = (): JSX.Element => {
   // * states

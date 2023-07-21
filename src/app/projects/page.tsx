@@ -1,5 +1,5 @@
-const AnotherSide = (): JSX.Element => {
-  return <div>AnotherSide</div>
+const Projects = (): JSX.Element => {
+  return <div>project</div>
 }
 
-export default AnotherSide
+export default Projects

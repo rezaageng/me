@@ -1,6 +1,6 @@
 import { type HomeResponse } from '@/@types/home'
-import HomeMain from '@/components/HomeMain'
-import HomeSkills from '@/components/HomeSkills'
+import HomeMain from '@/components/home/HomeMain'
+import HomeSkills from '@/components/home/HomeSkills'
 
 const getHomeData = async (): Promise<HomeResponse> => {
   const res: Response = await fetch(`${process.env.API_URL}/api/home`, {

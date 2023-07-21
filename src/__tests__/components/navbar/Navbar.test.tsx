@@ -1,5 +1,6 @@
-import Navbar from '@/components/Navbar'
-import NavbarUnderline from '@/components/NavbarUnderline'
+import Navbar from '@/components/navbar/Navbar'
+import NavbarUnderline from '@/components/navbar/NavbarUnderline'
+
 import { fireEvent, render, screen } from '@testing-library/react'
 
 jest.mock('next/navigation', () => ({

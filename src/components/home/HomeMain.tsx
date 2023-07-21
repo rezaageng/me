@@ -8,12 +8,12 @@ import {
   useSpring,
   useTransform
 } from 'framer-motion'
-import useFramerStore from '@/stores/framerStore'
 import { useRef, useState } from 'react'
 import useSmooth from '@/hooks/useSmooth'
-import Terminal from './terminal/Terminal'
+import Terminal from '../terminal/Terminal'
 import { type HomeResponse } from '@/@types/home'
-import CirclesBg from './background/CirclesBg'
+import CirclesBg from '../background/CirclesBg'
+import { transition } from '@/constants/framer-motion'
 
 const HomeMain = ({ data }: HomeResponse): JSX.Element => {
   // * hooks
@@ -21,7 +21,6 @@ const HomeMain = ({ data }: HomeResponse): JSX.Element => {
 
   const ref = useRef<HTMLDivElement>(null)
 
-  const { transition } = useFramerStore((state) => state)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['0', '1']

@@ -1,5 +1,5 @@
 /* eslint-disable jest/no-mocks-import */
-import HomeMain from '@/components/HomeMain'
+import HomeMain from '@/components/home/HomeMain'
 import homeRes from '@/__mocks__/home-response'
 import { render, screen, waitFor } from '@testing-library/react'
 
