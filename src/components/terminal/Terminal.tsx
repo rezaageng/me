@@ -36,9 +36,10 @@ const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
       style={style}
       ref={terminalRef}
       onClick={() => promptRef.current?.focus()}
-      className={`${className} h-[32rem] w-full overflow-hidden rounded-lg border border-white bg-primary font-mono text-sm`}
+      className={`${className} h-[32rem]  w-full overflow-hidden rounded-lg border border-white bg-primary bg-opacity-50 font-mono text-sm backdrop-blur-lg backdrop-filter`}
       data-testid="terminal"
     >
+      {/* <div className="absolute z-20 h-full w-full opacity-20 [filter:url('#grainyTexture2')]" /> */}
       <div className="sticky flex gap-2 p-3">
         <div
           className="aspect-square w-3 rounded-full bg-red-500"

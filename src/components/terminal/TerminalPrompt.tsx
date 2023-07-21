@@ -53,7 +53,7 @@ const TerminalPrompt = forwardRef<HTMLInputElement, Prompt & { index: number }>(
             ref={mergeRefs([ref, promptRef])}
             autoComplete="off"
             autoCorrect="off"
-            className="w-full bg-primary focus:outline-none"
+            className="w-full bg-transparent focus:outline-none"
           />
         </form>
         {children}

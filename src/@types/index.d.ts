@@ -8,11 +8,13 @@ type ClassName = string | undefined
 interface NavbarListData {
   name: string
   route: string
+  icon: JSX.Element
 }
 
 interface NavbarListProps extends NavbarListData {
   pathName: string | null
-  onClick: () => void
+  underline?: boolean
+  onClick?: () => void
 }
 
 // * Contacts
