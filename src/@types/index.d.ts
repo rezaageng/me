@@ -1,5 +1,5 @@
 import { type Vector3 } from '@react-three/fiber'
-import { type SpringOptions, type Transition } from 'framer-motion'
+import { type SpringOptions } from 'framer-motion'
 
 // * global
 type ClassName = string | undefined
@@ -27,11 +27,6 @@ interface ContactsProps {
 interface Social {
   icon: JSX.Element
   link: string
-}
-
-// * framerStore
-interface FramerState {
-  transition: Transition
 }
 
 // * useResponsive

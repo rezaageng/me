@@ -1,4 +1,4 @@
-import HomeSkills from '@/components/HomeSkills'
+import HomeSkills from '@/components/home/HomeSkills'
 import { render, screen } from '@testing-library/react'
 
 test('skills title should be rendered', () => {
