@@ -30,7 +30,7 @@
     "date-fns": "^2.30.0",
     "eslint-config-prettier": "^8.8.0",
     "framer-motion": "^9.1.7",
-    "next": "13.4.11-canary.0",
+    "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
