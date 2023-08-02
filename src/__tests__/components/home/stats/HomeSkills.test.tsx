@@ -1,18 +1,50 @@
+/* eslint-disable jest/no-mocks-import */
 import HomeSkills from '@/components/home/stats/HomeSkills'
-import { render, screen } from '@testing-library/react'
+import skillsResponse from '@/__mocks__/skills-response'
+import { fireEvent, render, screen } from '@testing-library/react'
 
-test('sould render title', () => {
-  render(<HomeSkills />)
+test('should render title', () => {
+  render(<HomeSkills skills={skillsResponse} />)
 
-  const component = screen.getByTestId('skills-title')
+  const title = screen.getByTestId('skills-title')
 
-  expect(component).toBeInTheDocument()
+  expect(title.innerHTML).toBe('Skills')
 })
 
-test('3d canvas should be rendered', () => {
-  render(<HomeSkills />)
+test('should render 3d canvas', async () => {
+  render(<HomeSkills skills={skillsResponse} />)
 
-  const component = screen.getByTestId('3d-canvas')
+  const canvas = await screen.findByTestId('3d-canvas')
 
-  expect(component).toBeInTheDocument()
+  expect(canvas).toBeInTheDocument()
+})
+
+test('should render enabled button', () => {
+  render(<HomeSkills skills={skillsResponse} />)
+
+  const button = screen.getByRole('button')
+
+  expect(button).toBeEnabled()
+})
+
+test('should render skill list when button on click', () => {
+  render(<HomeSkills skills={skillsResponse} />)
+
+  const button = screen.getByRole('button')
+
+  fireEvent.click(button)
+
+  const list = screen.getByTestId('skills-list')
+
+  expect(list).toBeInTheDocument()
+})
+
+test('should render all skills', () => {
+  render(<HomeSkills skills={skillsResponse} />)
+
+  const categories = screen.getAllByTestId('skill-categories')
+  const skills = screen.getAllByTestId('skills')
+
+  expect(categories).toHaveLength(2)
+  expect(skills).toHaveLength(4)
 })
