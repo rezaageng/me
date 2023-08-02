@@ -19,6 +19,12 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-poppins)'],
         mono: ['var(--font-hacknf)']
+      },
+      gridTemplateColumns: {
+        bento: '1.9fr 1fr 1.9fr'
+      },
+      gridTemplateRows: {
+        bento: 'repeat(3, 320px)'
       }
     }
   },
