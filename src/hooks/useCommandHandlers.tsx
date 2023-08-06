@@ -7,15 +7,15 @@ import TerminalProjects from '@/components/terminal/TerminalProjects'
 import TerminalSkills from '@/components/terminal/TerminalSkills'
 import TerminalSummary from '@/components/terminal/TerminalSummary'
 import useTerminalStore from '@/stores/terminal-store'
-import { shallow } from 'zustand/shallow'
 
 type CommandHandlers = (index: number, input: string) => void
 
 const useCommandHandlers = (): CommandHandlers => {
-  const [addPrompt, updatePrompt, clearPrompts] = useTerminalStore(
-    (state) => [state.addPrompt, state.updatePrompt, state.clearPrompts],
-    shallow
-  )
+  const [addPrompt, updatePrompt, clearPrompts] = useTerminalStore((state) => [
+    state.addPrompt,
+    state.updatePrompt,
+    state.clearPrompts
+  ])
 
   const handle: CommandHandlers = (index, input) => {
     const [command, option, ...args] = input.split(' ')
