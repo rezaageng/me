@@ -28,7 +28,7 @@
     "@types/three": "^0.155.0",
     "@types/uuid": "^9.0.2",
     "date-fns": "^2.30.0",
-    "framer-motion": "^10.15.0",
+    "framer-motion": "^10.15.1",
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
