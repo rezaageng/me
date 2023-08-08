@@ -4,7 +4,7 @@ import skillsResponse from '@/__mocks__/skills-response'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 test('should render title', () => {
-  render(<HomeSkills skills={skillsResponse} />)
+  render(<HomeSkills data={skillsResponse.data} />)
 
   const title = screen.getByTestId('skills-title')
 
@@ -12,7 +12,7 @@ test('should render title', () => {
 })
 
 test('should render 3d canvas', async () => {
-  render(<HomeSkills skills={skillsResponse} />)
+  render(<HomeSkills data={skillsResponse.data} />)
 
   const canvas = await screen.findByTestId('3d-canvas')
 
@@ -20,17 +20,20 @@ test('should render 3d canvas', async () => {
 })
 
 test('should render enabled button', () => {
-  render(<HomeSkills skills={skillsResponse} />)
+  render(<HomeSkills data={skillsResponse.data} />)
 
   const button = screen.getByRole('button')
 
   expect(button).toBeEnabled()
 })
 
-test('should render skill list when button on click', () => {
-  render(<HomeSkills skills={skillsResponse} />)
+test('should render skill list when button on click', async () => {
+  render(<HomeSkills data={skillsResponse.data} />)
 
   const button = screen.getByRole('button')
+  const canvas = await screen.findByTestId('3d-canvas')
+
+  expect(canvas).toBeInTheDocument()
 
   fireEvent.click(button)
 
@@ -39,11 +42,17 @@ test('should render skill list when button on click', () => {
   expect(list).toBeInTheDocument()
 })
 
-test('should render all skills', () => {
-  render(<HomeSkills skills={skillsResponse} />)
+test('should render all skills', async () => {
+  render(<HomeSkills data={skillsResponse.data} />)
 
   const categories = screen.getAllByTestId('skill-categories')
   const skills = screen.getAllByTestId('skills')
+  const button = screen.getByRole('button')
+  const canvas = await screen.findByTestId('3d-canvas')
+
+  expect(canvas).toBeInTheDocument()
+
+  fireEvent.click(button)
 
   expect(categories).toHaveLength(2)
   expect(skills).toHaveLength(4)
