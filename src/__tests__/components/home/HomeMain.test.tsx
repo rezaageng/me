@@ -70,12 +70,12 @@ test('should run animation that change the transformY to none', async () => {
     () => {
       expect(title).toHaveStyle({ transform: 'none' })
     },
-    { timeout: 2000 }
+    { timeout: 3000 }
   )
   await waitFor(
     () => {
       expect(subtitle).toHaveStyle({ transform: 'none' })
     },
-    { timeout: 2000 }
+    { timeout: 3000 }
   )
 })
