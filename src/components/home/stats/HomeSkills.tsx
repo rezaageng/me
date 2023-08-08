@@ -19,11 +19,11 @@ import { v4 as uuidv4 } from 'uuid'
 import useSmooth from '@/hooks/useSmooth'
 
 interface Props {
-  skills: SkillCategoriesResponse
+  data: SkillCategoriesResponse['data']
   className?: string
 }
 
-const HomeSkills = ({ skills, className = '' }: Props): JSX.Element => {
+const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
   const [is3D, setIs3D] = useState<boolean>(false)
 
   const ref = useRef<HTMLDivElement>(null)
@@ -31,8 +31,6 @@ const HomeSkills = ({ skills, className = '' }: Props): JSX.Element => {
   useLayoutEffect(() => {
     setIs3D(true)
   }, [])
-
-  const { data } = skills
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -59,7 +57,7 @@ const HomeSkills = ({ skills, className = '' }: Props): JSX.Element => {
   }
 
   const titleScroll: MotionStyle = {
-    opacity: useSmooth(scrollYProgress, [0.4, 0.8], [0, 1])
+    opacity: useSmooth(scrollYProgress, [0.2, 0.5], [0, 1])
   }
 
   const listScroll: MotionStyle = {
