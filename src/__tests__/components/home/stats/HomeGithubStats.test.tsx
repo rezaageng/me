@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react'
 test('should render title', () => {
   render(<HomeGithubStats />)
 
-  const title = screen.getByText('Github Stats')
+  const title = screen.getByText('GitHub Stats')
 
   expect(title).toBeInTheDocument()
 })
@@ -36,9 +36,9 @@ test('should render total commits', () => {
 test('should render total pull request', () => {
   render(<HomeGithubStats />)
 
-  const pullRequest = screen.getByTestId('pull-request')
+  const pullRequest = screen.getByTestId('pull-requests')
 
-  expect(pullRequest.innerHTML).toBe('5 Total Pull Request')
+  expect(pullRequest.innerHTML).toBe('5 Total Pull Requests')
 })
 
 test('should render total issues', () => {
