@@ -37,7 +37,7 @@ test('should render skill list when button on click', async () => {
 
   fireEvent.click(button)
 
-  const list = screen.getByTestId('skills-list')
+  const list = await screen.findByTestId('skills-list')
 
   expect(list).toBeInTheDocument()
 })
@@ -45,14 +45,15 @@ test('should render skill list when button on click', async () => {
 test('should render all skills', async () => {
   render(<HomeSkills data={skillsResponse.data} />)
 
-  const categories = screen.getAllByTestId('skill-categories')
-  const skills = screen.getAllByTestId('skills')
   const button = screen.getByRole('button')
   const canvas = await screen.findByTestId('3d-canvas')
 
   expect(canvas).toBeInTheDocument()
 
   fireEvent.click(button)
+
+  const categories = await screen.findAllByTestId('skill-categories')
+  const skills = await screen.findAllByTestId('skills')
 
   expect(categories).toHaveLength(2)
   expect(skills).toHaveLength(4)
