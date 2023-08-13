@@ -2,6 +2,7 @@
 import { gitHubStats } from '@/__mocks__/github'
 import HomeGithubStats from '@/components/home/stats/HomeGithubStats'
 import { render, screen } from '@testing-library/react'
+import '@/__mocks__/intersectionObserverMock'
 
 test('should render title', () => {
   render(<HomeGithubStats data={gitHubStats} />)
