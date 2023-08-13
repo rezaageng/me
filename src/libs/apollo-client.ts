@@ -4,9 +4,12 @@ import { registerApolloClient } from '@apollo/experimental-nextjs-app-support/rs
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
     link: new HttpLink({
-      uri: `${process.env.GITHUB_URL}/graphql`,
+      uri: 'https://api.github.com/graphql',
       headers: {
         authorization: `Bearer ${process.env.GITHUB_KEY}`
+      },
+      fetchOptions: {
+        next: { revalidate: 10 }
       }
     }),
     cache: new InMemoryCache()
