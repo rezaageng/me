@@ -3,9 +3,8 @@ declare global {
     interface ProcessEnv {
       API_URL: string
       API_KEY: string
-      WAKA_URL: string
       WAKA_KEY: string
-      GITHUB_URL: string
+      GITHUB_USERNAME: string
       GITHUB_KEY: string
     }
   }
