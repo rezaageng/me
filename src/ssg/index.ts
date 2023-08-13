@@ -1,5 +1,6 @@
 import { type HomeResponse } from '@/@types/home'
 import { type SkillCategoriesResponse } from '@/@types/skills'
+import { wakaUrl } from '@/constants/endpoints'
 
 export const getHomeData = async (): Promise<HomeResponse> => {
   const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
@@ -37,12 +38,17 @@ export const getSkills = async (): Promise<SkillCategoriesResponse> => {
 }
 
 export const getWakaAll = async (): Promise<WakaAllTime> => {
-  const token: string = Buffer.from(process.env.WAKA_KEY ?? '').toString(
-    'base64'
+  if (
+    process.env.WAKA_KEY === undefined ||
+    process.env.WAKA_KEY === '' ||
+    process.env.WAKA_KEY === null
   )
+    throw new Error('Waka Key is not defined')
+
+  const token: string = Buffer.from(process.env.WAKA_KEY).toString('base64')
 
   const res: Response = await fetch(
-    `${process.env.WAKA_URL}/api/v1/users/current/all_time_since_today`,
+    `${wakaUrl}/api/v1/users/current/all_time_since_today`,
     {
       method: 'get',
       headers: {
