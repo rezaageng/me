@@ -3,11 +3,8 @@ import { gql } from '@apollo/client'
 export const GET_GH_STATS = gql`
   query Stats($login: String!) {
     user(login: $login) {
-      name
-      login
       contributionsCollection {
         totalCommitContributions
-        totalPullRequestReviewContributions
       }
       repositoriesContributedTo(
         first: 1
@@ -22,15 +19,6 @@ export const GET_GH_STATS = gql`
         totalCount
       }
       closedIssues: issues(states: CLOSED) {
-        totalCount
-      }
-      followers {
-        totalCount
-      }
-      repositoryDiscussions {
-        totalCount
-      }
-      repositoryDiscussionComments(onlyAnswers: true) {
         totalCount
       }
       repositories(
