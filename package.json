@@ -17,6 +17,7 @@
   "dependencies": {
     "@apollo/client": "3.8.0",
     "@apollo/experimental-nextjs-app-support": "^0.4.1",
+    "@habx/apollo-multi-endpoint-link": "^2.9.0",
     "@juggle/resize-observer": "^3.4.0",
     "@react-three/drei": "^9.80.1",
     "@react-three/fiber": "^8.13.6",

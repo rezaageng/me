@@ -11,6 +11,9 @@ dependencies:
   '@apollo/experimental-nextjs-app-support':
     specifier: ^0.4.1
     version: 0.4.1(@apollo/client@3.8.0)(next@13.4.12)(react@18.2.0)
+  '@habx/apollo-multi-endpoint-link':
+    specifier: ^2.9.0
+    version: 2.9.0(@apollo/client@3.8.0)
   '@juggle/resize-observer':
     specifier: ^3.4.0
     version: 3.4.0
@@ -1041,6 +1044,17 @@ packages:
       graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
       graphql: 16.7.1
+    dev: false
+
+  /@habx/apollo-multi-endpoint-link@2.9.0(@apollo/client@3.8.0):
+    resolution:
+      {
+        integrity: sha512-QH/6wm0m2g0mXk2T6ik/2Sv1hlr2wXR9kPvSVHcQJERmShBMFj2KWfPg6Fiai/8+katf9xmhr7JFC0SXWsqmpg==
+      }
+    peerDependencies:
+      '@apollo/client': ^3.7.1
+    dependencies:
+      '@apollo/client': 3.8.0(graphql@16.7.1)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
