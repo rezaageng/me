@@ -91,6 +91,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^17.6.7
     version: 17.6.7
+  '@react-three/test-renderer':
+    specifier: ^8.2.0
+    version: 8.2.0(@react-three/fiber@8.13.6)(react@18.2.0)(three@0.155.0)
   '@testing-library/jest-dom':
     specifier: ^5.17.0
     version: 5.17.0
@@ -1782,7 +1785,21 @@ packages:
       suspend-react: 0.1.3(react@18.2.0)
       three: 0.155.0
       zustand: 3.7.2(react@18.2.0)
-    dev: false
+
+  /@react-three/test-renderer@8.2.0(@react-three/fiber@8.13.6)(react@18.2.0)(three@0.155.0):
+    resolution:
+      {
+        integrity: sha512-sYTW/9AkU0f03M/rilYaCB9ORD3tS96bUhM+WRsx/QLtOKdUNCWrWwnxutm5M0orON0A0O84gbUosnqvCAKTsw==
+      }
+    peerDependencies:
+      '@react-three/fiber': '>=8.0.0'
+      react: '>=17.0'
+      three: '>=0.126'
+    dependencies:
+      '@react-three/fiber': 8.13.6(react-dom@18.2.0)(react@18.2.0)(three@0.155.0)
+      react: 18.2.0
+      three: 0.155.0
+    dev: true
 
   /@rushstack/eslint-patch@1.3.2:
     resolution:
@@ -2173,7 +2190,6 @@ packages:
       }
     dependencies:
       '@types/react': 18.2.18
-    dev: false
 
   /@types/react-reconciler@0.28.2:
     resolution:
@@ -2182,7 +2198,6 @@ packages:
       }
     dependencies:
       '@types/react': 18.2.18
-    dev: false
 
   /@types/react@18.2.18:
     resolution:
@@ -3734,7 +3749,6 @@ packages:
       {
         integrity: sha512-XRRe6Glud4rd/ZGQfiV1ruXSfbvfJedlV9Y6zOlP+2K04vBYiJEte6stfFkCP03aMnY5tsipamumUjL14fofug==
       }
-    dev: false
 
   /debug@3.2.7:
     resolution:
@@ -6114,7 +6128,6 @@ packages:
     dependencies:
       '@types/react-reconciler': 0.28.2
       react: 18.2.0
-    dev: false
 
   /jest-changed-files@29.5.0:
     resolution:
@@ -8339,7 +8352,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.21.0
-    dev: false
 
   /react-responsive@9.0.2(react@18.2.0):
     resolution:
@@ -8369,7 +8381,6 @@ packages:
       debounce: 1.2.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-    dev: false
 
   /react@18.2.0:
     resolution:
@@ -8731,7 +8742,6 @@ packages:
       }
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /scheduler@0.23.0:
     resolution:
@@ -9289,7 +9299,6 @@ packages:
       react: '>=17.0'
     dependencies:
       react: 18.2.0
-    dev: false
 
   /symbol-observable@4.0.0:
     resolution:
@@ -9455,7 +9464,6 @@ packages:
       {
         integrity: sha512-sNgCYmDijnIqkD/bMfk+1pHg3YzsxW7V2ChpuP6HCQ8NiZr3RufsXQr8M3SSUMjW4hG+sUk7YbyuY0DncaDTJQ==
       }
-    dev: false
 
   /through2@4.0.2:
     resolution:
@@ -10355,7 +10363,6 @@ packages:
         optional: true
     dependencies:
       react: 18.2.0
-    dev: false
 
   /zustand@4.4.0(@types/react@18.2.18)(react@18.2.0):
     resolution:
