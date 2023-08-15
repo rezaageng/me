@@ -19,5 +19,8 @@ interface SolvedProblems {
         submissions: number
       }>
     }
+    userCalendar: {
+      submissionCalendar: string
+    }
   }
 }
