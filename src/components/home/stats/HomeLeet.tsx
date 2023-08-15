@@ -1,8 +1,10 @@
 'use client'
 
 import { v4 as uuidv4 } from 'uuid'
-import { motion } from 'framer-motion'
+import { type MotionStyle, motion, useScroll } from 'framer-motion'
 import { transition } from '@/constants/framer-motion'
+import { useRef } from 'react'
+import useSmooth from '@/hooks/useSmooth'
 
 interface Props {
   className?: string
@@ -10,6 +12,7 @@ interface Props {
 }
 
 const HomeLeet = ({ className = '', data }: Props): JSX.Element => {
+  // * data
   const allProblems = data.allQuestionsCount.filter(
     (val) => val.difficulty !== 'All'
   )
@@ -46,8 +49,22 @@ const HomeLeet = ({ className = '', data }: Props): JSX.Element => {
     >
   ).reduce((prev, curr) => prev + curr, 0)
 
+  // * hooks
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end end']
+  })
+
+  // * animations
+  const wrapperScroll: MotionStyle = {
+    opacity: useSmooth(scrollYProgress, [0.2, 1], [0, 1])
+  }
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      style={wrapperScroll}
       data-testid="bento-leet"
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
@@ -65,7 +82,9 @@ const HomeLeet = ({ className = '', data }: Props): JSX.Element => {
         <div className="flex justify-between sm:flex-col md:flex-row">
           <div data-testid="leet-submissions-last">
             <span className="font-semibold">{submissions}</span>
-            <span className="text-white/75">&nbsp;Submissions (2023)</span>
+            <span className="text-white/75">
+              &nbsp;Submissions ({new Date().getFullYear()})
+            </span>
           </div>
           <div data-testid="leet-solved">
             <span className="font-semibold">
@@ -120,7 +139,7 @@ const HomeLeet = ({ className = '', data }: Props): JSX.Element => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 export default HomeLeet
