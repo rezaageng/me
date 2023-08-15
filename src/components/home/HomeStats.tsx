@@ -4,6 +4,8 @@ import HomeSkills from './stats/HomeSkills'
 import HomeWakaAll from './stats/HomeWakaAll'
 import { getClient } from '@/libs/apollo-client'
 import { GET_GH_STATS } from '@/graphql/github-gql'
+import HomeLeet from './stats/HomeLeet'
+import { GET_LEET_SOLVED_PROBLEMS } from '@/graphql/leetcode-gql'
 
 const HomeStats = async (): Promise<JSX.Element> => {
   const skills = await getSkills()
@@ -12,6 +14,14 @@ const HomeStats = async (): Promise<JSX.Element> => {
   const gitHubStats = await getClient().query<GitHubStats>({
     query: GET_GH_STATS,
     variables: { login: process.env.GITHUB_USERNAME }
+  })
+
+  const leetSolvedProblems = await getClient().query<SolvedProblems>({
+    query: GET_LEET_SOLVED_PROBLEMS,
+    variables: {
+      username: process.env.LEETCODE_USERNAME,
+      year: new Date().getFullYear()
+    }
   })
 
   return (
@@ -25,6 +35,7 @@ const HomeStats = async (): Promise<JSX.Element> => {
         data={gitHubStats.data}
         className="col-span-1 row-span-1"
       />
+      <HomeLeet data={leetSolvedProblems.data} />
     </section>
   )
 }
