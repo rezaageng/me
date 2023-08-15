@@ -1,42 +1,83 @@
+/* eslint-disable jest/no-mocks-import */
+import { solvedProblems } from '@/__mocks__/leetcode'
 import HomeLeet from '@/components/home/stats/HomeLeet'
 import { render, screen } from '@testing-library/react'
+import '@/__mocks__/intersectionObserverMock'
+
+test('should render title', () => {
+  render(<HomeLeet data={solvedProblems} />)
+
+  const title = screen.getByText('LeetCode')
+
+  expect(title).toBeInTheDocument()
+})
 
 test('should render leet rank', () => {
-  render(<HomeLeet />)
+  render(<HomeLeet data={solvedProblems} />)
 
   const leetRank = screen.getByTestId('leet-rank')
 
-  expect(leetRank.innerHTML).toBe('Rank: 1')
+  expect(leetRank).toHaveTextContent('Rank 2,102,921')
 })
 
 test('should render leet solved', () => {
-  render(<HomeLeet />)
+  render(<HomeLeet data={solvedProblems} />)
 
   const leetSolved = screen.getByTestId('leet-solved')
 
-  expect(leetSolved.innerHTML).toBe('Solved: 10')
+  expect(leetSolved).toHaveTextContent('15 Solved')
+})
+
+test('should render submissions', () => {
+  render(<HomeLeet data={solvedProblems} />)
+
+  const submissions = screen.getByTestId('leet-submissions-last')
+
+  expect(submissions).toHaveTextContent(
+    `29 Submissions (${new Date().getFullYear()})`
+  )
 })
 
 test('should render leet easy', () => {
-  render(<HomeLeet />)
+  render(<HomeLeet data={solvedProblems} />)
 
-  const leetEasy = screen.getByTestId('leet-easy')
+  const leetEasy = screen.getByText('Easy')
 
-  expect(leetEasy.innerHTML).toBe('Easy: 5')
+  expect(leetEasy).toBeInTheDocument()
 })
 
 test('should render leet medium', () => {
-  render(<HomeLeet />)
+  render(<HomeLeet data={solvedProblems} />)
 
-  const leetMedium = screen.getByTestId('leet-medium')
+  const leetMedium = screen.getByText('Medium')
 
-  expect(leetMedium.innerHTML).toBe('Medium: 3')
+  expect(leetMedium).toBeInTheDocument()
 })
 
 test('should render leet hard', () => {
-  render(<HomeLeet />)
+  render(<HomeLeet data={solvedProblems} />)
 
-  const leetHard = screen.getByTestId('leet-hard')
+  const leetHard = screen.getByText('Hard')
 
-  expect(leetHard.innerHTML).toBe('Hard: 2')
+  expect(leetHard).toBeInTheDocument()
+})
+
+test('should render solved problems for each difficulty', () => {
+  render(<HomeLeet data={solvedProblems} />)
+
+  const easySubmissions = screen.getAllByTestId('leet-problem-solved')
+
+  expect(easySubmissions[0]).toHaveTextContent('11/706')
+  expect(easySubmissions[1]).toHaveTextContent('4/1492')
+  expect(easySubmissions[2]).toHaveTextContent('0/620')
+})
+
+test('should render easy beats', () => {
+  render(<HomeLeet data={solvedProblems} />)
+
+  const easyBeats = screen.getAllByTestId('leet-problem-beats')
+
+  expect(easyBeats[0]).toHaveTextContent('Beats 33.29%')
+  expect(easyBeats[1]).toHaveTextContent('Beats 17.60%')
+  expect(easyBeats[2]).toHaveTextContent('Not enough data')
 })
