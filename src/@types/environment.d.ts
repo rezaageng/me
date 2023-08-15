@@ -6,6 +6,7 @@ declare global {
       WAKA_KEY: string
       GITHUB_USERNAME: string
       GITHUB_KEY: string
+      LEETCODE_USERNAME: string
     }
   }
 }
