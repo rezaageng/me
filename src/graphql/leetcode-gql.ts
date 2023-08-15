@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
 export const GET_LEET_SOLVED_PROBLEMS = gql`
-  query SolvedProblems($username: String!) @api(name: leetCode) {
+  query SolvedProblems($username: String!, $year: Int!) @api(name: leetCode) {
     allQuestionsCount {
       difficulty
       count
@@ -21,6 +21,9 @@ export const GET_LEET_SOLVED_PROBLEMS = gql`
           count
           submissions
         }
+      }
+      userCalendar(year: $year) {
+        submissionCalendar
       }
     }
   }
