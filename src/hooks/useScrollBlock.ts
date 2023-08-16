@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/prefer-optional-chain */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { useRef } from 'react'
 
 const safeDocument: Document | undefined =
@@ -12,13 +10,19 @@ export const useScrollBlock = (): [() => void, () => void] => {
   const body = safeDocument?.body
 
   const blockScroll = (): void => {
-    if (!body || !body.style || scrollBlocked.current || !html) return
+    if (
+      body === undefined ||
+      body.style === undefined ||
+      scrollBlocked.current ||
+      html === undefined
+    )
+      return
 
     const scrollBarWidth = window.innerWidth - html.clientWidth
     const bodyPaddingRight =
       parseInt(
         window.getComputedStyle(body).getPropertyValue('padding-right')
-      ) || 0
+      ) ?? 0
 
     html.style.position = 'relative' /* [1] */
     html.style.overflow = 'hidden' /* [2] */
@@ -30,7 +34,13 @@ export const useScrollBlock = (): [() => void, () => void] => {
   }
 
   const allowScroll = (): void => {
-    if (!body || !body.style || !scrollBlocked.current || !html) return
+    if (
+      body === undefined ||
+      body.style === undefined ||
+      !scrollBlocked.current ||
+      html === undefined
+    )
+      return
 
     html.style.position = ''
     html.style.overflow = ''
