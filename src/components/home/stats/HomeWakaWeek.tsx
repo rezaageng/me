@@ -3,10 +3,17 @@
 import languageColors from '@/constants/language-colors.json'
 import ordinal from '@/helpers/ordinal'
 import timeConvert from '@/helpers/time-convert'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { SiWakatime } from 'react-icons/si'
 import { v4 as uuidv4 } from 'uuid'
-import { AnimatePresence, type AnimationProps, motion } from 'framer-motion'
+import {
+  AnimatePresence,
+  type AnimationProps,
+  motion,
+  type MotionStyle,
+  useScroll
+} from 'framer-motion'
+import useSmooth from '@/hooks/useSmooth'
 
 interface Props {
   className?: string
@@ -14,8 +21,17 @@ interface Props {
 }
 
 const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
+  // * hooks
   const [isLang, setIsLang] = useState<boolean>(false)
 
+  const ref = useRef<HTMLDivElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end end']
+  })
+
+  // * animations
   const initial: AnimationProps['initial'] = { opacity: 0 }
   const animate: AnimationProps['animate'] = {
     opacity: 1,
@@ -31,8 +47,14 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
     }
   }
 
+  const wrapperScroll: MotionStyle = {
+    opacity: useSmooth(scrollYProgress, [0, 0.8], [0, 1])
+  }
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      style={wrapperScroll}
       data-testid="bento-leet"
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
@@ -144,7 +166,7 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
