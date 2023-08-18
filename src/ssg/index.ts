@@ -60,6 +60,8 @@ export const getWakaAll = async (): Promise<WakaAllTime> => {
     }
   )
 
+  if (!res.ok) throw new Error('Internal Server Error')
+
   const data: WakaAllTime = await res.json()
 
   return data
@@ -110,6 +112,9 @@ export const getWakaWeek = async (): Promise<WakaWeek> => {
       }
     }
   )
+
+  if (!leadersRes.ok || !leadersRegRes.ok || !statsRes.ok)
+    throw new Error('Internal Server Error')
 
   const leadersData = await leadersRes.json()
   const leadersRegData = await leadersRegRes.json()
