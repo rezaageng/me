@@ -18,3 +18,32 @@ export const wakaAllResponse: WakaAllTime = {
     timeout: 15
   }
 }
+
+export const wakaWeek: WakaWeek = {
+  worldRank: 4212,
+  countryRank: 195,
+  totalSeconds: 75727.51972,
+  dailyAverage: 12621.0,
+  languages: [
+    {
+      name: 'TypeScript',
+      total: '20 hrs 35 mins'
+    },
+    {
+      name: 'JSON',
+      total: '9 mins'
+    },
+    {
+      name: 'Other',
+      total: '9 mins'
+    },
+    {
+      name: 'HTML',
+      total: '4 mins'
+    },
+    {
+      name: 'Markdown',
+      total: '1 min'
+    }
+  ]
+}
