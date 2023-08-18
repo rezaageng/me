@@ -18,3 +18,11 @@ interface WakaAllTime {
     timeout: number
   }
 }
+
+interface WakaWeek {
+  worldRank: number
+  countryRank: number
+  totalSeconds: number
+  dailyAverage: number
+  languages: Array<{ name: string; total: string }>
+}
