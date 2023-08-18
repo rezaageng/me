@@ -64,3 +64,67 @@ export const getWakaAll = async (): Promise<WakaAllTime> => {
 
   return data
 }
+
+export const getWakaWeek = async (): Promise<WakaWeek> => {
+  if (
+    process.env.WAKA_KEY === undefined ||
+    process.env.WAKA_KEY === '' ||
+    process.env.WAKA_KEY === null
+  )
+    throw new Error('Waka Key is not defined')
+
+  const token: string = Buffer.from(process.env.WAKA_KEY).toString('base64')
+
+  const leadersRes: Response = await fetch(`${wakaUrl}/api/v1/leaders`, {
+    method: 'get',
+    headers: {
+      authorization: `Basic ${token}`
+    },
+    next: {
+      revalidate: 10
+    }
+  })
+
+  const leadersRegRes: Response = await fetch(
+    `${wakaUrl}/api/v1/leaders?country_code=${process.env.WAKA_COUNTRY_CODE}`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Basic ${token}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  const statsRes: Response = await fetch(
+    `${wakaUrl}/api/v1/users/current/stats?including_today=true`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Basic ${token}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  const leadersData = await leadersRes.json()
+  const leadersRegData = await leadersRegRes.json()
+  const stats = await statsRes.json()
+
+  const data: WakaWeek = {
+    worldRank: leadersData.current_user.rank,
+    countryRank: leadersRegData.current_user.rank,
+    totalSeconds: stats.data.total_seconds_including_other_language,
+    dailyAverage: stats.data.daily_average_including_other_language,
+    languages: stats.data.languages.map((lang: Record<string, string>) => ({
+      name: lang.name,
+      total: lang.text
+    }))
+  }
+
+  return data
+}
