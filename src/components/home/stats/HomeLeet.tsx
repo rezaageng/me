@@ -58,7 +58,7 @@ const HomeLeet = ({ className = '', data }: Props): JSX.Element => {
 
   // * animations
   const wrapperScroll: MotionStyle = {
-    opacity: useSmooth(scrollYProgress, [0.2, 1], [0, 1])
+    opacity: useSmooth(scrollYProgress, [0.3, 1], [0, 1])
   }
 
   return (
