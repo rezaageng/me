@@ -60,25 +60,26 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
     >
       <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
       <div className="relative flex h-full flex-col justify-between gap-4 px-8 py-8 md:py-10">
-        <div className="flex items-center justify-between">
-          <div>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center justify-between">
             <h2 className="bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-3xl md:text-4xl">
               WakaTime
             </h2>
-            <span className="text-white/75">Last week stats </span>
+            <div>
+              <motion.button
+                onClick={(e) => {
+                  e.preventDefault()
+                  setIsLang((state) => !state)
+                }}
+                whileTap={{ scale: 0.7 }}
+                className="aspect-square rounded border border-white border-opacity-20 p-2"
+              >
+                <SiWakatime />
+              </motion.button>
+            </div>
           </div>
-          <div>
-            <motion.button
-              onClick={(e) => {
-                e.preventDefault()
-                setIsLang((state) => !state)
-              }}
-              whileTap={{ scale: 0.7 }}
-              className="aspect-square rounded border border-white border-opacity-20 p-2"
-            >
-              <SiWakatime />
-            </motion.button>
-          </div>
+
+          <span className="text-white/75">Last week stats </span>
         </div>
         <AnimatePresence mode="wait" initial={false}>
           {!isLang ? (
@@ -91,45 +92,47 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
             >
               <li data-testid="world-rank">
                 <div className="flex font-semibold">
-                  <span className="text-4xl">{data.worldRank}</span>
-                  <span className="text-xl">{ordinal(data.worldRank)}</span>
+                  <span className="text-3xl">{data.worldRank}</span>
+                  <span className="text-lg">{ordinal(data.worldRank)}</span>
                 </div>
-                <span className="text-white/75">World Rank</span>
+                <span className="line-clamp-1 text-white/75">World Rank</span>
               </li>
               <li data-testid="country-rank">
                 <div className="flex font-semibold">
-                  <span className="text-4xl">{data.countryRank}</span>
-                  <span className="text-xl">{ordinal(data.countryRank)}</span>
+                  <span className="text-3xl">{data.countryRank}</span>
+                  <span className="text-lg">{ordinal(data.countryRank)}</span>
                 </div>
-                <span className="text-white/75">
+                <span className="line-clamp-1 text-white/75">
                   {process.env.NEXT_PUBLIC_WAKA_COUNTRY ?? 'Country'} Rank
                 </span>
               </li>
               <li data-testid="hours-coded">
                 <div className="flex items-baseline font-semibold">
-                  <span className="text-4xl">
+                  <span className="text-3xl">
                     {timeConvert(data.totalSeconds, 'hours')}
                   </span>
-                  <span className="text-xl">H&nbsp;</span>
-                  <span className="text-4xl">
+                  <span className="text-lg">H&nbsp;</span>
+                  <span className="text-3xl">
                     {timeConvert(data.totalSeconds, 'minutes')}
                   </span>
-                  <span className="text-xl">M</span>
+                  <span className="text-lg">M</span>
                 </div>
-                <span className="text-white/75">Coding Time</span>
+                <span className="line-clamp-1 text-white/75">Coding Time</span>
               </li>
               <li data-testid="daily-average">
                 <div className="flex items-baseline font-semibold">
-                  <span className="text-4xl">
+                  <span className="text-3xl">
                     {timeConvert(data.dailyAverage, 'hours')}
                   </span>
-                  <span className="text-xl">H&nbsp;</span>
-                  <span className="text-4xl">
+                  <span className="text-lg">H&nbsp;</span>
+                  <span className="text-3xl">
                     {timeConvert(data.dailyAverage, 'minutes')}
                   </span>
-                  <span className="text-xl">M</span>
+                  <span className="text-lg">M</span>
                 </div>
-                <span className="text-white/75">Daily Average</span>
+                <span className="line-clamp-1 text-white/75">
+                  Daily Average
+                </span>
               </li>
             </motion.ul>
           ) : (

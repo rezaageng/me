@@ -37,7 +37,7 @@ const HomeStats = async (): Promise<JSX.Element> => {
         data={gitHubStats.data}
         className="col-span-1 row-span-1"
       />
-      <HomeWakaWeek data={wakaWeek} className="aspect-[4/3] sm:aspect-auto" />
+      <HomeWakaWeek data={wakaWeek} className="max-h-[280.5px] sm:max-h-none" />
       <HomeLeet
         data={leetSolvedProblems.data}
         className="col-span-1 sm:col-span-2"
