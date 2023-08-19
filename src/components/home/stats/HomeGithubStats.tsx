@@ -90,8 +90,8 @@ const HomeGithubStats = ({ className = '', data }: Props): JSX.Element => {
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
       <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="flex h-full flex-col justify-between gap-2 px-8 py-8 md:py-10">
-        <div className="z-10 flex items-center">
+      <div className="relative flex h-full flex-col justify-between gap-2 px-8 py-8 md:py-10">
+        <div className=" flex items-center">
           <h2 className="flex-1 bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-3xl md:text-4xl">
             GitHub Stats
           </h2>
@@ -100,7 +100,7 @@ const HomeGithubStats = ({ className = '', data }: Props): JSX.Element => {
             <SiGithub className="h-16 w-16 fill-[url(#gh-gradient)]" />
           </motion.div>
         </div>
-        <ul ref={scope} className="z-10">
+        <ul ref={scope} className="">
           <li className="flex items-center gap-2">
             <GoRepo />
             <span data-testid="public-repos">

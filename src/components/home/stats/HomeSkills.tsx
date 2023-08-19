@@ -72,17 +72,17 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
       className={`${className} relative h-full w-full overflow-hidden rounded-3xl`}
     >
       <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="flex h-full w-full flex-col items-center p-6">
+      <div className="flex h-full w-full flex-col items-center px-8 py-8 md:py-10">
         <motion.div
           style={titleScroll}
-          className="z-10 flex w-full justify-between"
+          className="z-10 flex w-full justify-between "
         >
-          <h1
+          <h2
             data-testid="skills-title"
-            className="text-4xl font-bold text-accent-1 lg:text-5xl"
+            className="bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-3xl md:text-4xl"
           >
             Skills
-          </h1>
+          </h2>
           <div>
             <motion.button
               onClick={() => {

@@ -34,10 +34,10 @@ const HomeWakaAll = ({ className = '', data }: Props): JSX.Element => {
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
       <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="flex h-full flex-col items-center justify-center p-6">
+      <div className="relative flex h-full flex-col items-center justify-center px-8 py-8 md:py-10">
         <div
           data-testid="coding-time"
-          className="z-10 bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text"
+          className="bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text"
         >
           <Counter
             viewMargin="-200px"
@@ -49,7 +49,7 @@ const HomeWakaAll = ({ className = '', data }: Props): JSX.Element => {
             Hrs
           </span>
         </div>
-        <p data-testid="start-date" className="z-10 w-40 text-center">
+        <p data-testid="start-date" className="w-40 text-center">
           Coding Time Since {format(parseISO(data.range.start), 'MMMM d, yyyy')}
         </p>
       </div>
