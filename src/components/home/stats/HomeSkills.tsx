@@ -17,6 +17,7 @@ import {
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { v4 as uuidv4 } from 'uuid'
 import useSmooth from '@/hooks/useSmooth'
+import BentoWrapper from './BentoWrapper'
 
 interface Props {
   data: SkillCategoriesResponse['data']
@@ -69,10 +70,9 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
       style={wrapperScroll}
       ref={ref}
       data-testid="bento-skills"
-      className={`${className} relative h-full w-full overflow-hidden rounded-3xl`}
+      className={`${className} relative h-full w-full overflow-hidden rounded-3xl `}
     >
-      <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="flex h-full w-full flex-col items-center px-8 py-8 md:py-10">
+      <BentoWrapper className="flex flex-col items-center">
         <motion.div
           style={titleScroll}
           className="z-10 flex w-full justify-between "
@@ -154,7 +154,8 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+        {/* </div> */}
+      </BentoWrapper>
     </motion.div>
   )
 }

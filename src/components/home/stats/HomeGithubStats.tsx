@@ -20,6 +20,7 @@ import {
 } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import useSmooth from '@/hooks/useSmooth'
+import BentoWrapper from './BentoWrapper'
 
 interface Props {
   className?: string
@@ -89,8 +90,7 @@ const HomeGithubStats = ({ className = '', data }: Props): JSX.Element => {
       data-testid="bento-github"
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
-      <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="relative flex h-full flex-col justify-between gap-2 px-8 py-8 md:py-10">
+      <BentoWrapper className="flex flex-col justify-between gap-2">
         <div className=" flex items-center">
           <h2 className="flex-1 bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-3xl md:text-4xl">
             GitHub Stats
@@ -141,7 +141,7 @@ const HomeGithubStats = ({ className = '', data }: Props): JSX.Element => {
             </span>
           </li>
         </ul>
-      </div>
+      </BentoWrapper>
     </motion.div>
   )
 }

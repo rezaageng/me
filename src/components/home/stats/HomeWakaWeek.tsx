@@ -14,6 +14,7 @@ import {
   useScroll
 } from 'framer-motion'
 import useSmooth from '@/hooks/useSmooth'
+import BentoWrapper from './BentoWrapper'
 
 interface Props {
   className?: string
@@ -58,8 +59,7 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
       data-testid="bento-leet"
       className={`${className} relative w-full overflow-hidden rounded-3xl`}
     >
-      <div className="absolute h-full w-full rounded-3xl border border-white bg-primary bg-opacity-50 p-8 backdrop-blur-lg backdrop-filter" />
-      <div className="relative flex h-full flex-col justify-between gap-4 px-8 py-8 md:py-10">
+      <BentoWrapper className="flex flex-col justify-between gap-4">
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <h2 className="bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-3xl md:text-4xl">
@@ -78,7 +78,6 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
               </motion.button>
             </div>
           </div>
-
           <span className="text-white/75">Last week stats </span>
         </div>
         <AnimatePresence mode="wait" initial={false}>
@@ -168,7 +167,7 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
             </motion.ul>
           )}
         </AnimatePresence>
-      </div>
+      </BentoWrapper>
     </motion.div>
   )
 }

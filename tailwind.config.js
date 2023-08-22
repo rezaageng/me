@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-radial-t':
+          'radial-gradient(circle at top, var(--tw-gradient-stops))'
+      },
       colors: {
         primary: '#0D0409',
         secondary: {
