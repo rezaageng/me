@@ -1,6 +1,11 @@
 'use client'
 
-import { AnimatePresence, motion } from 'framer-motion'
+import {
+  AnimatePresence,
+  type MotionStyle,
+  motion,
+  useScroll
+} from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
@@ -15,6 +20,7 @@ import {
   GiSuspicious
 } from 'react-icons/gi'
 import Contacts from '../Contacts'
+import useSmooth from '@/hooks/useSmooth'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -25,6 +31,8 @@ const Navbar = (): JSX.Element => {
   const [blockScroll, allowScroll] = useScrollBlock()
   const pathName = usePathname()
   const isLg = useResponsive(1024)
+
+  const { scrollYProgress } = useScroll()
 
   useEffect(() => {
     setIsInitial(false)
@@ -65,6 +73,16 @@ const Navbar = (): JSX.Element => {
     }
   ]
 
+  // * animations
+  const backgroundAnimation: MotionStyle = {
+    opacity: useSmooth(scrollYProgress, [0, 0.1], [0, 1])
+  }
+
+  const paddingAnimation: MotionStyle = {
+    paddingLeft: useSmooth(scrollYProgress, [0, 0.1], [12, 24]),
+    paddingRight: useSmooth(scrollYProgress, [0, 0.1], [12, 24])
+  }
+
   return (
     <nav>
       {!isLg && isOpen ? (
@@ -78,17 +96,24 @@ const Navbar = (): JSX.Element => {
               opacity: 0
             }}
             onClick={toggleMenu}
-            className="fixed left-0 top-0 z-10 min-h-[100dvh] w-full bg-primary"
+            className="fixed left-0 top-0 z-50 min-h-[100dvh] w-full bg-primary"
           />
         </AnimatePresence>
       ) : null}
-      <div className="fixed left-0 top-0 z-10 flex w-full justify-center px-2 py-8">
-        <div className="w-full max-w-5xl px-4 lg:px-6">
+      <motion.div
+        style={!isLg ? paddingAnimation : undefined}
+        className="px- fixed left-0 top-0 z-50 flex w-full justify-center py-5 lg:py-8"
+      >
+        <div className="w-full max-w-4xl">
           <motion.div
             whileTap={{ scale: 0.98 }}
-            className="flex flex-col rounded-3xl border-[0.5px] border-white border-opacity-20 bg-primary bg-opacity-50 p-4 backdrop-blur-lg backdrop-filter lg:px-8"
+            className="relative flex flex-col overflow-hidden rounded-full p-4 lg:px-8"
           >
-            <div className="z-20 flex w-full justify-between text-xl text-accent-1">
+            <motion.div
+              style={backgroundAnimation}
+              className="absolute left-0 top-0 h-full w-full rounded-full bg-primary bg-opacity-50 backdrop-blur-lg backdrop-filter"
+            />
+            <div className="relative flex w-full justify-between text-xl text-accent-1">
               <h1>rezaa</h1>
               {isLg ? (
                 <ul
@@ -133,7 +158,7 @@ const Navbar = (): JSX.Element => {
                 }}
                 className={`${
                   isInitial ? 'hidden' : 'flex'
-                } mt-4 w-full flex-col gap-6 rounded-3xl border-[0.5px] border-white border-opacity-20 bg-primary bg-opacity-50 px-4 py-6 backdrop-blur-lg backdrop-filter`}
+                } mt-4 w-full flex-col gap-6 rounded-3xl bg-primary bg-opacity-50 px-4 py-6 backdrop-blur-lg backdrop-filter`}
               >
                 <ul
                   data-testid="navbar-list"
@@ -157,7 +182,7 @@ const Navbar = (): JSX.Element => {
             ) : null}
           </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
     </nav>
   )
 }
