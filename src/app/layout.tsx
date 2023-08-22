@@ -4,13 +4,13 @@ import Navbar from '@/components/navbar/Navbar'
 import './globals.css'
 import { type Metadata } from 'next'
 import Sidebar from '@/components/Sidebar'
-import QueryProvider from './query-provider'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GrainyTexture from '@/components/GrainyTexture'
 import PageProgressBar from '@/components/PageProgressBar'
+import QueryProvider from '@/libs/query-provider'
 
 const poppins = Poppins({
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-poppins'
 })

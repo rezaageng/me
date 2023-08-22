@@ -1,4 +1,5 @@
-import { create } from 'zustand'
+import { shallow } from 'zustand/shallow'
+import { createWithEqualityFn } from 'zustand/traditional'
 
 interface TerminalState {
   prompts: Prompt[]
@@ -13,21 +14,24 @@ const defaultPrompt: Prompt = {
   children: null
 }
 
-const useTerminalStore = create<TerminalState>()((set, get) => ({
-  prompts: [defaultPrompt],
-  addPrompt: () => {
-    set((state) => ({ prompts: [...state.prompts, defaultPrompt] }))
-  },
-  updatePrompt: (index, prompt) => {
-    set((state) => {
-      const prompts = [...state.prompts]
-      prompts[index] = { ...prompts[index], ...prompt }
-      return { prompts }
-    })
-  },
-  clearPrompts: () => {
-    set({ prompts: [defaultPrompt] })
-  }
-}))
+const useTerminalStore = createWithEqualityFn<TerminalState>()(
+  (set, get) => ({
+    prompts: [defaultPrompt],
+    addPrompt: () => {
+      set((state) => ({ prompts: [...state.prompts, defaultPrompt] }))
+    },
+    updatePrompt: (index, prompt) => {
+      set((state) => {
+        const prompts = [...state.prompts]
+        prompts[index] = { ...prompts[index], ...prompt }
+        return { prompts }
+      })
+    },
+    clearPrompts: () => {
+      set({ prompts: [defaultPrompt] })
+    }
+  }),
+  shallow
+)
 
 export default useTerminalStore

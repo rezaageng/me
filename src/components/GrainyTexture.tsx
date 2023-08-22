@@ -11,6 +11,15 @@ const GrainyTexture = (): JSX.Element => {
           />
         </filter>
       </svg>
+      <svg>
+        <filter id="grainyTexture2">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.6"
+            stitchTiles="stitch"
+          />
+        </filter>
+      </svg>
     </>
   )
 }

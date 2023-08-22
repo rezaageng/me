@@ -3,6 +3,10 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-radial-t':
+          'radial-gradient(circle at top, var(--tw-gradient-stops))'
+      },
       colors: {
         primary: '#0D0409',
         secondary: {
@@ -19,6 +23,12 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-poppins)'],
         mono: ['var(--font-hacknf)']
+      },
+      gridTemplateColumns: {
+        bento: '1.9fr 1fr 1.9fr'
+      },
+      gridTemplateRows: {
+        bento: 'repeat(3, 320px)'
       }
     }
   },

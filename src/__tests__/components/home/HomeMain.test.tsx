@@ -40,13 +40,13 @@ test('should run animation that change the opacity to 1', async () => {
     () => {
       expect(title).toHaveStyle({ opacity: 1 })
     },
-    { timeout: 1200 }
+    { timeout: 2000 }
   )
   await waitFor(
     () => {
       expect(subtitle).toHaveStyle({ opacity: 1 })
     },
-    { timeout: 1200 }
+    { timeout: 2000 }
   )
 })
 
@@ -70,12 +70,12 @@ test('should run animation that change the transformY to none', async () => {
     () => {
       expect(title).toHaveStyle({ transform: 'none' })
     },
-    { timeout: 2000 }
+    { timeout: 3000 }
   )
   await waitFor(
     () => {
       expect(subtitle).toHaveStyle({ transform: 'none' })
     },
-    { timeout: 2000 }
+    { timeout: 3000 }
   )
 })

@@ -11,6 +11,9 @@ import experiencesResponse from './experiences-response'
 import homeRes from './home-response'
 import projectsResponse from './projects-response'
 import skillsResponse from './skills-response'
+import { wakaAllResponse } from './wakatime'
+import { repositories } from './github'
+import { gitHubUrl, wakaUrl } from '@/constants/endpoints'
 
 export const handlers = [
   rest.get(
@@ -90,5 +93,15 @@ export const handlers = [
     '/api/contacts',
     async (_req, res, ctx) =>
       await res(ctx.status(200), ctx.json<ContactsResponse>(contactsResponse))
+  ),
+  rest.get(
+    `${wakaUrl}/api/v1/users/current/all_time_since_today`,
+    async (_req, res, ctx) =>
+      await res(ctx.status(200), ctx.json(wakaAllResponse))
+  ),
+  rest.get(
+    `${gitHubUrl}/user/repos`,
+    async (_req, res, ctx) =>
+      await res(ctx.status(200), ctx.json<Repository[]>(repositories))
   )
 ]
