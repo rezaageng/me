@@ -1,4 +1,4 @@
-import Contacts from './Contacts'
+import Contacts from '../Contacts'
 
 const NavbarInformation = (): JSX.Element => {
   return (
