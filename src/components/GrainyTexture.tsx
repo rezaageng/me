@@ -1,7 +1,7 @@
 const GrainyTexture = (): JSX.Element => {
   return (
     <>
-      <svg data-testid="grainy-texture">
+      <svg className="h-0 w-0" data-testid="grainy-texture">
         <filter id="grainyTexture" data-testid="grainy-texture-filter">
           <feTurbulence
             type="turbulence"
@@ -11,7 +11,7 @@ const GrainyTexture = (): JSX.Element => {
           />
         </filter>
       </svg>
-      <svg>
+      <svg className="h-0 w-0">
         <filter id="grainyTexture2">
           <feTurbulence
             type="fractalNoise"
