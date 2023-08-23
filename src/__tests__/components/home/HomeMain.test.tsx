@@ -1,81 +1,29 @@
 /* eslint-disable jest/no-mocks-import */
-import HomeMain from '@/components/home/HomeMain'
 import homeRes from '@/__mocks__/home-response'
-import { render, screen, waitFor } from '@testing-library/react'
+import HomeMain from '@/components/home/HomeMain'
+import { render, screen } from '@testing-library/react'
+import '@/__mocks__/intersectionObserverMock'
 
-test('should render title', () => {
+test('should render background', () => {
   render(<HomeMain data={homeRes.data} />)
 
-  const title = screen.getByTestId('home-title')
+  const circles = screen.getAllByTestId('circle')
 
-  expect(title).toHaveTextContent('rezaa')
+  expect(circles).toHaveLength(3)
 })
 
-test('should render subtitle', () => {
+test('should render intro', () => {
   render(<HomeMain data={homeRes.data} />)
 
-  const subtitle = screen.getByTestId('home-subtitle')
+  const element = screen.getByTestId('home-intro')
 
-  expect(subtitle).toHaveTextContent('Front-end')
+  expect(element).toBeInTheDocument()
 })
 
-test('should render with 0 opacity on initial', () => {
+test('should render summary', () => {
   render(<HomeMain data={homeRes.data} />)
 
-  const title = screen.getByTestId('home-title')
-  const subtitle = screen.getByTestId('home-subtitle')
+  const element = screen.getByTestId('home-summary')
 
-  expect(title).toHaveStyle({ opacity: 0 })
-  expect(subtitle).toHaveStyle({ opacity: 0 })
-})
-
-test('should run animation that change the opacity to 1', async () => {
-  jest.useFakeTimers()
-  render(<HomeMain data={homeRes.data} />)
-
-  const title = screen.getByTestId('home-title')
-  const subtitle = screen.getByTestId('home-subtitle')
-
-  await waitFor(
-    () => {
-      expect(title).toHaveStyle({ opacity: 1 })
-    },
-    { timeout: 2000 }
-  )
-  await waitFor(
-    () => {
-      expect(subtitle).toHaveStyle({ opacity: 1 })
-    },
-    { timeout: 2000 }
-  )
-})
-
-test('should render with transformY 100 on initial', () => {
-  render(<HomeMain data={homeRes.data} />)
-
-  const title = screen.getByTestId('home-title')
-  const subtitle = screen.getByTestId('home-subtitle')
-
-  expect(title).toHaveStyle({ transform: 'translateY(100px) translateZ(0)' })
-  expect(subtitle).toHaveStyle({ transform: 'translateY(100px) translateZ(0)' })
-})
-
-test('should run animation that change the transformY to none', async () => {
-  render(<HomeMain data={homeRes.data} />)
-
-  const title = screen.getByTestId('home-title')
-  const subtitle = screen.getByTestId('home-subtitle')
-
-  await waitFor(
-    () => {
-      expect(title).toHaveStyle({ transform: 'none' })
-    },
-    { timeout: 3000 }
-  )
-  await waitFor(
-    () => {
-      expect(subtitle).toHaveStyle({ transform: 'none' })
-    },
-    { timeout: 3000 }
-  )
+  expect(element).toBeInTheDocument()
 })
