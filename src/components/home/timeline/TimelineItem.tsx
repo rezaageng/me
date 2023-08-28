@@ -94,7 +94,7 @@ const TimelineItem = ({ data, animation }: Props): JSX.Element => {
       >
         {data.title}
       </motion.h3>
-      <motion.div style={subtitleAnimation}>
+      <motion.div style={subtitleAnimation} className="flex flex-col">
         <span data-testid="timeline-item-subtitle" className="text-xl">
           {data.subtitle}
         </span>
