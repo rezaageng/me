@@ -8,6 +8,7 @@ import { type EducationsResponse } from '@/@types/educations'
 import { v4 as uuidv4 } from 'uuid'
 import { format } from 'date-fns'
 import TimelineHead from './timeline/TimelineHead'
+import Senku from '../background/Senku'
 
 interface Props {
   experience: ExperiencesResponse['data']
@@ -50,68 +51,72 @@ const HomeTimeline = ({ experience, educations }: Props): JSX.Element => {
       style={{
         height: `${wrapperHeight}dvh`
       }}
-      className="flex"
     >
-      <div className="sticky top-0 flex h-[100dvh] w-full items-center overflow-hidden md:w-1/2">
-        <TimelineHead
-          data-testid="experience-title"
-          scrollYProgress={scrollYProgress}
-          {...animationBreakpoint[0]}
-        >
-          experience
-        </TimelineHead>
-        {experience.map((exp, i) => (
-          <TimelineItem
-            animation={{
-              scrollYProgress,
-              ...animationBreakpoint[i + 1]
-            }}
-            key={uuidv4()}
-            data={{
-              date: `${format(
-                new Date(exp.attributes.startDate),
-                'MMM yyyy'
-              )} - ${
-                exp.attributes.endDate !== null
-                  ? format(new Date(exp.attributes.endDate), 'MMM yyyy')
-                  : 'Present'
-              }`,
-              title: exp.attributes.title,
-              subtitle: `${exp.attributes.employmentType}${
-                exp.attributes.companyName !== null
-                  ? ' · ' + exp.attributes.companyName
-                  : ''
-              }`,
-              description: exp.attributes.description,
-              location: exp.attributes.location
-            }}
-          />
-        ))}
-        <TimelineHead
-          scrollYProgress={scrollYProgress}
-          {...animationBreakpoint[experience.length + 1]}
-        >
-          educations
-        </TimelineHead>
-        {educations.map((edu, i) => (
-          <TimelineItem
-            animation={{
-              scrollYProgress,
-              ...animationBreakpoint[i + experience.length + 2]
-            }}
-            key={uuidv4()}
-            data={{
-              date: `${format(
-                new Date(edu.attributes.startDate),
-                'MMM yyyy'
-              )} - ${format(new Date(edu.attributes.endDate), 'MMM yyyy')}`,
-              title: edu.attributes.name,
-              subtitle: edu.attributes.major,
-              description: edu.attributes.description,
-              location: edu.attributes.location
-            }}
-          />
-        ))}
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center overflow-hidden">
+        <div className="relative z-10 flex w-full flex-1 items-center">
+          <TimelineHead
+            data-testid="experience-title"
+            scrollYProgress={scrollYProgress}
+            {...animationBreakpoint[0]}
+          >
+            experience
+          </TimelineHead>
+          {experience.map((exp, i) => (
+            <TimelineItem
+              animation={{
+                scrollYProgress,
+                ...animationBreakpoint[i + 1]
+              }}
+              key={uuidv4()}
+              data={{
+                date: `${format(
+                  new Date(exp.attributes.startDate),
+                  'MMM yyyy'
+                )} - ${
+                  exp.attributes.endDate !== null
+                    ? format(new Date(exp.attributes.endDate), 'MMM yyyy')
+                    : 'Present'
+                }`,
+                title: exp.attributes.title,
+                subtitle: `${exp.attributes.employmentType}${
+                  exp.attributes.companyName !== null
+                    ? ' · ' + exp.attributes.companyName
+                    : ''
+                }`,
+                description: exp.attributes.description,
+                location: exp.attributes.location
+              }}
+            />
+          ))}
+          <TimelineHead
+            scrollYProgress={scrollYProgress}
+            {...animationBreakpoint[experience.length + 1]}
+          >
+            educations
+          </TimelineHead>
+          {educations.map((edu, i) => (
+            <TimelineItem
+              animation={{
+                scrollYProgress,
+                ...animationBreakpoint[i + experience.length + 2]
+              }}
+              key={uuidv4()}
+              data={{
+                date: `${format(
+                  new Date(edu.attributes.startDate),
+                  'MMM yyyy'
+                )} - ${format(new Date(edu.attributes.endDate), 'MMM yyyy')}`,
+                title: edu.attributes.name,
+                subtitle: edu.attributes.major,
+                description: edu.attributes.description,
+                location: edu.attributes.location
+              }}
+            />
+          ))}
+        </div>
+        <div className="hidden flex-1  items-center justify-center md:flex">
+          <Senku scrollYProgress={scrollYProgress} />
+        </div>
       </div>
     </section>
   )
