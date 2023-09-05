@@ -20,8 +20,8 @@ interface WakaAllTime {
 }
 
 interface WakaWeek {
-  worldRank: number
-  countryRank: number
+  worldRank: number | null
+  countryRank: number | null
   totalSeconds: number
   dailyAverage: number
   languages: Array<{ name: string; total: string }>

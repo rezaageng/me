@@ -91,15 +91,23 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
             >
               <li data-testid="world-rank">
                 <div className="flex font-semibold">
-                  <span className="text-3xl">{data.worldRank}</span>
-                  <span className="text-lg">{ordinal(data.worldRank)}</span>
+                  <span className="text-3xl">
+                    {data.worldRank ?? 'No Data'}
+                  </span>
+                  <span className="text-lg">
+                    {data.worldRank !== null ? ordinal(data.worldRank) : null}
+                  </span>
                 </div>
                 <span className="line-clamp-1 text-white/75">World Rank</span>
               </li>
               <li data-testid="country-rank">
                 <div className="flex font-semibold">
                   <span className="text-3xl">{data.countryRank}</span>
-                  <span className="text-lg">{ordinal(data.countryRank)}</span>
+                  <span className="text-lg">
+                    {data.countryRank !== null
+                      ? ordinal(data.countryRank)
+                      : null}
+                  </span>
                 </div>
                 <span className="line-clamp-1 text-white/75">
                   {process.env.NEXT_PUBLIC_WAKA_COUNTRY ?? 'Country'} Rank
