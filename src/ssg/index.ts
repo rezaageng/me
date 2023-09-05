@@ -1,3 +1,5 @@
+import { type EducationsResponse } from '@/@types/educations'
+import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { wakaUrl } from '@/constants/endpoints'
@@ -130,6 +132,48 @@ export const getWakaWeek = async (): Promise<WakaWeek> => {
       total: lang.text
     }))
   }
+
+  return data
+}
+
+export const getExperience = async (): Promise<ExperiencesResponse> => {
+  const res: Response = await fetch(
+    `${process.env.API_URL}/api/experiences?sort=startDate:desc`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  if (!res.ok) throw new Error('Internal Server Error')
+
+  const data: ExperiencesResponse = await res.json()
+
+  return data
+}
+
+export const getEducations = async (): Promise<EducationsResponse> => {
+  const res: Response = await fetch(
+    `${process.env.API_URL}/api/educations?sort=startDate:desc`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  if (!res.ok) throw new Error('Internal Server Error')
+
+  const data: EducationsResponse = await res.json()
 
   return data
 }
