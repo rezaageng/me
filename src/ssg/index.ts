@@ -1,19 +1,23 @@
 import { type EducationsResponse } from '@/@types/educations'
 import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
+import { type ProjectsResponse } from '@/@types/projects'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { wakaUrl } from '@/constants/endpoints'
 
 export const getHomeData = async (): Promise<HomeResponse> => {
-  const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
-    method: 'get',
-    headers: {
-      authorization: `Bearer ${process.env.API_KEY}`
-    },
-    next: {
-      revalidate: 60
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/home`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 60
+      }
     }
-  })
+  )
 
   const data: HomeResponse = await res.json()
 
@@ -22,7 +26,7 @@ export const getHomeData = async (): Promise<HomeResponse> => {
 
 export const getSkills = async (): Promise<SkillCategoriesResponse> => {
   const res: Response = await fetch(
-    `${process.env.API_URL}/api/skill-categories?populate=skills`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/skill-categories?populate=skills`,
     {
       method: 'get',
       headers: {
@@ -138,7 +142,7 @@ export const getWakaWeek = async (): Promise<WakaWeek> => {
 
 export const getExperience = async (): Promise<ExperiencesResponse> => {
   const res: Response = await fetch(
-    `${process.env.API_URL}/api/experiences?sort=startDate:desc`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/experiences?sort=startDate:desc`,
     {
       method: 'get',
       headers: {
@@ -159,7 +163,7 @@ export const getExperience = async (): Promise<ExperiencesResponse> => {
 
 export const getEducations = async (): Promise<EducationsResponse> => {
   const res: Response = await fetch(
-    `${process.env.API_URL}/api/educations?sort=startDate:desc`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/educations?sort=startDate:desc`,
     {
       method: 'get',
       headers: {
@@ -174,6 +178,37 @@ export const getEducations = async (): Promise<EducationsResponse> => {
   if (!res.ok) throw new Error('Internal Server Error')
 
   const data: EducationsResponse = await res.json()
+
+  return data
+}
+
+export const getProjects = async ({
+  isPinned
+}: {
+  isPinned?: boolean
+}): Promise<ProjectsResponse> => {
+  const res: Response = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_API_URL
+    }/api/projects?sort=startDate:desc&populate=*${
+      isPinned !== undefined
+        ? `&filters[isPinned][$eq]=${isPinned.toString()}`
+        : ''
+    }`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  if (!res.ok) throw new Error('Internal Server Error')
+
+  const data: ProjectsResponse = await res.json()
 
   return data
 }
