@@ -36,7 +36,7 @@ const RootLayout = ({
   return (
     <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
       <head />
-      <body className="bg-primary font-sans text-white scrollbar-thin scrollbar-track-secondary-900 scrollbar-thumb-accent-1 scrollbar-thumb-rounded">
+      <body className="bg-primary font-sans text-white scrollbar-none">
         <PageProgressBar />
         <QueryProvider>
           <ReactQueryDevtools initialIsOpen={false} />
