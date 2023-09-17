@@ -190,7 +190,7 @@ export const getProjects = async ({
   const res: Response = await fetch(
     `${
       process.env.NEXT_PUBLIC_API_URL
-    }/api/projects?sort=startDate:desc&populate=*${
+    }/api/projects?sort=createdAt:desc&populate=*${
       isPinned !== undefined
         ? `&filters[isPinned][$eq]=${isPinned.toString()}`
         : ''
