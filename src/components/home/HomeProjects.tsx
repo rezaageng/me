@@ -17,13 +17,13 @@ const HomeProjects = ({ data }: Props): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
-    target: ref
+    target: ref,
+    offset: ['start end', 'end end']
   })
 
   const isLg = useResponsive(1024)
 
   // * vars
-
   const animationBreakpoint = useMemo<AnimationProps[]>(() => {
     const tmp: AnimationProps[] = []
 
@@ -42,16 +42,12 @@ const HomeProjects = ({ data }: Props): JSX.Element => {
   }, [data.length])
 
   const wrapperHeight = useMemo<number>(
-    () => 100 * (data.length + 1),
+    () => 150 * (data.length + 2),
     [data.length]
   )
 
   // * animations
-  const x = useSmooth(scrollYProgress, [0, 1], [0, -640 * data.length])
-
-  // useEffect(() => {
-  //   console.log(data)
-  // }, [])
+  const x = useSmooth(scrollYProgress, [0, 1], [1280, -1280 * data.length])
 
   return (
     <section
@@ -59,29 +55,24 @@ const HomeProjects = ({ data }: Props): JSX.Element => {
       style={{
         height: isLg ? `${wrapperHeight}dvh` : 'auto'
       }}
+      className="relative left-[calc(-50vw+50%)] w-screen"
     >
-      <div className="sticky top-0 h-auto lg:flex lg:h-[100dvh] lg:items-center">
+      <div className="sticky top-0 h-auto overflow-hidden lg:flex lg:h-[100dvh] lg:items-center">
         <motion.div
           style={isLg ? { x } : {}}
-          className="h-full gap-6 lg:flex lg:gap-4"
+          className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:flex lg:items-center lg:gap-96"
         >
-          <div className="p-6 lg:flex lg:flex-col lg:justify-center">
-            <h2 className="bg-gradient-to-r from-accent-1 to-accent-3 bg-clip-text text-4xl font-semibold text-transparent  sm:text-6xl">
-              Projects
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:flex lg:items-center">
-            {data.map((project, i) => (
-              <PinnedProject
-                key={uuidv4()}
-                project={project}
-                animation={{ scrollYProgress, ...animationBreakpoint[i + 1] }}
-              />
-            ))}
-          </div>
+          {data.map((project, i) => (
+            <PinnedProject
+              key={uuidv4()}
+              project={project}
+              animation={{ scrollYProgress, ...animationBreakpoint[i + 1] }}
+            />
+          ))}
         </motion.div>
       </div>
     </section>
   )
 }
+
 export default HomeProjects

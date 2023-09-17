@@ -31,12 +31,13 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
   const cover = project.attributes.cover.data.attributes
   const { website, repository, websiteLabel } = project.attributes
 
-  const { scrollYProgress, start, center } = animation
+  const { scrollYProgress, start, end } = animation
 
   // * hooks
   const [isTitleHovered, setIsTitleHovered] = useState<boolean>(false)
 
   const titleArrowControl = useAnimationControls()
+
   const isLg = useResponsive(1024)
 
   // * animations
@@ -58,25 +59,46 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
     }
   }, [isTitleHovered, titleArrowControl])
 
+  const imageAnimation: MotionStyle = {
+    x: useSmooth(scrollYProgress, [start, end], [0, 10])
+  }
+
+  const subtitleAnimation: MotionStyle = {
+    x: useSmooth(scrollYProgress, [start, end], [150, -150])
+  }
+
   const titleAnimation: MotionStyle = {
-    x: useSmooth(scrollYProgress, [start, center], [300, 100])
+    x: useSmooth(scrollYProgress, [start, end], [100, -100])
+  }
+
+  const langsAnimation: MotionStyle = {
+    x: useSmooth(scrollYProgress, [start, end], [200, -200])
   }
 
   return (
-    <div className="flex flex-col gap-4 px-6 lg:aspect-video lg:w-[40rem] lg:flex-row lg:items-center lg:justify-between">
-      <Link href={`/projects/${project.attributes.slug}`}>
-        <Image
-          src={process.env.NEXT_PUBLIC_API_URL + cover.formats.medium.url}
-          alt="project cover"
-          width={cover.formats.medium.width}
-          height={cover.formats.medium.height}
-          className="aspect-[4/3] w-full rounded-3xl object-cover lg:w-96"
-        />
-      </Link>
-      <div className="flex flex-col gap-2">
+    <div
+      data-testid="pinned-project"
+      className="flex flex-col gap-6 lg:aspect-video lg:w-[80rem] lg:flex-row lg:items-center lg:justify-between"
+    >
+      <motion.div style={isLg ? imageAnimation : {}} className="flex-1">
+        <Link
+          data-testid="project-link"
+          href={`/projects/${project.attributes.slug}`}
+        >
+          <Image
+            src={process.env.NEXT_PUBLIC_API_URL + cover.formats.large.url}
+            alt="project cover"
+            width={cover.formats.large.width}
+            height={cover.formats.large.height}
+            className="aspect-[4/3] w-full rounded-3xl object-cover"
+          />
+        </Link>
+      </motion.div>
+      <div className="flex flex-1 flex-col gap-4 mix-blend-difference lg:h-full lg:w-full lg:justify-center">
         <motion.h2
+          data-testid="project-title"
           style={isLg ? titleAnimation : {}}
-          className="text-2xl font-semibold lg:text-5xl"
+          className="mb-auto text-2xl font-semibold lg:mb-4 lg:text-6xl"
         >
           <Link
             href={`/projects/${project.attributes.slug}`}
@@ -94,14 +116,20 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
             </motion.div>
           </Link>
         </motion.h2>
-        <p className="line-clamp-3 text-white/75">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio facilis
-          sint consequatur maiores animi quam sapiente quidem natus tempore
-          tempora.
-        </p>
-        <div className="flex gap-2">
+        <motion.p
+          data-testid="project-description"
+          style={isLg ? subtitleAnimation : {}}
+          className="line-clamp-3 text-white/75 lg:text-xl"
+        >
+          {project.attributes.description}
+        </motion.p>
+        <motion.div
+          style={isLg ? subtitleAnimation : {}}
+          className="flex gap-2"
+        >
           {repository !== null ? (
             <a
+              data-testid="repository-url"
               href={repository}
               target="_blank"
               className="flex items-center gap-1 transition duration-300 hover:text-accent-1"
@@ -112,6 +140,7 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
           ) : null}
           {website !== null && websiteLabel !== null ? (
             <a
+              data-testid="website-url"
               href={website}
               target="_blank"
               className="flex items-center gap-1 transition duration-300 hover:text-accent-1"
@@ -120,8 +149,12 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
               <span>{websiteLabel}</span>
             </a>
           ) : null}
-        </div>
-        <ul className="flex flex-wrap gap-2">
+        </motion.div>
+        <motion.ul
+          data-testid="skills"
+          style={isLg ? langsAnimation : {}}
+          className="flex flex-wrap gap-2"
+        >
           {project.attributes.skills.data.map((skill) => (
             <li
               key={uuidv4()}
@@ -130,7 +163,7 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
               {skill.attributes.name}
             </li>
           ))}
-        </ul>
+        </motion.ul>
       </div>
     </div>
   )

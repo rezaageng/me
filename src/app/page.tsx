@@ -49,6 +49,7 @@ const Home = async (): Promise<JSX.Element> => {
       />
       <HomeTimeline experience={experience.data} educations={educations.data} />
       <HomeProjects data={projects.data} />
+      <div className="h-screen"></div>
     </>
   )
 }
