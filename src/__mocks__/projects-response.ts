@@ -6,9 +6,13 @@ const projectsResponse: ProjectsResponse = {
       id: 1,
       attributes: {
         name: 'Nothing',
+        slug: 'nothing',
         type: 'Personal',
         description:
           'im the bone of my sword steel is my body and iron is my blood ahahhahh',
+        repository: 'https://github.com/rezaageng/nothing',
+        website: 'https://nothing.rezaageng.com',
+        websiteLabel: 'website',
         createdAt: '2023-07-06T04:23:16.065Z',
         updatedAt: '2023-07-06T04:23:22.924Z',
         publishedAt: '2023-07-06T04:23:22.923Z',
@@ -114,8 +118,12 @@ const projectsResponse: ProjectsResponse = {
       id: 2,
       attributes: {
         name: 'medjed',
+        slug: 'medjed',
         type: 'Team',
         description: 'i say goodbye my dearest',
+        repository: null,
+        website: null,
+        websiteLabel: null,
         createdAt: '2023-07-06T05:44:20.111Z',
         updatedAt: '2023-07-06T05:44:21.304Z',
         publishedAt: '2023-07-06T05:44:21.302Z',
