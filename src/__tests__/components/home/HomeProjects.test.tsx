@@ -1,16 +1,10 @@
+/* eslint-disable jest/no-mocks-import */
+import projectsResponse from '@/__mocks__/projects-response'
 import HomeProjects from '@/components/home/HomeProjects'
 import { render, screen } from '@testing-library/react'
 
-test('should render title', () => {
-  render(<HomeProjects />)
-
-  const title = screen.getByText(/projects/i)
-
-  expect(title).toBeInTheDocument()
-})
-
 test('should render 2 pinned projects', () => {
-  render(<HomeProjects />)
+  render(<HomeProjects data={projectsResponse.data} />)
 
   const pinnedProjects = screen.getAllByTestId('pinned-project')
 
@@ -18,7 +12,7 @@ test('should render 2 pinned projects', () => {
 })
 
 test('should render project titles', async () => {
-  render(<HomeProjects />)
+  render(<HomeProjects data={projectsResponse.data} />)
 
   const titles = await screen.findAllByTestId('project-title')
 
@@ -28,7 +22,7 @@ test('should render project titles', async () => {
 })
 
 test('should render project descriptions', () => {
-  render(<HomeProjects />)
+  render(<HomeProjects data={projectsResponse.data} />)
 
   const descriptions = screen.getAllByTestId('project-description')
 
@@ -40,23 +34,44 @@ test('should render project descriptions', () => {
 })
 
 test('should has correct link', () => {
-  render(<HomeProjects />)
+  render(<HomeProjects data={projectsResponse.data} />)
 
   const links = screen.getAllByTestId('project-link')
 
   expect(links).toHaveLength(2)
-  expect(links[0]).toHaveAttribute('href', '/projects/1')
-  expect(links[1]).toHaveAttribute('href', '/projects/2')
+  expect(links[0]).toHaveAttribute('href', '/projects/nothing')
+  expect(links[1]).toHaveAttribute('href', '/projects/medjed')
 })
 
 test('should render repository url if not null', () => {
-  render(<HomeProjects />)
+  render(<HomeProjects data={projectsResponse.data} />)
 
   const repositoryUrls = screen.getAllByTestId('repository-url')
 
   expect(repositoryUrls).toHaveLength(1)
   expect(repositoryUrls[0]).toHaveAttribute(
     'href',
-    'https://github.com/rezaageng/nothing/'
+    'https://github.com/rezaageng/nothing'
   )
+})
+
+test('should render website if not null', () => {
+  render(<HomeProjects data={projectsResponse.data} />)
+
+  const websiteUrls = screen.getAllByTestId('website-url')
+
+  expect(websiteUrls).toHaveLength(1)
+  expect(websiteUrls[0]).toHaveAttribute(
+    'href',
+    'https://nothing.rezaageng.com'
+  )
+  expect(websiteUrls[0]).toHaveTextContent('website')
+})
+
+test('should render skills', () => {
+  render(<HomeProjects data={projectsResponse.data} />)
+
+  const skills = screen.getAllByTestId('skills')
+
+  expect(skills).toHaveLength(2)
 })
