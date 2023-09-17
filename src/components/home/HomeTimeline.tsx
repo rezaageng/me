@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { format } from 'date-fns'
 import TimelineHead from './timeline/TimelineHead'
 import Senku from '../background/Senku'
+import useResponsive from '@/hooks/useResponsive'
 
 interface Props {
   experience: ExperiencesResponse['data']
@@ -18,6 +19,8 @@ interface Props {
 const HomeTimeline = ({ experience, educations }: Props): JSX.Element => {
   // * hooks
   const ref = useRef<HTMLDivElement>(null)
+
+  const isMd = useResponsive(768)
 
   const { scrollYProgress } = useScroll({
     target: ref
@@ -114,9 +117,11 @@ const HomeTimeline = ({ experience, educations }: Props): JSX.Element => {
             />
           ))}
         </div>
-        <div className="hidden flex-1  items-center justify-center md:flex">
-          <Senku scrollYProgress={scrollYProgress} />
-        </div>
+        {isMd ? (
+          <div className="flex flex-1  items-center justify-center">
+            <Senku scrollYProgress={scrollYProgress} />
+          </div>
+        ) : null}
       </div>
     </section>
   )
