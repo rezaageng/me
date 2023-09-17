@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GrainyTexture from '@/components/GrainyTexture'
 import PageProgressBar from '@/components/PageProgressBar'
 import QueryProvider from '@/libs/query-provider'
+import LenisProvider from '@/libs/react-lenis'
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -34,23 +35,25 @@ const RootLayout = ({
   children: React.ReactNode
 }): React.ReactNode => {
   return (
-    <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
-      <head />
-      <body className="bg-primary font-sans text-white scrollbar-thin scrollbar-track-secondary-900 scrollbar-thumb-accent-1 scrollbar-thumb-rounded">
-        <PageProgressBar />
-        <QueryProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
-          <header>
-            <Navbar />
-          </header>
-          <main className="m-auto mt-16 max-w-5xl">{children}</main>
-          <aside>
-            <Sidebar />
-          </aside>
-        </QueryProvider>
-        <GrainyTexture />
-      </body>
-    </html>
+    <LenisProvider>
+      <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
+        <head />
+        <body className="bg-primary font-sans text-white scrollbar-none">
+          <PageProgressBar />
+          <QueryProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+            <header>
+              <Navbar />
+            </header>
+            <main className="m-auto mt-16 max-w-5xl">{children}</main>
+            <aside>
+              <Sidebar />
+            </aside>
+          </QueryProvider>
+          <GrainyTexture />
+        </body>
+      </html>
+    </LenisProvider>
   )
 }
 

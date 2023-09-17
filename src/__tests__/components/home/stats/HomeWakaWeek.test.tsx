@@ -16,7 +16,7 @@ test('should render country rank', () => {
 
   const countryRank = screen.getByTestId('country-rank')
 
-  expect(countryRank).toHaveTextContent(`195thCountry Rank`)
+  expect(countryRank).toHaveTextContent(`195thIndonesia Rank`)
 })
 
 test('should render hours coded (last week)', () => {

@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export const GET = async (): Promise<NextResponse> => {
   try {
     const res: Response = await fetch(
-      `${process.env.API_URL}/api/skill-categories?populate=skills`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/skill-categories?populate=skills`,
       {
         method: 'get',
         headers: {

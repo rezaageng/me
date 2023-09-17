@@ -1,4 +1,5 @@
 import HomeMain from '@/components/home/HomeMain'
+import HomeProjects from '@/components/home/HomeProjects'
 import HomeStats from '@/components/home/HomeStats'
 import HomeTimeline from '@/components/home/HomeTimeline'
 import { GET_GH_STATS } from '@/graphql/github-gql'
@@ -8,6 +9,7 @@ import {
   getEducations,
   getExperience,
   getHomeData,
+  getProjects,
   getSkills,
   getWakaAll,
   getWakaWeek
@@ -20,6 +22,7 @@ const Home = async (): Promise<JSX.Element> => {
   const wakaWeek = await getWakaWeek()
   const experience = await getExperience()
   const educations = await getEducations()
+  const projects = await getProjects({ isPinned: true })
 
   const gitHubStats = await getClient().query<GitHubStats>({
     query: GET_GH_STATS,
@@ -45,6 +48,8 @@ const Home = async (): Promise<JSX.Element> => {
         leetSolvedProblems={leetSolvedProblems}
       />
       <HomeTimeline experience={experience.data} educations={educations.data} />
+      <HomeProjects data={projects.data} />
+      <div className="h-screen"></div>
     </>
   )
 }

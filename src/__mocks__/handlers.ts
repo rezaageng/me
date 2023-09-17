@@ -17,7 +17,7 @@ import { gitHubUrl, wakaUrl } from '@/constants/endpoints'
 
 export const handlers = [
   rest.get(
-    `${process.env.API_URL}/api/home`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/home`,
     async (_req, res, ctx) =>
       await res(ctx.status(200), ctx.json<HomeResponse>(homeRes))
   ),
@@ -27,7 +27,7 @@ export const handlers = [
       await res(ctx.status(200), ctx.json<HomeResponse>(homeRes))
   ),
   rest.get(
-    `${process.env.API_URL}/api/skill-categories`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/skill-categories`,
     async (_req, res, ctx) =>
       await res(
         ctx.status(200),
@@ -43,7 +43,7 @@ export const handlers = [
       )
   ),
   rest.get(
-    `${process.env.API_URL}/api/experiences`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/experiences`,
     async (_req, res, ctx) =>
       await res(
         ctx.status(200),
@@ -59,7 +59,7 @@ export const handlers = [
       )
   ),
   rest.get(
-    `${process.env.API_URL}/api/projects`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects`,
     async (_req, res, ctx) =>
       await res(ctx.status(200), ctx.json<ProjectsResponse>(projectsResponse))
   ),

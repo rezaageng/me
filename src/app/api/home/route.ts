@@ -3,15 +3,18 @@ import { NextResponse } from 'next/server'
 
 export const GET = async (): Promise<Response> => {
   try {
-    const res: Response = await fetch(`${process.env.API_URL}/api/home`, {
-      method: 'get',
-      headers: {
-        authorization: `Bearer ${process.env.API_KEY}`
-      },
-      next: {
-        revalidate: 10
+    const res: Response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/home`,
+      {
+        method: 'get',
+        headers: {
+          authorization: `Bearer ${process.env.API_KEY}`
+        },
+        next: {
+          revalidate: 10
+        }
       }
-    })
+    )
 
     if (res.status !== 200) throw new Error('Internal Server Error')
 
