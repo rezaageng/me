@@ -59,6 +59,9 @@ dependencies:
   framer-motion:
     specifier: ^10.15.1
     version: 10.15.1(react-dom@18.2.0)(react@18.2.0)
+  lottie-react:
+    specifier: ^2.4.0
+    version: 2.4.0(react-dom@18.2.0)(react@18.2.0)
   next:
     specifier: 13.5.4
     version: 13.5.4(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
@@ -151,6 +154,9 @@ devDependencies:
   jest:
     specifier: ^29.6.2
     version: 29.6.2(@types/node@20.4.6)(ts-node@10.9.1)
+  jest-canvas-mock:
+    specifier: ^2.5.2
+    version: 2.5.2
   jest-environment-jsdom:
     specifier: ^29.6.2
     version: 29.6.2
@@ -3780,6 +3786,13 @@ packages:
     hasBin: true
     dev: true
 
+  /cssfontparser@1.2.1:
+    resolution:
+      {
+        integrity: sha512-6tun4LoZnj7VN6YeegOVb67KBX/7JJsqvj+pv3ZA7F878/eN33AbGa5b/S/wXxS/tcp8nc40xRUrsPlxIyNUPg==
+      }
+    dev: true
+
   /cssom@0.3.8:
     resolution:
       {
@@ -6274,6 +6287,16 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: false
 
+  /jest-canvas-mock@2.5.2:
+    resolution:
+      {
+        integrity: sha512-vgnpPupjOL6+L5oJXzxTxFrlGEIbHdZqFU+LFNdtLxZ3lRDCl17FlTMM7IatoRQkrcyOTMlDinjUguqmQ6bR2A==
+      }
+    dependencies:
+      cssfontparser: 1.2.1
+      moo-color: 1.0.3
+    dev: true
+
   /jest-changed-files@29.5.0:
     resolution:
       {
@@ -7242,6 +7265,27 @@ packages:
     dependencies:
       js-tokens: 4.0.0
 
+  /lottie-react@2.4.0(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==
+      }
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lottie-web: 5.12.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /lottie-web@5.12.2:
+    resolution:
+      {
+        integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==
+      }
+    dev: false
+
   /lru-cache@10.0.1:
     resolution:
       {
@@ -7497,6 +7541,15 @@ packages:
         integrity: sha512-Qi0VCU46t2IwfGv5KF0+D/t9cizcDug7qnNoy9Ggk7aucp0tssV8IwTMkBlDbm+VqAf3cdQHTCARKSsuS2MYFg==
       }
     dev: false
+
+  /moo-color@1.0.3:
+    resolution:
+      {
+        integrity: sha512-i/+ZKXMDf6aqYtBhuOcej71YSlbjT3wCO/4H1j8rPvxDJEifdwgg5MaFyu6iYAT8GBZJg2z0dkgK4YMzvURALQ==
+      }
+    dependencies:
+      color-name: 1.1.4
+    dev: true
 
   /ms@2.1.2:
     resolution:

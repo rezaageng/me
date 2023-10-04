@@ -9,6 +9,7 @@ import GrainyTexture from '@/components/GrainyTexture'
 import PageProgressBar from '@/components/PageProgressBar'
 import QueryProvider from '@/libs/query-provider'
 import LenisProvider from '@/libs/react-lenis'
+import Footer from '@/components/Footer'
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -49,6 +50,7 @@ const RootLayout = ({
             <aside>
               <Sidebar />
             </aside>
+            <Footer />
           </QueryProvider>
           <GrainyTexture />
         </body>

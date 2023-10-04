@@ -8,7 +8,7 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   preset: 'ts-jest',
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', 'jest-canvas-mock'],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
     '^@/app/(.*)$': '<rootDir>/src/app/$1',
