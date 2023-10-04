@@ -33,12 +33,12 @@ interface Social {
 type Responsive = (query: number) => boolean
 
 // * useSmooth
-type Smooth = (
+type Smooth = <O>(
   value: MotionValue<number>,
   input: number[],
-  output: number[],
+  output: O[],
   config?: SpringOptions
-) => MotionValue<any>
+) => MotionValue<O>
 
 // * helpers
 type IsFloat = (number: number) => boolean

@@ -1,3 +1,4 @@
+import HomeEnd from '@/components/home/HomeEnd'
 import HomeMain from '@/components/home/HomeMain'
 import HomeProjects from '@/components/home/HomeProjects'
 import HomeStats from '@/components/home/HomeStats'
@@ -49,6 +50,7 @@ const Home = async (): Promise<JSX.Element> => {
       />
       <HomeTimeline experience={experience.data} educations={educations.data} />
       <HomeProjects data={projects.data} />
+      <HomeEnd />
       <div className="h-screen"></div>
     </>
   )

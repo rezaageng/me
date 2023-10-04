@@ -29,6 +29,16 @@ module.exports = {
       },
       gridTemplateRows: {
         bento: 'repeat(3, 320px)'
+      },
+      keyframes: {
+        comet: {
+          to: {
+            transform: 'translateX(-942px)'
+          }
+        }
+      },
+      animation: {
+        comet: 'comet 1s steps(3) infinite'
       }
     }
   },
