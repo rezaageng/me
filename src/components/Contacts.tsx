@@ -1,3 +1,5 @@
+'use client'
+
 import { type Social, type ContactsProps } from '@/@types'
 import {
   FiGithub,
@@ -11,16 +13,14 @@ import {
   type TargetAndTransition,
   type VariantLabels
 } from 'framer-motion'
-import useFramerStore from '@/store/framerStore'
 import { v4 as uuidv4 } from 'uuid'
+import { transition } from '@/constants/framer-motion'
 
 const Contacts = ({
   className,
   iconSize = 16,
   animate = false
 }: ContactsProps): JSX.Element => {
-  const { transition } = useFramerStore((state) => state)
-
   const hoverAnimation: TargetAndTransition | VariantLabels = {
     y: [0, -10],
     scale: [1, 1.5],

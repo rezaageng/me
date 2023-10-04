@@ -5,3 +5,14 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect'
 import 'whatwg-fetch'
+import { TextEncoder, TextDecoder } from 'util'
+import { server } from '@/__mocks__/server'
+
+global.TextEncoder = TextEncoder
+global.TextDecoder = TextDecoder
+
+beforeAll(() => server.listen())
+
+afterEach(() => server.resetHandlers())
+
+afterAll(() => server.close())

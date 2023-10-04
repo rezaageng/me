@@ -1,71 +1,41 @@
-import { type Responsive } from '@/@types'
+'use client'
+
 import { useEffect, useState } from 'react'
 
-export const useResponsive = (): Responsive => {
-  const [isSm, setIsSm] = useState(false)
-  const [isMd, setIsMd] = useState(false)
-  const [isLg, setIsLg] = useState(false)
-  const [isXl, setIsXl] = useState(false)
-  const [is2xl, setIs2xl] = useState(false)
+interface ResponsiveState {
+  windowWidth: number
+  isDesiredWidth: boolean
+}
 
-  const responsiveHandler = (): void => {
-    const width = window.innerWidth
-    if (width <= 640) {
-      setIsSm(false)
-      setIsMd(false)
-      setIsLg(false)
-      setIsXl(false)
-      setIs2xl(false)
-    }
-    if (width > 640 && width <= 768) {
-      setIsSm(true)
-      setIsMd(false)
-      setIsLg(false)
-      setIsXl(false)
-      setIs2xl(false)
-    }
-    if (width > 768 && width <= 1024) {
-      setIsSm(true)
-      setIsMd(true)
-      setIsLg(false)
-      setIsXl(false)
-      setIs2xl(false)
-    }
-    if (width > 1024 && width <= 1280) {
-      setIsSm(true)
-      setIsMd(true)
-      setIsLg(true)
-      setIsXl(false)
-      setIs2xl(false)
-    }
-    if (width > 1280) {
-      setIsSm(true)
-      setIsMd(true)
-      setIsLg(true)
-      setIsXl(true)
-      setIs2xl(false)
-    }
-    if (width > 1536) {
-      setIsSm(true)
-      setIsMd(true)
-      setIsLg(true)
-      setIsXl(true)
-      setIs2xl(true)
-    }
-  }
+const useResponsive = (minWidth: number): boolean => {
+  const [state, setState] = useState<ResponsiveState>({
+    windowWidth: 0,
+    isDesiredWidth: false
+  })
 
   useEffect(() => {
-    responsiveHandler()
-    window.addEventListener('resize', () => {
-      responsiveHandler()
-    })
+    const currentWindowWidth = window.innerWidth
+    const isDesiredWidth = currentWindowWidth > minWidth
+
+    setState({ windowWidth: currentWindowWidth, isDesiredWidth })
+  }, [minWidth])
+
+  useEffect(() => {
+    const resizeHandler = (): void => {
+      const currentWindowWidth = window.innerWidth
+      const isDesiredWidth = currentWindowWidth > minWidth
+
+      setState({ windowWidth: currentWindowWidth, isDesiredWidth })
+    }
+
+    window.addEventListener('resize', resizeHandler)
 
     return () => {
-      window.removeEventListener('resize', () => {
-        responsiveHandler()
-      })
+      window.removeEventListener('resize', resizeHandler)
     }
-  }, [])
+  }, [minWidth, state.windowWidth])
 
-  return { isSm, isMd, isLg, isXl, is2xl }
+  return state.isDesiredWidth
 }
+
+export default useResponsive
