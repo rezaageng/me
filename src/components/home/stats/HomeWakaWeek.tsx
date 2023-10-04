@@ -144,6 +144,7 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
             </motion.ul>
           ) : (
             <motion.ul
+              data-lenis-prevent
               data-testid="lang-list"
               initial={initial}
               animate={animate}
