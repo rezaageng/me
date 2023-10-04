@@ -154,6 +154,9 @@ devDependencies:
   jest:
     specifier: ^29.6.2
     version: 29.6.2(@types/node@20.4.6)(ts-node@10.9.1)
+  jest-canvas-mock:
+    specifier: ^2.5.2
+    version: 2.5.2
   jest-environment-jsdom:
     specifier: ^29.6.2
     version: 29.6.2
@@ -3783,6 +3786,13 @@ packages:
     hasBin: true
     dev: true
 
+  /cssfontparser@1.2.1:
+    resolution:
+      {
+        integrity: sha512-6tun4LoZnj7VN6YeegOVb67KBX/7JJsqvj+pv3ZA7F878/eN33AbGa5b/S/wXxS/tcp8nc40xRUrsPlxIyNUPg==
+      }
+    dev: true
+
   /cssom@0.3.8:
     resolution:
       {
@@ -6277,6 +6287,16 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: false
 
+  /jest-canvas-mock@2.5.2:
+    resolution:
+      {
+        integrity: sha512-vgnpPupjOL6+L5oJXzxTxFrlGEIbHdZqFU+LFNdtLxZ3lRDCl17FlTMM7IatoRQkrcyOTMlDinjUguqmQ6bR2A==
+      }
+    dependencies:
+      cssfontparser: 1.2.1
+      moo-color: 1.0.3
+    dev: true
+
   /jest-changed-files@29.5.0:
     resolution:
       {
@@ -7521,6 +7541,15 @@ packages:
         integrity: sha512-Qi0VCU46t2IwfGv5KF0+D/t9cizcDug7qnNoy9Ggk7aucp0tssV8IwTMkBlDbm+VqAf3cdQHTCARKSsuS2MYFg==
       }
     dev: false
+
+  /moo-color@1.0.3:
+    resolution:
+      {
+        integrity: sha512-i/+ZKXMDf6aqYtBhuOcej71YSlbjT3wCO/4H1j8rPvxDJEifdwgg5MaFyu6iYAT8GBZJg2z0dkgK4YMzvURALQ==
+      }
+    dependencies:
+      color-name: 1.1.4
+    dev: true
 
   /ms@2.1.2:
     resolution:
