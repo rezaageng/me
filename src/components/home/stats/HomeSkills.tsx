@@ -120,6 +120,7 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
             </motion.div>
           ) : (
             <motion.div
+              data-lenis-prevent
               data-testid="skills-list"
               key="skills-list"
               style={listScroll}

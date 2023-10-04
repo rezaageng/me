@@ -54,7 +54,10 @@ const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
           data-testid="terminal-button-green"
         />
       </div>
-      <div className="h-[calc(100%-36px)] w-full overflow-y-scroll px-4 pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400">
+      <div
+        data-lenis-prevent
+        className="h-[calc(100%-36px)] w-full overflow-y-scroll px-4 pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400"
+      >
         {prompts.map(({ children, inputValue, isActive }, index) => (
           <TerminalPrompt
             key={uuidv4()}
