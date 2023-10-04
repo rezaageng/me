@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage --transformIgnorePatterns \"node_modules/(?!(react-merge-refs))/\"",
     "prepare": "husky install",
     "lint-staged": "lint-staged",
-    "next-info": "next info"
+    "next-info": "next info",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@apollo/client": "3.8.0",
