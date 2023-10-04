@@ -2,6 +2,7 @@ import HomeEnd from '@/components/home/HomeEnd'
 import HomeMain from '@/components/home/HomeMain'
 import HomeProjects from '@/components/home/HomeProjects'
 import HomeStats from '@/components/home/HomeStats'
+import HomeThanks from '@/components/home/HomeThanks'
 import HomeTimeline from '@/components/home/HomeTimeline'
 import { GET_GH_STATS } from '@/graphql/github-gql'
 import { GET_LEET_SOLVED_PROBLEMS } from '@/graphql/leetcode-gql'
@@ -51,7 +52,7 @@ const Home = async (): Promise<JSX.Element> => {
       <HomeTimeline experience={experience.data} educations={educations.data} />
       <HomeProjects data={projects.data} />
       <HomeEnd />
-      <div className="h-screen"></div>
+      <HomeThanks />
     </>
   )
 }

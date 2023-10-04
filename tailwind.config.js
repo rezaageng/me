@@ -25,7 +25,8 @@ module.exports = {
         mono: ['var(--font-hacknf)']
       },
       gridTemplateColumns: {
-        bento: '1.9fr 1fr 1.9fr'
+        bento: '1.9fr 1fr 1.9fr',
+        auto: 'repeat(auto-fill, minmax(150px, auto))'
       },
       gridTemplateRows: {
         bento: 'repeat(3, 320px)'
