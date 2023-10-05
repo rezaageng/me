@@ -38,8 +38,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: generate .env
-        run: cp .env.test .env.local
+      - name: create .env
+        run: |
+          echo "NEXT_PUBLIC_API_URL = https://strapi.rezaa.me" > .env.local
+          echo "API_KEY= ${{secrets.API_KEY}}" > .env.local
+          echo "WAKA_KEY= ${{secrets.WAKA_KEY}}" > .env.local
+          echo "WAKA_COUNTRY_CODE = ID" > .env.local
+          echo "NEXT_PUBLIC_WAKA_COUNTRY = Indonesia}" > .env.local
+          echo "GITHUB_USERNAME = rezaageng" > .env.local
+          echo "GITHUB_KEY= ${{secrets.GH_KEY}}" > .env.local
+          echo "LEETCODE_USERNAME = rezaageng" > .env.local
       - uses: pnpm/action-setup@v2
         with:
           version: 8
