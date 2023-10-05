@@ -39,7 +39,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
-    "react-icons": "^4.10.1",
+    "react-icons": "^4.11.0",
     "react-merge-refs": "^2.0.2",
     "react-responsive": "^9.0.2",
     "three": "^0.155.0",

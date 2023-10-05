@@ -3,6 +3,7 @@ import { wakaAllResponse } from '@/__mocks__/wakatime'
 import HomeWakaAll from '@/components/home/stats/HomeWakaAll'
 import { render, screen } from '@testing-library/react'
 import '@/__mocks__/intersectionObserverMock'
+import { format, parseISO } from 'date-fns'
 
 test('should render coding time', () => {
   render(<HomeWakaAll data={wakaAllResponse.data} />)
@@ -17,5 +18,10 @@ test('should render start date', () => {
 
   const startDate = screen.getByTestId('start-date')
 
-  expect(startDate.innerHTML).toBe('Coding Time Since March 2, 2022')
+  expect(startDate.innerHTML).toBe(
+    `Coding Time Since ${format(
+      parseISO(wakaAllResponse.data.range.start),
+      'MMMM d, yyyy'
+    )}`
+  )
 })
