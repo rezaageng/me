@@ -41,13 +41,6 @@ jobs:
       - name: create .env
         run: |
           echo "NEXT_PUBLIC_API_URL = https://strapi.rezaa.me" > .env
-          echo "API_KEY= ${{secrets.API_KEY}}" > .env
-          echo "WAKA_KEY= ${{secrets.WAKA_KEY}}" > .env
-          echo "WAKA_COUNTRY_CODE = ID" > .env
-          echo "NEXT_PUBLIC_WAKA_COUNTRY = Indonesia}" > .env
-          echo "GITHUB_USERNAME = rezaageng" > .env
-          echo "GITHUB_KEY= ${{secrets.GH_KEY}}" > .env
-          echo "LEETCODE_USERNAME = rezaageng" > .env
       - uses: pnpm/action-setup@v2
         with:
           version: 8
