@@ -75,12 +75,12 @@ const Navbar = (): JSX.Element => {
 
   // * animations
   const backgroundAnimation: MotionStyle = {
-    opacity: useSmooth(scrollYProgress, [0, 0.1], [0, 1])
+    opacity: useSmooth(scrollYProgress, [0, 0.01], [0, 1])
   }
 
   const paddingAnimation: MotionStyle = {
-    paddingLeft: useSmooth(scrollYProgress, [0, 0.1], [12, 24]),
-    paddingRight: useSmooth(scrollYProgress, [0, 0.1], [12, 24])
+    paddingLeft: useSmooth(scrollYProgress, [0, 0.01], [12, 24]),
+    paddingRight: useSmooth(scrollYProgress, [0, 0.01], [12, 24])
   }
 
   return (
@@ -132,7 +132,10 @@ const Navbar = (): JSX.Element => {
                 </ul>
               ) : (
                 <button onClick={toggleMenu} className="block lg:hidden">
-                  {navData.filter(({ route }) => route === pathName)[0].icon}
+                  {navData.filter(({ route }) => route === pathName)?.[0]
+                    ?.icon ?? (
+                    <GiMagicGate size={24} data-testid="navbar-icon" />
+                  )}
                 </button>
               )}
             </div>

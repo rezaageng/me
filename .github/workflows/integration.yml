@@ -4,7 +4,7 @@ on:
   push:
     branches: ['main', 'dev']
   pull_request:
-    branches: ['main']
+    branches: ['main', 'dev']
 
 jobs:
   unit-tests:
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -38,9 +38,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: create .env
+        run: |-
+          echo "NEXT_PUBLIC_API_URL = https://strapi.rezaa.me
+            API_KEY= ${{secrets.API_KEY}}
+            WAKA_KEY= ${{secrets.WAKA_KEY}}
+            WAKA_COUNTRY_CODE = ID
+            NEXT_PUBLIC_WAKA_COUNTRY = Indonesia}
+            GITHUB_USERNAME = rezaageng
+            GITHUB_KEY= ${{secrets.GH_KEY}} 
+            LEETCODE_USERNAME = rezaageng" > .env
       - uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: 8
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
