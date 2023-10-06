@@ -3,6 +3,7 @@ import TerminalPrompt from './TerminalPrompt'
 import { v4 as uuidv4 } from 'uuid'
 import { useScroll, type MotionStyle, motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
+import LenisProvider from '@/libs/react-lenis'
 
 interface TerminalProps {
   className?: string
@@ -54,22 +55,21 @@ const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
           data-testid="terminal-button-green"
         />
       </div>
-      <div
-        data-lenis-prevent
-        className="h-[calc(100%-36px)] w-full overflow-y-scroll px-4 pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400"
-      >
-        {prompts.map(({ children, inputValue, isActive }, index) => (
-          <TerminalPrompt
-            key={uuidv4()}
-            inputValue={inputValue}
-            isActive={isActive}
-            index={index}
-            ref={promptRef}
-          >
-            {children}
-          </TerminalPrompt>
-        ))}
-      </div>
+      <LenisProvider className="h-[calc(100%-36px)] w-full overflow-y-auto px-4 pb-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400">
+        <div className="overscroll-contain">
+          {prompts.map(({ children, inputValue, isActive }, index) => (
+            <TerminalPrompt
+              key={uuidv4()}
+              inputValue={inputValue}
+              isActive={isActive}
+              index={index}
+              ref={promptRef}
+            >
+              {children}
+            </TerminalPrompt>
+          ))}
+        </div>
+      </LenisProvider>
     </motion.div>
   )
 }

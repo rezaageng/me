@@ -18,6 +18,7 @@ import { type SkillCategoriesResponse } from '@/@types/skills'
 import { v4 as uuidv4 } from 'uuid'
 import useSmooth from '@/hooks/useSmooth'
 import BentoWrapper from './BentoWrapper'
+import LenisProvider from '@/libs/react-lenis'
 
 interface Props {
   data: SkillCategoriesResponse['data']
@@ -119,40 +120,41 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
               </Canvas>
             </motion.div>
           ) : (
-            <motion.div
-              data-lenis-prevent
-              data-testid="skills-list"
-              key="skills-list"
-              style={listScroll}
-              initial={initial}
-              animate={animate}
-              exit={exit}
-              className="z-10 mt-2 w-full overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400"
-            >
-              <ul className="flex flex-col gap-2">
-                {data.map((skillCategory) => (
-                  <li key={uuidv4()}>
-                    <h2
-                      data-testid="skill-categories"
-                      className="text-lg font-bold leading-10"
-                    >
-                      {skillCategory.attributes.category}
-                    </h2>
-                    <ul>
-                      {skillCategory.attributes.skills.data.map((skill) => (
-                        <li
-                          data-testid="skills"
-                          className="border-t border-white border-opacity-20 leading-10 text-white/75"
-                          key={uuidv4()}
-                        >
-                          {skill.attributes.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+            <LenisProvider className="z-10 mt-2 w-full overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400">
+              <motion.div
+                data-testid="skills-list"
+                key="skills-list"
+                style={listScroll}
+                initial={initial}
+                animate={animate}
+                exit={exit}
+                className="overscroll-contain"
+              >
+                <ul className="flex flex-col gap-2">
+                  {data.map((skillCategory) => (
+                    <li key={uuidv4()}>
+                      <h2
+                        data-testid="skill-categories"
+                        className="text-lg font-bold leading-10"
+                      >
+                        {skillCategory.attributes.category}
+                      </h2>
+                      <ul>
+                        {skillCategory.attributes.skills.data.map((skill) => (
+                          <li
+                            data-testid="skills"
+                            className="border-t border-white border-opacity-20 leading-10 text-white/75"
+                            key={uuidv4()}
+                          >
+                            {skill.attributes.name}
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </LenisProvider>
           )}
         </AnimatePresence>
         {/* </div> */}
