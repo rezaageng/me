@@ -86,7 +86,7 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
           href={`/projects/${project.attributes.slug}`}
         >
           <Image
-            src={process.env.NEXT_PUBLIC_API_URL + cover.formats.large.url}
+            src={cover.formats.large.url}
             alt="project cover"
             width={cover.formats.large.width}
             height={cover.formats.large.height}
