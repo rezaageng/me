@@ -36,7 +36,7 @@ const RootLayout = ({
   children: React.ReactNode
 }): React.ReactNode => {
   return (
-    <LenisProvider>
+    <LenisProvider root>
       <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
         <head />
         <body className="bg-primary font-sans text-white scrollbar-none">

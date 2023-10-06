@@ -15,6 +15,7 @@ import {
 } from 'framer-motion'
 import useSmooth from '@/hooks/useSmooth'
 import BentoWrapper from './BentoWrapper'
+import LenisProvider from '@/libs/react-lenis'
 
 interface Props {
   className?: string
@@ -143,37 +144,38 @@ const HomeWakaWeek = ({ className = '', data }: Props): JSX.Element => {
               </li>
             </motion.ul>
           ) : (
-            <motion.ul
-              data-lenis-prevent
-              data-testid="lang-list"
-              initial={initial}
-              animate={animate}
-              exit={exit}
-              key="waka-langs-30"
-              className="flex flex-col overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400"
-            >
-              {data.languages.map((lang) => (
-                <li
-                  data-testid="lang"
-                  key={uuidv4()}
-                  className="flex items-center gap-2 border-t border-white border-opacity-20 pr-2 leading-10"
-                >
-                  <div
-                    style={{
-                      backgroundColor:
-                        languageColors[
-                          lang.name as keyof typeof languageColors
-                        ] ?? '#676767'
-                    }}
-                    className="h-4 w-4 rounded-full"
-                  />
-                  <div className="flex w-full justify-between">
-                    <span>{lang.name}</span>
-                    <span className="text-white/75">{lang.total}</span>
-                  </div>
-                </li>
-              ))}
-            </motion.ul>
+            <LenisProvider className="overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400">
+              <motion.ul
+                data-testid="lang-list"
+                initial={initial}
+                animate={animate}
+                exit={exit}
+                key="waka-langs-30"
+                className="flex flex-col"
+              >
+                {data.languages.map((lang) => (
+                  <li
+                    data-testid="lang"
+                    key={uuidv4()}
+                    className="flex items-center gap-2 border-t border-white border-opacity-20 pr-2 leading-10"
+                  >
+                    <div
+                      style={{
+                        backgroundColor:
+                          languageColors[
+                            lang.name as keyof typeof languageColors
+                          ] ?? '#676767'
+                      }}
+                      className="h-4 w-4 rounded-full"
+                    />
+                    <div className="flex w-full justify-between">
+                      <span>{lang.name}</span>
+                      <span className="text-white/75">{lang.total}</span>
+                    </div>
+                  </li>
+                ))}
+              </motion.ul>
+            </LenisProvider>
           )}
         </AnimatePresence>
       </BentoWrapper>

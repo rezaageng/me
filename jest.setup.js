@@ -7,7 +7,9 @@ import '@testing-library/jest-dom/extend-expect'
 import 'whatwg-fetch'
 import { TextEncoder, TextDecoder } from 'util'
 import { server } from '@/__mocks__/server'
+import ResizeObserver from 'resize-observer-polyfill'
 
+global.ResizeObserver = ResizeObserver
 global.TextEncoder = TextEncoder
 global.TextDecoder = TextDecoder
 
