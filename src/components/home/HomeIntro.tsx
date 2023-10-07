@@ -42,7 +42,7 @@ const HomeIntro = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
       data-testid="home-intro"
     >
       <div className="flex flex-col justify-center px-6 py-4">
-        <div className="flex h-[50dvh] flex-col items-center justify-center lg:h-[64dvh]">
+        <div className="flex h-[50dvh] flex-col items-center justify-center lg:h-[56dvh]">
           <motion.div
             style={{
               display: isInView ? 'flex' : 'none',
