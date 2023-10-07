@@ -33,7 +33,7 @@
     "@types/three": "^0.155.0",
     "@types/uuid": "^9.0.2",
     "date-fns": "^2.30.0",
-    "framer-motion": "^10.15.1",
+    "framer-motion": "^10.16.4",
     "lottie-react": "^2.4.0",
     "next": "13.5.4",
     "react": "18.2.0",
@@ -42,6 +42,7 @@
     "react-icons": "^4.11.0",
     "react-merge-refs": "^2.0.2",
     "react-responsive": "^9.0.2",
+    "sharp": "^0.32.6",
     "three": "^0.155.0",
     "uuid": "^9.0.0",
     "zustand": "^4.4.0"
