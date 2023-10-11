@@ -46,7 +46,7 @@ const RootLayout = ({
             <header>
               <Navbar />
             </header>
-            <main className="m-auto mt-16 max-w-5xl">{children}</main>
+            <main className="m-auto mt-16 max-w-5xl lg:mt-24">{children}</main>
             <aside>
               <Sidebar />
             </aside>

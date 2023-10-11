@@ -1,7 +1,7 @@
 import { type EducationsResponse } from '@/@types/educations'
 import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
-import { type ProjectsResponse } from '@/@types/projects'
+import { type ProjectResponse, type ProjectsResponse } from '@/@types/projects'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { wakaUrl } from '@/constants/endpoints'
 
@@ -209,6 +209,27 @@ export const getProjects = async ({
   if (!res.ok) throw new Error('Internal Server Error')
 
   const data: ProjectsResponse = await res.json()
+
+  return data
+}
+
+export const getProject = async (slug: string): Promise<ProjectResponse> => {
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/${slug}?populate=*`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  if (!res.ok) throw new Error('Internal Server Error')
+
+  const data: ProjectResponse = await res.json()
 
   return data
 }

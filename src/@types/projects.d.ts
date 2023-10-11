@@ -27,3 +27,8 @@ interface ProjectsResponse {
   data: Project[]
   meta: Meta
 }
+
+interface ProjectResponse {
+  data: Project
+  meta: Meta
+}
