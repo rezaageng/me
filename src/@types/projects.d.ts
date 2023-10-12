@@ -14,6 +14,7 @@ interface Project {
     website: string | null
     websiteLabel: string | null
     slug: string
+    shortDescription: string
     skills: {
       data: Skill[]
     }
