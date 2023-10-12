@@ -1,10 +1,9 @@
-import { type ContactsResponse } from '@/@types/contacts'
 import { NextResponse } from 'next/server'
 
 export const GET = async (): Promise<NextResponse> => {
   try {
     const res: Response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/contacts`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/link`,
       {
         method: 'get',
         headers: {
@@ -18,7 +17,7 @@ export const GET = async (): Promise<NextResponse> => {
 
     if (res.status !== 200) throw new Error('Internal Server Error')
 
-    const data: ContactsResponse = await res.json()
+    const data: Link = await res.json()
 
     return NextResponse.json(data)
   } catch (error) {

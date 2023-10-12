@@ -233,3 +233,24 @@ export const getProject = async (slug: string): Promise<ProjectResponse> => {
 
   return data
 }
+
+export const getLink = async (): Promise<Link> => {
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/link`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 10
+      }
+    }
+  )
+
+  if (!res.ok) throw new Error('Internal Server Error')
+
+  const data: Link = await res.json()
+
+  return data
+}

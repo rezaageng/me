@@ -3,7 +3,6 @@ import localFont from 'next/font/local'
 import Navbar from '@/components/navbar/Navbar'
 import './globals.css'
 import { type Metadata } from 'next'
-import Sidebar from '@/components/Sidebar'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GrainyTexture from '@/components/GrainyTexture'
 import PageProgressBar from '@/components/PageProgressBar'
@@ -47,9 +46,6 @@ const RootLayout = ({
               <Navbar />
             </header>
             <main className="m-auto mt-16 max-w-5xl lg:mt-24">{children}</main>
-            <aside>
-              <Sidebar />
-            </aside>
             <Footer />
           </QueryProvider>
           <GrainyTexture />

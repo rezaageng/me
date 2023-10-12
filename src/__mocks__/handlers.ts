@@ -1,11 +1,9 @@
-import { type ContactsResponse } from '@/@types/contacts'
 import { type EducationsResponse } from '@/@types/educations'
 import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
 import { type ProjectsResponse } from '@/@types/projects'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { rest } from 'msw'
-import contactsResponse from './contacts-response'
 import educationsResponse from './educations-response'
 import experiencesResponse from './experiences-response'
 import homeRes from './home-response'
@@ -14,6 +12,7 @@ import skillsResponse from './skills-response'
 import { wakaAllResponse } from './wakatime'
 import { repositories } from './github'
 import { gitHubUrl, wakaUrl } from '@/constants/endpoints'
+import linkResponse from './link-response'
 
 export const handlers = [
   rest.get(
@@ -85,14 +84,14 @@ export const handlers = [
       )
   ),
   rest.get(
-    `${process.env.API_KEY}/api/contacts`,
+    `${process.env.API_KEY}/api/link`,
     async (_req, res, ctx) =>
-      await res(ctx.status(200), ctx.json<ContactsResponse>(contactsResponse))
+      await res(ctx.status(200), ctx.json<Link>(linkResponse))
   ),
   rest.get(
-    '/api/contacts',
+    '/api/link',
     async (_req, res, ctx) =>
-      await res(ctx.status(200), ctx.json<ContactsResponse>(contactsResponse))
+      await res(ctx.status(200), ctx.json<Link>(linkResponse))
   ),
   rest.get(
     `${wakaUrl}/api/v1/users/current/all_time_since_today`,

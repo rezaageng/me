@@ -22,6 +22,13 @@ interface ContactsProps {
   className?: ClassName
   iconSize?: number
   animate?: boolean
+  link: {
+    gitHub: string
+    linkedIn: string
+    email: string
+    twitter: string
+    instagram: string
+  }
 }
 
 interface Social {

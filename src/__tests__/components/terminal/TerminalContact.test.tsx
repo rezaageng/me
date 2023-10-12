@@ -46,7 +46,7 @@ test('should render loading on initial', () => {
 test('should render error message on error', async () => {
   server.use(
     rest.get(
-      '/api/contacts',
+      '/api/link',
       async (_req, res, ctx) =>
         await res(
           ctx.status(500),
