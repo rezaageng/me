@@ -19,7 +19,6 @@ import {
   GiDelighted,
   GiSuspicious
 } from 'react-icons/gi'
-import Contacts from '../Contacts'
 import useSmooth from '@/hooks/useSmooth'
 
 const Navbar = (): JSX.Element => {
@@ -179,8 +178,6 @@ const Navbar = (): JSX.Element => {
                     />
                   ))}
                 </ul>
-                <div className="border-t-[0.5px] border-white border-opacity-20" />
-                <Contacts className="flex justify-center gap-4" iconSize={20} />
               </motion.div>
             ) : null}
           </AnimatePresence>
