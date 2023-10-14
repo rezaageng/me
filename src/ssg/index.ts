@@ -4,6 +4,7 @@ import { type HomeResponse } from '@/@types/home'
 import { type ProjectResponse, type ProjectsResponse } from '@/@types/projects'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { wakaUrl } from '@/constants/endpoints'
+import { notFound } from 'next/navigation'
 
 export const getHomeData = async (): Promise<HomeResponse> => {
   const res: Response = await fetch(
@@ -226,6 +227,8 @@ export const getProject = async (slug: string): Promise<ProjectResponse> => {
       }
     }
   )
+
+  if (res.status === 404) notFound()
 
   if (!res.ok) throw new Error('Internal Server Error')
 
