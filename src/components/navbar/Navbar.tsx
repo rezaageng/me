@@ -10,7 +10,6 @@ import { useEffect, useState } from 'react'
 import { useScrollBlock } from '@/hooks/useScrollBlock'
 import { v4 as uuidv4 } from 'uuid'
 import NavbarList from './NavbarList'
-import { usePathname } from 'next/navigation'
 import { type NavbarListData } from '@/@types'
 import useResponsive from '@/hooks/useResponsive'
 import {
@@ -20,6 +19,7 @@ import {
   GiSuspicious
 } from 'react-icons/gi'
 import useSmooth from '@/hooks/useSmooth'
+import { usePathname } from 'next/navigation'
 
 const Navbar = (): JSX.Element => {
   // * states
@@ -83,7 +83,7 @@ const Navbar = (): JSX.Element => {
   }
 
   return (
-    <nav>
+    <nav data-lenis-prevent>
       {!isLg && isOpen ? (
         <AnimatePresence>
           <motion.div
@@ -101,7 +101,7 @@ const Navbar = (): JSX.Element => {
       ) : null}
       <motion.div
         style={!isLg ? paddingAnimation : undefined}
-        className="px- fixed left-0 top-0 z-50 flex w-full justify-center py-5 lg:py-8"
+        className="fixed left-0 top-0 z-50 flex w-full justify-center py-5 lg:py-8"
       >
         <div className="w-full max-w-4xl">
           <motion.div
@@ -117,22 +117,20 @@ const Navbar = (): JSX.Element => {
               {isLg ? (
                 <ul
                   data-testid="navbar-list"
-                  className="flex items-center justify-center gap-5  text-2xl  font-bold   lg:text-base lg:font-normal"
+                  className="relative flex items-center justify-center gap-5  text-2xl  font-bold   lg:text-base lg:font-normal"
                 >
                   {navData.map(({ name, route, icon }) => (
                     <NavbarList
                       key={uuidv4()}
                       name={name}
                       route={route}
-                      pathName={pathName}
                       icon={icon}
                     />
                   ))}
                 </ul>
               ) : (
                 <button onClick={toggleMenu} className="block lg:hidden">
-                  {navData.filter(({ route }) => route === pathName)?.[0]
-                    ?.icon ?? (
+                  {navData.find(({ route }) => route === pathName)?.icon ?? (
                     <GiMagicGate size={24} data-testid="navbar-icon" />
                   )}
                 </button>
@@ -171,7 +169,6 @@ const Navbar = (): JSX.Element => {
                       key={uuidv4()}
                       name={name}
                       route={route}
-                      pathName={pathName}
                       underline={false}
                       onClick={toggleMenu}
                       icon={icon}
