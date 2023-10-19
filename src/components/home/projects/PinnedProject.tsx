@@ -121,7 +121,7 @@ const PinnedProject = ({ project, animation }: Props): JSX.Element => {
           style={isLg ? subtitleAnimation : {}}
           className="line-clamp-3 text-white/75 lg:text-xl"
         >
-          {project.attributes.description}
+          {project.attributes.shortDescription}
         </motion.p>
         <motion.div
           style={isLg ? subtitleAnimation : {}}

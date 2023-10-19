@@ -10,6 +10,8 @@ const projectsResponse: ProjectsResponse = {
         type: 'Personal',
         description:
           'im the bone of my sword steel is my body and iron is my blood ahahhahh',
+        shortDescription:
+          'im the bone of my sword steel is my body and iron is my blood ahahhahh',
         repository: 'https://github.com/rezaageng/nothing',
         website: 'https://nothing.rezaageng.com',
         websiteLabel: 'website',
@@ -121,6 +123,7 @@ const projectsResponse: ProjectsResponse = {
         slug: 'medjed',
         type: 'Team',
         description: 'i say goodbye my dearest',
+        shortDescription: 'i say goodbye my dearest',
         repository: null,
         website: null,
         websiteLabel: null,
