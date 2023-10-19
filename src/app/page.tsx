@@ -11,6 +11,7 @@ import {
   getEducations,
   getExperience,
   getHomeData,
+  getLink,
   getProjects,
   getSkills,
   getWakaAll,
@@ -25,6 +26,7 @@ const Home = async (): Promise<JSX.Element> => {
   const experience = await getExperience()
   const educations = await getEducations()
   const projects = await getProjects({ isPinned: true })
+  const link = await getLink()
 
   const gitHubStats = await getClient().query<GitHubStats>({
     query: GET_GH_STATS,
@@ -52,7 +54,7 @@ const Home = async (): Promise<JSX.Element> => {
       <HomeTimeline experience={experience.data} educations={educations.data} />
       <HomeProjects data={projects.data} />
       <HomeEnd />
-      <HomeThanks />
+      <HomeThanks link={link.data} />
     </>
   )
 }
