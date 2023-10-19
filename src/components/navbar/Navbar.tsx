@@ -83,7 +83,7 @@ const Navbar = (): JSX.Element => {
   }
 
   return (
-    <nav>
+    <nav data-lenis-prevent>
       {!isLg && isOpen ? (
         <AnimatePresence>
           <motion.div
