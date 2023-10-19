@@ -12,7 +12,6 @@ interface NavbarListData {
 }
 
 interface NavbarListProps extends NavbarListData {
-  pathName: string | null
   underline?: boolean
   onClick?: () => void
 }

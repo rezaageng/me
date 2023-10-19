@@ -1,19 +1,20 @@
 import { type NavbarListProps } from '@/@types'
 import Link from 'next/link'
 import NavbarUnderline from './NavbarUnderline'
+import { usePathname } from 'next/navigation'
 
 const NavbarList = ({
   name,
   route,
-  pathName,
   underline = true,
   onClick,
   icon
 }: NavbarListProps): JSX.Element => {
+  const pathName = usePathname()
+
   return (
     <li className="relative">
       {pathName === route && underline ? <NavbarUnderline /> : null}
-
       <Link
         data-testid="navbar-list-link"
         className={`${
