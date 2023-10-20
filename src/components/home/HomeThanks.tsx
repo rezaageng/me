@@ -3,57 +3,85 @@
 import Lottie from 'lottie-react'
 import potion from '@/lottie/potion.json'
 import { v4 as uuidv4 } from 'uuid'
+import { PiArrowUpRightBold } from 'react-icons/pi'
 
 interface Song {
   artist: string
   link: string
 }
 
-const HomeThanks = (): JSX.Element => {
-  const songs: Song[] = [
+interface Props {
+  link: Link['data']
+}
+
+const songs: Song[] = [
+  {
+    artist: 'JKT48',
+    link: 'https://open.spotify.com/artist/2l8I5pWUnfF7bMK1z6EJRk?si=TDxolkxITtS1WpFrd6WIGA'
+  },
+  {
+    artist: 'Eve',
+    link: 'https://open.spotify.com/artist/58oPVy7oihAEXE0Ott6JOf?si=B4VpKksiRAGeS6ZirPNxbA'
+  },
+  {
+    artist: 'Kyanai',
+    link: 'https://open.spotify.com/artist/42ogLtXLVjZryRz9j1zvOm?si=Oso7djFeSt2PEjmz1bAgrQ'
+  },
+  {
+    artist: 'JVKE',
+    link: 'https://open.spotify.com/artist/164Uj4eKjl6zTBKfJLFKKK?si=GtrOApDFT3mUA-UBfxf7wQ'
+  },
+  {
+    artist: 'YOASOBI',
+    link: 'https://open.spotify.com/artist/64tJ2EAv1R6UaZqc4iOCyj?si=e41tEgvhS8qutLBa0mBfcQ'
+  },
+  {
+    artist: 'AKB48',
+    link: 'https://open.spotify.com/artist/01wau5CL3Z1vfJJWkzBkqg?si=X56M8cvFQyer18cMo02npg'
+  },
+  {
+    artist: 'NDX A.K.A',
+    link: 'https://open.spotify.com/artist/1IDBhlpDyKr53UKKxXRHXD?si=ABmKzbLQTaOeYwoXvna5Pg'
+  },
+  {
+    artist: 'Fuji Kaze',
+    link: 'https://open.spotify.com/artist/6bDWAcdtVR3WHz2xtiIPUi?si=mT8l9HrXTOGEuRIKw2Tf6A'
+  },
+  {
+    artist: 'もさを。',
+    link: 'https://open.spotify.com/artist/71KI7v1YqVU8cIFzBl47dh?si=JjMivR_PSLul13ze4h4E-A'
+  },
+  {
+    artist: 'YoRI',
+    link: 'https://open.spotify.com/artist/7KWwccszhCF3f6pYeVWMTD?si=XF9rnQaZStCCi04zo6_qQw'
+  },
+  {
+    artist: 'YOAKE',
+    link: 'https://open.spotify.com/artist/0psEe4IooMjolOPMrz9A5M?si=EZbbKrPLSW6iWBpduyCA2Q'
+  }
+]
+
+const HomeThanks = ({ link }: Props): JSX.Element => {
+  const contact = [
     {
-      artist: 'JKT48',
-      link: 'https://open.spotify.com/artist/2l8I5pWUnfF7bMK1z6EJRk?si=TDxolkxITtS1WpFrd6WIGA'
+      name: 'GitHub',
+      link: link.attributes.gitHub
     },
     {
-      artist: 'Eve',
-      link: 'https://open.spotify.com/artist/58oPVy7oihAEXE0Ott6JOf?si=B4VpKksiRAGeS6ZirPNxbA'
+      name: 'Twitter',
+      link: link.attributes.twitter
     },
     {
-      artist: 'Kyanai',
-      link: 'https://open.spotify.com/artist/42ogLtXLVjZryRz9j1zvOm?si=Oso7djFeSt2PEjmz1bAgrQ'
+      name: 'Instagram',
+      link: link.attributes.instagram
     },
     {
-      artist: 'JVKE',
-      link: 'https://open.spotify.com/artist/164Uj4eKjl6zTBKfJLFKKK?si=GtrOApDFT3mUA-UBfxf7wQ'
+      name: 'LinkedIn',
+      link: link.attributes.linkedIn
     },
     {
-      artist: 'YOASOBI',
-      link: 'https://open.spotify.com/artist/64tJ2EAv1R6UaZqc4iOCyj?si=e41tEgvhS8qutLBa0mBfcQ'
-    },
-    {
-      artist: 'AKB48',
-      link: 'https://open.spotify.com/artist/01wau5CL3Z1vfJJWkzBkqg?si=X56M8cvFQyer18cMo02npg'
-    },
-    {
-      artist: 'NDX A.K.A',
-      link: 'https://open.spotify.com/artist/1IDBhlpDyKr53UKKxXRHXD?si=ABmKzbLQTaOeYwoXvna5Pg'
-    },
-    {
-      artist: 'Fuji Kaze',
-      link: 'https://open.spotify.com/artist/6bDWAcdtVR3WHz2xtiIPUi?si=mT8l9HrXTOGEuRIKw2Tf6A'
-    },
-    {
-      artist: 'もさを。',
-      link: 'https://open.spotify.com/artist/71KI7v1YqVU8cIFzBl47dh?si=JjMivR_PSLul13ze4h4E-A'
-    },
-    {
-      artist: 'YoRI',
-      link: 'https://open.spotify.com/artist/7KWwccszhCF3f6pYeVWMTD?si=XF9rnQaZStCCi04zo6_qQw'
-    },
-    {
-      artist: 'YOAKE',
-      link: 'https://open.spotify.com/artist/0psEe4IooMjolOPMrz9A5M?si=EZbbKrPLSW6iWBpduyCA2Q'
+      name: 'E-mail',
+      link: link.attributes.email
     }
   ]
 
@@ -86,14 +114,26 @@ const HomeThanks = (): JSX.Element => {
             <ul className="leading-loose">
               {songs.map(({ artist, link }) => (
                 <li data-testid="song-list" key={uuidv4()}>
-                  <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:animate-pulse"
-                  >
+                  <a href={link} target="_blank" rel="noopener noreferrer">
                     {artist}
                   </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 font-mono">&&</h3>
+            <ul className="leading-loose">
+              {contact.map(({ name, link }) => (
+                <li
+                  data-testid="contact-list"
+                  key={uuidv4()}
+                  className="flex items-center gap-1 hover:animate-pulse"
+                >
+                  <a href={link} target="_blank">
+                    {name}
+                  </a>
+                  <PiArrowUpRightBold />
                 </li>
               ))}
             </ul>
