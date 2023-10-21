@@ -1,19 +1,16 @@
 'use client'
 
 import { pageview } from '@/helpers/gtag'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
 
 const Analytics = (): JSX.Element => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
   useEffect(() => {
-    const url = pathname + searchParams.toString()
-
-    pageview(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, url)
-  }, [pathname, searchParams])
+    pageview(process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, pathname)
+  }, [pathname])
 
   return (
     <>
