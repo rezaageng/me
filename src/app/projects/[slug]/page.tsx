@@ -9,9 +9,73 @@ import { SiGithub } from 'react-icons/si'
 import { AiOutlineLink } from 'react-icons/ai'
 import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/atom-one-dark.min.css'
+import { type Metadata } from 'next'
 
 interface Props {
   params: { slug: string }
+}
+
+export const generateMetadata = async ({
+  params
+}: Props): Promise<Metadata> => {
+  const { data } = await getProject(params.slug)
+
+  const seo = data.attributes.seo
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+
+    alternates: {
+      canonical: seo.canonicalUrl
+    },
+    openGraph: {
+      title: seo.metaSocial[0].title,
+      description: seo.metaSocial[0].description,
+      type: 'website',
+      url: seo.canonicalUrl,
+      images: [
+        {
+          url: seo.metaSocial[0].image.data.attributes.formats.large.url,
+          width: seo.metaSocial[0].image.data.attributes.formats.large.width,
+          height: seo.metaSocial[0].image.data.attributes.formats.large.height,
+          alt:
+            seo.metaSocial[0].image.data.attributes.alternativeText ??
+            'large image'
+        },
+        {
+          url: seo.metaSocial[0].image.data.attributes.formats.medium.url,
+          width: seo.metaSocial[0].image.data.attributes.formats.medium.width,
+          height: seo.metaSocial[0].image.data.attributes.formats.medium.height,
+          alt:
+            seo.metaSocial[0].image.data.attributes.alternativeText ??
+            'medium image'
+        },
+        {
+          url: seo.metaSocial[0].image.data.attributes.formats.small.url,
+          width: seo.metaSocial[0].image.data.attributes.formats.small.width,
+          height: seo.metaSocial[0].image.data.attributes.formats.small.height,
+          alt:
+            seo.metaSocial[0].image.data.attributes.alternativeText ??
+            'small image'
+        },
+        {
+          url: seo.metaSocial[0].image.data.attributes.formats.thumbnail.url,
+          width:
+            seo.metaSocial[0].image.data.attributes.formats.thumbnail.width,
+          height:
+            seo.metaSocial[0].image.data.attributes.formats.thumbnail.height,
+          alt:
+            seo.metaSocial[0].image.data.attributes.alternativeText ??
+            'thumbnail image'
+        }
+      ]
+    },
+    twitter: {
+      title: seo.metaSocial[1].title
+    }
+  }
 }
 
 const Project = async ({ params }: Props): Promise<JSX.Element> => {

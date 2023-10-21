@@ -1,4 +1,4 @@
-import { type Meta, type ApiImage } from '.'
+import { type Meta, type ApiImage, type Seo } from '.'
 import { type Skill } from './skills'
 
 interface Project {
@@ -21,6 +21,7 @@ interface Project {
     cover: {
       data: ApiImage
     }
+    seo: Seo
   }
 }
 
