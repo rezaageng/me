@@ -9,6 +9,7 @@ import PageProgressBar from '@/components/PageProgressBar'
 import QueryProvider from '@/libs/query-provider'
 import LenisProvider from '@/libs/react-lenis'
 import Footer from '@/components/Footer'
+import Analytics from '@/components/Analytics'
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -23,10 +24,30 @@ const hackNf = localFont({
 })
 
 export const metadata: Metadata = {
-  title: 'rezaa',
-  description: 'hii, i&apos;m rezaa, nice to meet u',
+  title: {
+    template: '%s / rezaa',
+    default: 'rezaa'
+  },
+  description: 'hii, i&apos;m rezaa',
   viewport: 'width=device-width, initial-scale=1',
-  icons: '/favicon.ico'
+  metadataBase: new URL('https://rezaa.me'),
+  colorScheme: 'dark',
+  creator: 'Reza Ageng Trihandoko',
+  publisher: 'Reza Ageng Trihandoko',
+  themeColor: '#0D0409',
+  openGraph: {
+    type: 'website',
+    title: {
+      template: '%s / rezaa',
+      default: 'rezaa'
+    }
+  },
+  twitter: {
+    title: {
+      template: '%s / rezaa',
+      default: 'rezaa'
+    }
+  }
 }
 
 const RootLayout = ({
@@ -38,6 +59,7 @@ const RootLayout = ({
     <LenisProvider root>
       <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
         <head />
+        {process.env.NODE_ENV === 'production' ? <Analytics /> : null}
         <body className="bg-primary font-sans text-white scrollbar-none">
           <PageProgressBar />
           <QueryProvider>

@@ -12,12 +12,7 @@ import { v4 as uuidv4 } from 'uuid'
 import NavbarList from './NavbarList'
 import { type NavbarListData } from '@/@types'
 import useResponsive from '@/hooks/useResponsive'
-import {
-  GiMagicGate,
-  GiFizzingFlask,
-  GiDelighted,
-  GiSuspicious
-} from 'react-icons/gi'
+import { GiMagicGate, GiFizzingFlask, GiSuspicious } from 'react-icons/gi'
 import useSmooth from '@/hooks/useSmooth'
 import { usePathname } from 'next/navigation'
 
@@ -59,11 +54,6 @@ const Navbar = (): JSX.Element => {
       name: 'Projects',
       route: '/projects',
       icon: <GiFizzingFlask size={24} data-testid="navbar-icon" />
-    },
-    {
-      name: 'Another Side',
-      route: '/another-side',
-      icon: <GiDelighted size={24} data-testid="navbar-icon" />
     },
     {
       name: 'About',

@@ -50,7 +50,7 @@ test('should render links', async () => {
   fireEvent.click(button)
   const links = await screen.findAllByTestId('navbar-list-link')
 
-  expect(links).toHaveLength(4)
+  expect(links).toHaveLength(3)
 })
 
 test('links texts should not be empty', () => {
@@ -61,8 +61,7 @@ test('links texts should not be empty', () => {
 
   expect(links[0]).toHaveTextContent('Home')
   expect(links[1]).toHaveTextContent('Projects')
-  expect(links[2]).toHaveTextContent('Another Side')
-  expect(links[3]).toHaveTextContent('About')
+  expect(links[2]).toHaveTextContent('About')
 })
 
 test('should render icons', () => {
@@ -71,7 +70,7 @@ test('should render icons', () => {
   fireEvent.click(button)
   const icons = screen.getAllByTestId('navbar-icon')
 
-  expect(icons).toHaveLength(5)
+  expect(icons).toHaveLength(4)
 })
 
 test('links hrefs should not be empty', () => {
@@ -82,8 +81,7 @@ test('links hrefs should not be empty', () => {
 
   expect(links[0].getAttribute('href')).toBe('/')
   expect(links[1].getAttribute('href')).toBe('/projects')
-  expect(links[2].getAttribute('href')).toBe('/another-side')
-  expect(links[3].getAttribute('href')).toBe('/about')
+  expect(links[2].getAttribute('href')).toBe('/about')
 })
 
 test('should render navbar underline', async () => {

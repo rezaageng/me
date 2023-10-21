@@ -1,4 +1,4 @@
-import { type Meta } from '.'
+import { type Seo, type Meta } from '.'
 
 // * API
 interface HomeResponse {
@@ -13,7 +13,8 @@ interface HomeResponse {
       createdAt: string
       publishedAt: string
       updatedAt: string
+      seo: Seo
     }
-  } | null
+  }
   meta?: Meta
 }

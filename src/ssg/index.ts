@@ -2,13 +2,14 @@ import { type EducationsResponse } from '@/@types/educations'
 import { type ExperiencesResponse } from '@/@types/experiences'
 import { type HomeResponse } from '@/@types/home'
 import { type ProjectResponse, type ProjectsResponse } from '@/@types/projects'
+import { type SeoPage } from '@/@types/seo-page'
 import { type SkillCategoriesResponse } from '@/@types/skills'
 import { wakaUrl } from '@/constants/endpoints'
 import { notFound } from 'next/navigation'
 
 export const getHomeData = async (): Promise<HomeResponse> => {
   const res: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/home`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/home?populate=seo&populate=seo.metaSocial&populate=seo.metaImage&populate=seo.metaSocial.image`,
     {
       method: 'get',
       headers: {
@@ -216,7 +217,7 @@ export const getProjects = async ({
 
 export const getProject = async (slug: string): Promise<ProjectResponse> => {
   const res: Response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/${slug}?populate=*`,
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects/${slug}`,
     {
       method: 'get',
       headers: {
@@ -254,6 +255,44 @@ export const getLink = async (): Promise<Link> => {
   if (!res.ok) throw new Error('Internal Server Error')
 
   const data: Link = await res.json()
+
+  return data
+}
+
+export const getProjectsPage = async (): Promise<SeoPage> => {
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/projects-page?populate=seo&populate=seo.metaSocial&populate=seo.metaImage&populate=seo.metaSocial.image`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 60
+      }
+    }
+  )
+
+  const data: SeoPage = await res.json()
+
+  return data
+}
+
+export const getAboutPage = async (): Promise<SeoPage> => {
+  const res: Response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/about-page?populate=seo&populate=seo.metaSocial&populate=seo.metaImage&populate=seo.metaSocial.image`,
+    {
+      method: 'get',
+      headers: {
+        authorization: `Bearer ${process.env.API_KEY}`
+      },
+      next: {
+        revalidate: 60
+      }
+    }
+  )
+
+  const data: SeoPage = await res.json()
 
   return data
 }

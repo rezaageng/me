@@ -9,7 +9,11 @@ declare global {
       GITHUB_USERNAME: string
       GITHUB_KEY: string
       LEETCODE_USERNAME: string
+      NEXT_PUBLIC_GA_MEASUREMENT_ID: string
     }
+  }
+  interface Window {
+    gtag: any
   }
 }
 
