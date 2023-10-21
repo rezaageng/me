@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-radial-t':
+          'radial-gradient(circle at top, var(--tw-gradient-stops))'
+      },
       colors: {
         primary: '#0D0409',
         secondary: {
@@ -17,9 +21,30 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-poppins)']
+        sans: ['var(--font-poppins)'],
+        mono: ['var(--font-hacknf)']
+      },
+      gridTemplateColumns: {
+        bento: '1.9fr 1fr 1.9fr',
+        auto: 'repeat(auto-fill, minmax(150px, auto))'
+      },
+      gridTemplateRows: {
+        bento: 'repeat(3, 320px)'
+      },
+      keyframes: {
+        comet: {
+          to: {
+            transform: 'translateX(-942px)'
+          }
+        }
+      },
+      animation: {
+        comet: 'comet 1s steps(3) infinite'
       }
     }
   },
-  plugins: []
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true }),
+    require('@tailwindcss/typography')
+  ]
 }
