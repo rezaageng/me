@@ -33,6 +33,7 @@ export const metadata: Metadata = {
   colorScheme: 'dark',
   creator: 'Reza Ageng Trihandoko',
   publisher: 'Reza Ageng Trihandoko',
+  themeColor: '#0D0409',
   openGraph: {
     type: 'website',
     title: {
