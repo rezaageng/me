@@ -9,6 +9,7 @@ import PageProgressBar from '@/components/PageProgressBar'
 import QueryProvider from '@/libs/query-provider'
 import LenisProvider from '@/libs/react-lenis'
 import Footer from '@/components/Footer'
+import Analytics from '@/components/Analytics'
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -58,6 +59,7 @@ const RootLayout = ({
     <LenisProvider root>
       <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
         <head />
+        {process.env.NODE_ENV === 'production' ? <Analytics /> : null}
         <body className="bg-primary font-sans text-white scrollbar-none">
           <PageProgressBar />
           <QueryProvider>
