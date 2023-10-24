@@ -35,7 +35,7 @@ const TerminalProjects = (): JSX.Element => {
             </Link>
           </h1>
           <p data-testid="project-description" className="line-clamp-3 pl-4">
-            {project.attributes.description}
+            {project.attributes.shortDescription}
           </p>
         </li>
       ))}
