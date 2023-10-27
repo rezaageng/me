@@ -81,7 +81,7 @@ const HomeThanks = ({ link }: Props): JSX.Element => {
     },
     {
       name: 'E-mail',
-      link: link.attributes.email
+      link: `mailto:${link.attributes.email}`
     }
   ]
 

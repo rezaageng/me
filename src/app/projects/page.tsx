@@ -73,7 +73,10 @@ const Projects = async (): Promise<JSX.Element> => {
           key={project.id}
           index={i}
           title={project.attributes.name}
-          cover={project.attributes.cover.data.attributes.formats.medium.url}
+          cover={
+            project.attributes.cover.data.attributes.formats.medium?.url ??
+            project.attributes.cover.data.attributes.url
+          }
           slug={project.attributes.slug}
           repository={project.attributes.repository}
           website={project.attributes.website}
