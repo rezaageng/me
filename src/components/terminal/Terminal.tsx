@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { useScroll, type MotionStyle, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import LenisProvider from '@/libs/react-lenis'
+import { transition } from '@/constants/framer-motion'
 
 interface TerminalProps {
   className?: string
@@ -42,6 +43,8 @@ const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
 
   return (
     <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0, transition: { ...transition, delay: 0.4 } }}
       style={style}
       ref={terminalRef}
       onClick={() => promptRef.current?.focus()}
