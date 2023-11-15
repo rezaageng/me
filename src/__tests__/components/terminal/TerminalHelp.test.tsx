@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react'
 
 test('should render the correct version number', () => {
   render(<TerminalHelp />)
-  expect(screen.getByText(/version 0.1.0/i)).toBeInTheDocument()
+  expect(screen.getByText(/version 1.0.0/i)).toBeInTheDocument()
 })
 
 test('should render the correct usage message', () => {

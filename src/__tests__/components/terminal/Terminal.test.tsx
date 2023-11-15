@@ -28,23 +28,23 @@ test('should focus on click', () => {
   render(<Terminal />)
 
   const terminal = screen.getByTestId('terminal')
-  const prompt = screen.getByTestId('terminal-input')
+  const prompt = screen.getAllByTestId('terminal-input')
 
-  expect(prompt).not.toHaveFocus()
+  expect(prompt[1]).not.toHaveFocus()
 
   fireEvent.click(terminal)
 
-  expect(prompt).toHaveFocus()
+  expect(prompt[1]).toHaveFocus()
 })
 
 test('should blur prompt when scrolled to bottom', () => {
   render(<Terminal />)
   const terminal = screen.getByTestId('terminal')
-  const prompt = screen.getByTestId('terminal-input')
+  const prompt = screen.getAllByTestId('terminal-input')
 
-  expect(prompt).not.toHaveFocus()
+  expect(prompt[1]).not.toHaveFocus()
 
   fireEvent.scroll(terminal, { target: { scrollY: 100 } })
 
-  expect(prompt).not.toHaveFocus()
+  expect(prompt[1]).not.toHaveFocus()
 })
