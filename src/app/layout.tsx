@@ -2,7 +2,7 @@ import { Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
 import Navbar from '@/components/navbar/Navbar'
 import './globals.css'
-import { type Metadata } from 'next'
+import { type Viewport, type Metadata } from 'next'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GrainyTexture from '@/components/GrainyTexture'
 import PageProgressBar from '@/components/PageProgressBar'
@@ -29,12 +29,9 @@ export const metadata: Metadata = {
     default: 'rezaa'
   },
   description: 'hii, i&apos;m rezaa',
-  viewport: 'width=device-width, initial-scale=1',
   metadataBase: new URL('https://rezaa.me'),
-  colorScheme: 'dark',
   creator: 'Reza Ageng Trihandoko',
   publisher: 'Reza Ageng Trihandoko',
-  themeColor: '#0D0409',
   openGraph: {
     type: 'website',
     title: {
@@ -49,6 +46,13 @@ export const metadata: Metadata = {
       default: 'rezaa'
     }
   }
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#0D0409',
+  colorScheme: 'dark'
 }
 
 const RootLayout = ({
