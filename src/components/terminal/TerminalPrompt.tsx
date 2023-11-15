@@ -40,7 +40,7 @@ const TerminalPrompt = forwardRef<HTMLInputElement, Prompt & { index: number }>(
             className="flex items-center gap-1 text-accent-3"
           >
             <TbBrandNextjs />
-            <span>v13.4.5</span>
+            <span>v{process.env.NEXT_PUBLIC_NEXT_VERSION}</span>
           </span>
         </div>
         <form onSubmit={handleSubmit(submitPrompt)}>
