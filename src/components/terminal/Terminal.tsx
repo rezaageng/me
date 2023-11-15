@@ -2,7 +2,7 @@ import useTerminalStore from '@/stores/terminal-store'
 import TerminalPrompt from './TerminalPrompt'
 import { v4 as uuidv4 } from 'uuid'
 import { useScroll, type MotionStyle, motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import LenisProvider from '@/libs/react-lenis'
 
 interface TerminalProps {
@@ -12,6 +12,8 @@ interface TerminalProps {
 
 const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
   const prompts = useTerminalStore((state) => state.prompts)
+
+  const [prevLength, setPrevLength] = useState<number>(prompts.length)
 
   const terminalRef = useRef<HTMLDivElement>(null)
   const promptRef = useRef<HTMLInputElement>(null)
@@ -28,16 +30,22 @@ const Terminal = ({ className = '', style }: TerminalProps): JSX.Element => {
   })
 
   useEffect(() => {
-    if (prompts.length === 1) return
-    promptRef.current?.focus()
-  }, [prompts.length])
+    if (prompts.length <= prevLength) {
+      setPrevLength(prompts.length)
+      return
+    }
+    if (prompts.length > prevLength) {
+      setPrevLength(prompts.length - 1)
+      promptRef.current?.focus()
+    }
+  }, [prevLength, prompts.length])
 
   return (
     <motion.div
       style={style}
       ref={terminalRef}
       onClick={() => promptRef.current?.focus()}
-      className={`${className} h-[32rem]  w-full overflow-hidden rounded-lg border border-white bg-primary bg-opacity-50 font-mono text-sm backdrop-blur-lg backdrop-filter`}
+      className={`${className} h-[32rem] w-full  overflow-hidden rounded-lg border border-white bg-primary bg-opacity-50 font-mono text-sm text-gray-300 backdrop-blur-lg backdrop-filter`}
       data-testid="terminal"
     >
       {/* <div className="absolute z-20 h-full w-full opacity-20 [filter:url('#grainyTexture2')]" /> */}
