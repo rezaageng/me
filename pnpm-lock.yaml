@@ -17,6 +17,9 @@ dependencies:
   '@juggle/resize-observer':
     specifier: ^3.4.0
     version: 3.4.0
+  '@plaiceholder/next':
+    specifier: ^3.0.0
+    version: 3.0.0(next@14.0.2)(plaiceholder@3.0.0)(sharp@0.32.6)
   '@react-three/drei':
     specifier: ^9.88.14
     version: 9.88.14(@react-three/fiber@8.15.11)(@types/three@0.158.2)(react-dom@18.2.0)(react@18.2.0)(three@0.158.0)
@@ -71,6 +74,9 @@ dependencies:
   next-mdx-remote:
     specifier: ^4.4.1
     version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
+  plaiceholder:
+    specifier: ^3.0.0
+    version: 3.0.0(sharp@0.32.6)
   react:
     specifier: 18.2.0
     version: 18.2.0
@@ -1868,6 +1874,21 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.2
     dev: true
+
+  /@plaiceholder/next@3.0.0(next@14.0.2)(plaiceholder@3.0.0)(sharp@0.32.6):
+    resolution:
+      {
+        integrity: sha512-7UK/H1X64hwo2VaxOPKMXE+OY9IgmKLPsq/xKHZ+gU07oqQSfIWWIgpVVucMB3ZgVYah+68agR15BRuSxAuMHw==
+      }
+    peerDependencies:
+      next: '>= 10.0.0'
+      plaiceholder: '>=3.0.0'
+      sharp: '>= 0.30.6'
+    dependencies:
+      next: 14.0.2(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder: 3.0.0(sharp@0.32.6)
+      sharp: 0.32.6
+    dev: false
 
   /@pnpm/config.env-replace@1.1.0:
     resolution:
@@ -10758,6 +10779,17 @@ packages:
     dependencies:
       find-up: 4.1.0
     dev: true
+
+  /plaiceholder@3.0.0(sharp@0.32.6):
+    resolution:
+      {
+        integrity: sha512-jwHxxHPnr1BwRzPCeZgEK2BMsEy2327sWynw3qb6XC/oGgGDUTPtR8pFxFQmNArhMBwhkUbUr5OPhhIJpCa8eQ==
+      }
+    peerDependencies:
+      sharp: '>= 0.30.6'
+    dependencies:
+      sharp: 0.32.6
+    dev: false
 
   /postcss-import@15.1.0(postcss@8.4.27):
     resolution:
