@@ -32,6 +32,7 @@ const ProjectItem = ({
   children
 }: Props): JSX.Element => {
   const [origin, setOrigin] = useState<'left' | 'right' | 'center'>('center')
+  const [zIndex, setZIndex] = useState<'z-0' | 'z-10'>('z-0')
 
   const isLg = useResponsive(1024)
 
@@ -62,7 +63,6 @@ const ProjectItem = ({
         isLg
           ? {
               scale: 1.15,
-              zIndex: 10,
               transition: {
                 ...transition,
                 delay: 0.15
@@ -70,7 +70,17 @@ const ProjectItem = ({
             }
           : {}
       }
-      className="group relative overflow-hidden rounded-2xl bg-primary"
+      onMouseEnter={() => {
+        setTimeout(() => {
+          setZIndex('z-10')
+        }, 150)
+      }}
+      onMouseLeave={() => {
+        setTimeout(() => {
+          setZIndex('z-0')
+        }, 150)
+      }}
+      className={`${zIndex} group relative overflow-hidden rounded-2xl bg-primary`}
     >
       <div className="absolute bottom-0 left-0 h-28 w-1/2 rounded-se-full bg-accent-3 blur-3xl" />
       <div className="absolute top-0 h-full w-full  opacity-20 [filter:url('#grainyTexture2')]" />
