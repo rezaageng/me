@@ -99,8 +99,8 @@ test('should has correct link', async () => {
   const links = await screen.findAllByTestId('project-link')
 
   expect(links).toHaveLength(2)
-  expect(links[0]).toHaveAttribute('href', '/projects/1')
-  expect(links[1]).toHaveAttribute('href', '/projects/2')
+  expect(links[0]).toHaveAttribute('href', '/projects/nothing')
+  expect(links[1]).toHaveAttribute('href', '/projects/medjed')
 })
 
 test('should render description with 3 max lines', async () => {
