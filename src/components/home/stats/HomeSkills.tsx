@@ -4,7 +4,7 @@ import { Float, TrackballControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import HomeSkillsCloud from './HomeSkillsCloud'
 import { ResizeObserver } from '@juggle/resize-observer'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { Suspense, useLayoutEffect, useRef, useState } from 'react'
 import { TbCube, TbCubeOff } from 'react-icons/tb'
 import {
   AnimatePresence,
@@ -106,18 +106,26 @@ const HomeSkills = ({ data, className = '' }: Props): JSX.Element => {
               exit={exit}
               className="mt-2 h-full w-full -translate-x-4 -translate-y-4 sm:flex-1"
             >
-              <Canvas
-                dpr={[1, 2]}
-                camera={{ position: [0, 0, 35], fov: 90 }}
-                resize={{ polyfill: ResizeObserver }}
-                data-testid="3d-canvas"
+              <Suspense
+                fallback={
+                  <div className="grid h-full w-full animate-pulse place-content-center font-mono text-2xl">
+                    {`re().rendering`}
+                  </div>
+                }
               >
-                <fog attach="fog" args={['#0D0409', 0, 80]} />
-                <Float>
-                  <HomeSkillsCloud />
-                </Float>
-                <TrackballControls rotateSpeed={5} noPan noZoom />
-              </Canvas>
+                <Canvas
+                  dpr={[1, 2]}
+                  camera={{ position: [0, 0, 35], fov: 90 }}
+                  resize={{ polyfill: ResizeObserver }}
+                  data-testid="3d-canvas"
+                >
+                  <fog attach="fog" args={['#0D0409', 0, 80]} />
+                  <Float>
+                    <HomeSkillsCloud />
+                  </Float>
+                  <TrackballControls rotateSpeed={5} noPan noZoom />
+                </Canvas>
+              </Suspense>
             </motion.div>
           ) : (
             <LenisProvider className="z-10 mt-2 w-full overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-secondary-400">
