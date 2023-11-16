@@ -1,7 +1,6 @@
 'use client'
 
 import { type Skill } from '@/@types/skills'
-import Image from 'next/image'
 import Link from 'next/link'
 import { AiOutlineLink } from 'react-icons/ai'
 import { SiGithub } from 'react-icons/si'
@@ -9,28 +8,28 @@ import { v4 as uuidv4 } from 'uuid'
 import { motion } from 'framer-motion'
 import { transition } from '@/constants/framer-motion'
 import useResponsive from '@/hooks/useResponsive'
-import { useEffect, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 
 interface Props {
   index: number
   slug: string
   title: string
-  cover: string
   repository: string | null
   website: string | null
   websiteLabel: string | null
+  children: ReactNode
   skills: Skill[]
 }
 
 const ProjectItem = ({
   index,
-  cover,
   repository,
   skills,
   slug,
   title,
   website,
-  websiteLabel
+  websiteLabel,
+  children
 }: Props): JSX.Element => {
   const [origin, setOrigin] = useState<'left' | 'right' | 'center'>('center')
 
@@ -77,14 +76,7 @@ const ProjectItem = ({
       <div className="absolute top-0 h-full w-full  opacity-20 [filter:url('#grainyTexture2')]" />
       <div className="relative">
         <Link data-testid="project-link" href={`/projects/${slug}`}>
-          <Image
-            data-testid="project-cover"
-            src={cover}
-            alt="cover"
-            width={1280}
-            height={720}
-            className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
-          />
+          {children}
         </Link>
       </div>
       <div className="relative flex flex-col gap-2 px-4 py-4">
