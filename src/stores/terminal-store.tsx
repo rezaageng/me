@@ -1,3 +1,4 @@
+import TerminalHelp from '@/components/terminal/TerminalHelp'
 import { shallow } from 'zustand/shallow'
 import { createWithEqualityFn } from 'zustand/traditional'
 
@@ -16,7 +17,14 @@ const defaultPrompt: Prompt = {
 
 const useTerminalStore = createWithEqualityFn<TerminalState>()(
   (set, get) => ({
-    prompts: [defaultPrompt],
+    prompts: [
+      {
+        ...defaultPrompt,
+        isActive: false,
+        children: <TerminalHelp />
+      },
+      defaultPrompt
+    ],
     addPrompt: () => {
       set((state) => ({ prompts: [...state.prompts, defaultPrompt] }))
     },

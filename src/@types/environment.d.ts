@@ -10,6 +10,8 @@ declare global {
       GITHUB_KEY: string
       LEETCODE_USERNAME: string
       NEXT_PUBLIC_GA_MEASUREMENT_ID: string
+      NEXT_PUBLIC_APP_VERSION: string
+      NEXT_PUBLIC_NEXT_VERSION: string
     }
   }
   interface Window {

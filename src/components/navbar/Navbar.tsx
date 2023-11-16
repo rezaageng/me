@@ -103,7 +103,9 @@ const Navbar = (): JSX.Element => {
               className="absolute left-0 top-0 h-full w-full rounded-full bg-primary bg-opacity-50 backdrop-blur-lg backdrop-filter"
             />
             <div className="relative flex w-full justify-between text-xl text-accent-1">
-              <h1>rezaa</h1>
+              <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                rezaa
+              </motion.h1>
               {isLg ? (
                 <ul
                   data-testid="navbar-list"
@@ -119,11 +121,16 @@ const Navbar = (): JSX.Element => {
                   ))}
                 </ul>
               ) : (
-                <button onClick={toggleMenu} className="block lg:hidden">
+                <motion.button
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  onClick={toggleMenu}
+                  className="block lg:hidden"
+                >
                   {navData.find(({ route }) => route === pathName)?.icon ?? (
                     <GiMagicGate size={24} data-testid="navbar-icon" />
                   )}
-                </button>
+                </motion.button>
               )}
             </div>
           </motion.div>
