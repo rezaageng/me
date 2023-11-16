@@ -82,7 +82,7 @@
     "jest-environment-jsdom": "^29.6.2",
     "lint-staged": "^13.2.3",
     "msw": "^1.2.3",
-    "postcss": "^8.4.27",
+    "postcss": "^8.4.31",
     "prettier": "3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
     "resize-observer-polyfill": "^1.5.1",
