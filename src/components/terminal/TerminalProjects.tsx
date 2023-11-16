@@ -28,7 +28,7 @@ const TerminalProjects = (): JSX.Element => {
           <h1 data-testid="project-title">
             <Link
               className="hover:text-accent-1"
-              href={`/projects/${project.id}`}
+              href={`/projects/${project.attributes.slug}`}
               data-testid="project-link"
             >
               {project.attributes.name} 
