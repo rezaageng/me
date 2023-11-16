@@ -2,6 +2,7 @@
 import projectsResponse from '@/__mocks__/projects-response'
 import ProjectItem from '@/components/projects/ProjectItem'
 import { render, screen } from '@testing-library/react'
+import Image from 'next/image'
 
 const data = projectsResponse.data[0]
 
@@ -10,13 +11,21 @@ test('should render title', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const title = screen.getByRole('heading')
@@ -29,13 +38,21 @@ test('should render cover', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const banner = screen.getByTestId('project-cover')
@@ -48,13 +65,21 @@ test('should render correct link', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const link = screen.getAllByTestId('project-link')
@@ -69,13 +94,21 @@ test('shoud render repository if not null', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const repository = screen.getByTestId('repository-url')
@@ -91,13 +124,21 @@ test('should render website if not null', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const websiteUrls = screen.getByTestId('website-url')
@@ -111,13 +152,21 @@ test('should render skills', () => {
     <ProjectItem
       index={0}
       title={data.attributes.name}
-      cover={data.attributes.cover.data.attributes.formats.medium.url}
       slug={data.attributes.slug}
       repository={data.attributes.repository}
       website={data.attributes.website}
       websiteLabel={data.attributes.websiteLabel}
       skills={data.attributes.skills.data}
-    />
+    >
+      <Image
+        data-testid="project-cover"
+        src="https://me-space.sgp1.digitaloceanspaces.com/strapi-dev/3420ededa931fc0efe78cf9dd4cb7a56.jpeg"
+        alt="cover"
+        width={1280}
+        height={720}
+        className="image aspect-video object-cover transition delay-150 duration-100 group-hover:grayscale-0 lg:grayscale-[70%]"
+      />
+    </ProjectItem>
   )
 
   const skills = screen.getAllByTestId('skills')

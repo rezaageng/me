@@ -1,4 +1,5 @@
 import ProjectItem from '@/components/projects/ProjectItem'
+import ServerImage from '@/components/projects/ServerImage'
 import { getProjects, getProjectsPage } from '@/ssg'
 import { type Metadata } from 'next'
 
@@ -68,21 +69,24 @@ const Projects = async (): Promise<JSX.Element> => {
 
   return (
     <section className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 md:grid-cols-3">
-      {data.map((project, i) => (
+      {data.map(async (project, i) => (
         <ProjectItem
           key={project.id}
           index={i}
           title={project.attributes.name}
-          cover={
-            project.attributes.cover.data.attributes.formats.medium?.url ??
-            project.attributes.cover.data.attributes.url
-          }
           slug={project.attributes.slug}
           repository={project.attributes.repository}
           website={project.attributes.website}
           websiteLabel={project.attributes.websiteLabel}
           skills={project.attributes.skills.data}
-        />
+        >
+          <ServerImage
+            src={
+              project.attributes.cover.data.attributes.formats.medium?.url ??
+              project.attributes.cover.data.attributes.url
+            }
+          />
+        </ProjectItem>
       ))}
     </section>
   )

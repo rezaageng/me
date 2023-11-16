@@ -10,6 +10,7 @@ import { AiOutlineLink } from 'react-icons/ai'
 import rehypeHighlight from 'rehype-highlight'
 import 'highlight.js/styles/atom-one-dark.min.css'
 import { type Metadata } from 'next'
+import Image from 'next/image'
 
 interface Props {
   params: { slug: string }
@@ -130,8 +131,21 @@ const Project = async ({ params }: Props): Promise<JSX.Element> => {
         </ul>
       </div>
       <div className="h-1 w-full rounded-full bg-gradient-to-r from-accent-3 to-accent-1" />
-      <div className="prose prose-invert prose-a:text-accent-1 prose-code:scrollbar-thin prose-code:scrollbar-track-transparent prose-code:scrollbar-thumb-secondary-400 prose-pre:border prose-pre:border-white/25 prose-pre:p-0 prose-pre:scrollbar-thumb-rounded-full prose-img:rounded-lg">
-        <MDXRemote source={data.attributes.description} options={options} />
+      <div className="prose prose-invert w-full prose-a:text-accent-1 prose-code:scrollbar-thin prose-code:scrollbar-track-transparent prose-code:scrollbar-thumb-secondary-400 prose-pre:border prose-pre:border-white/25 prose-pre:p-0 prose-pre:scrollbar-thumb-rounded-full prose-img:rounded-lg">
+        <MDXRemote
+          source={data.attributes.description}
+          options={options}
+          components={{
+            img: ({ src, alt }) => (
+              <Image
+                src={src as string}
+                width={672}
+                height={0}
+                alt={alt ?? 'image'}
+              />
+            )
+          }}
+        />
       </div>
     </article>
   )

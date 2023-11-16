@@ -1,10 +1,10 @@
 import useTerminalStore from '@/stores/terminal-store'
 import { act, renderHook } from '@testing-library/react'
 
-test('should initialize with one prompt', () => {
+test('should initialize with two prompt', () => {
   const { result } = renderHook(() => useTerminalStore())
 
-  expect(result.current.prompts).toHaveLength(1)
+  expect(result.current.prompts).toHaveLength(2)
 })
 
 test('should add a new prompt', () => {
@@ -14,7 +14,7 @@ test('should add a new prompt', () => {
     result.current.addPrompt()
   })
 
-  expect(result.current.prompts).toHaveLength(2)
+  expect(result.current.prompts).toHaveLength(3)
 })
 
 test('should update a prompt', () => {
