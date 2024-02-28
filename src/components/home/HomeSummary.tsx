@@ -26,7 +26,7 @@ const HomeSummary = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
   return (
     <section
       ref={ref}
-      className="flex min-h-[200dvh] flex-col items-center justify-center"
+      className="flex min-h-[200svh] flex-col items-center justify-center"
       data-testid="home-summary"
     >
       <div

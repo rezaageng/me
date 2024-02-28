@@ -86,7 +86,7 @@ const HomeThanks = ({ link }: Props): JSX.Element => {
   ]
 
   return (
-    <section className="flex min-h-screen w-full flex-col justify-center p-6 text-accent-1">
+    <section className="flex min-h-svh w-full flex-col justify-center p-6 text-accent-1">
       <div className="">
         <Lottie animationData={potion} loop className="w-16" />
         <h2 className="mb-6 mt-2 font-mono text-gray-500">{'// built with'}</h2>

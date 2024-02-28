@@ -38,11 +38,11 @@ const HomeIntro = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
   return (
     <section
       ref={ref}
-      className="relative  min-h-[100dvh] max-w-5xl"
+      className="relative  min-h-svh max-w-5xl"
       data-testid="home-intro"
     >
       <div className="flex flex-col justify-center px-6 py-4">
-        <div className="flex h-[50dvh] flex-col items-center justify-center lg:h-[56dvh]">
+        <div className="flex h-[50svh] flex-col items-center justify-center lg:h-[56svh]">
           <motion.div
             style={{
               display: isInView ? 'flex' : 'none',
