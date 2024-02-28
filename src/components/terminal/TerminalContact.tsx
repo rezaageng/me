@@ -25,7 +25,7 @@ const TerminalContact = (): JSX.Element => {
       link: data.attributes.gitHub
     },
     {
-      name: 'Twitter',
+      name: 'X (Twitter)',
       link: data.attributes.twitter
     },
     {
