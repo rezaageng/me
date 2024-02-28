@@ -75,7 +75,7 @@ const HomeEnd = (): JSX.Element => {
         <motion.div
           data-testid="home-end-land"
           style={landAnimation}
-          className="absolute bottom-0 origin-bottom scale-150 md:scale-100"
+          className="absolute bottom-0 w-full origin-bottom scale-150 md:scale-100"
         >
           <Image
             src="/assets/images/sophie/land.png"
@@ -83,12 +83,13 @@ const HomeEnd = (): JSX.Element => {
             width={1920}
             height={1080}
             draggable={false}
+            className="w-full"
           />
         </motion.div>
         <motion.div
           data-testid="home-end-sophie"
           style={sophieAnimation}
-          className="absolute bottom-0 origin-bottom scale-150 md:scale-100"
+          className="absolute bottom-0 w-full origin-bottom scale-150 md:scale-100"
         >
           <Image
             src="/assets/images/sophie/sophie.png"
@@ -96,6 +97,7 @@ const HomeEnd = (): JSX.Element => {
             width={1920}
             height={1080}
             draggable={false}
+            className="w-full"
           />
         </motion.div>
       </div>
