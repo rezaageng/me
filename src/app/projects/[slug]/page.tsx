@@ -151,13 +151,13 @@ const Project = async ({ params }: Props): Promise<JSX.Element> => {
   )
 }
 
-export const generateStaticParams = async (): Promise<Props[]> => {
+export const generateStaticParams = async (): Promise<
+  Array<Props['params']>
+> => {
   const { data } = await getProjects({})
 
   return data.map((project) => ({
-    params: {
-      slug: project.attributes.slug
-    }
+    slug: project.attributes.slug
   }))
 }
 

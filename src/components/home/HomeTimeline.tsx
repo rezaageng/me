@@ -52,10 +52,10 @@ const HomeTimeline = ({ experience, educations }: Props): JSX.Element => {
     <section
       ref={ref}
       style={{
-        height: `${wrapperHeight}dvh`
+        height: `${wrapperHeight}svh`
       }}
     >
-      <div className="sticky top-0 flex h-[100dvh] w-full items-center overflow-hidden">
+      <div className="sticky top-0 flex h-[100vh] w-full items-center overflow-hidden">
         <div className="relative z-10 flex w-full flex-1 items-center">
           <TimelineHead
             data-testid="experience-title"

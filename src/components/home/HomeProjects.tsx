@@ -53,11 +53,11 @@ const HomeProjects = ({ data }: Props): JSX.Element => {
     <section
       ref={ref}
       style={{
-        height: isLg ? `${wrapperHeight}dvh` : 'auto'
+        height: isLg ? `${wrapperHeight}svh` : 'auto'
       }}
-      className="relative left-[calc(-50vw+50%)] w-screen"
+      className="relative left-[calc(-50vw+50%)] w-svw"
     >
-      <div className="sticky top-0 h-auto overflow-hidden lg:flex lg:h-[100dvh] lg:items-center">
+      <div className="sticky top-0 h-auto overflow-hidden lg:flex lg:h-svh lg:items-center">
         <motion.div
           style={isLg ? { x } : {}}
           className="grid grid-cols-1 gap-6 p-6 sm:grid-cols-2 lg:flex lg:items-center lg:gap-96"

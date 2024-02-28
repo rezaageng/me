@@ -31,8 +31,8 @@ const NotFound = (): JSX.Element => {
   }, [arrowControl, isHover])
 
   return (
-    <section className="flex min-h-[100svh] flex-col items-center p-6">
-      <div className="fixed left-0 top-0 -z-10 h-[100svh] w-full bg-gradient-to-b from-[#06344E] to-[#0F4E6B]" />
+    <section className="flex min-h-svh flex-col items-center p-6">
+      <div className="fixed left-0 top-0 -z-10 h-svh w-full bg-gradient-to-b from-[#06344E] to-[#0F4E6B]" />
       <motion.div
         initial={{ opacity: 0, x: '200%' }}
         animate={{ opacity: 1, x: 0 }}
