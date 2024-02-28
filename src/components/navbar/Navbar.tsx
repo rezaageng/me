@@ -85,7 +85,7 @@ const Navbar = (): JSX.Element => {
               opacity: 0
             }}
             onClick={toggleMenu}
-            className="fixed left-0 top-0 z-50 min-h-[100dvh] w-full bg-primary"
+            className="fixed left-0 top-0 z-50 min-h-svh w-full bg-primary"
           />
         </AnimatePresence>
       ) : null}

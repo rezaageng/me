@@ -47,10 +47,10 @@ const HomeEnd = (): JSX.Element => {
     <motion.section
       ref={ref}
       style={sectionAnimation}
-      className="relative left-[calc(-50vw+50%)] h-[300dvh] w-screen"
+      className="relative left-[calc(-50vw+50%)] h-[300svh] w-svw"
     >
       <div className="h-96 w-full bg-gradient-to-b from-transparent to-[#06344E]" />
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
+      <div className="sticky top-0 h-svh w-full overflow-hidden">
         <div
           data-testid="home-end-sky"
           className="absolute h-full w-full bg-gradient-to-b from-[#06344E] to-[#0F4E6B]"
