@@ -1,4 +1,4 @@
-import { Poppins } from 'next/font/google'
+import { GeistSans } from 'geist/font/sans'
 import localFont from 'next/font/local'
 import Navbar from '@/components/navbar/Navbar'
 import './globals.css'
@@ -10,12 +10,6 @@ import QueryProvider from '@/libs/query-provider'
 import LenisProvider from '@/libs/react-lenis'
 import Footer from '@/components/Footer'
 import Analytics from '@/components/Analytics'
-
-const poppins = Poppins({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-poppins'
-})
 
 const hackNf = localFont({
   src: '../../public/assets/fonts/HackNerdFont-Regular.ttf',
@@ -62,7 +56,7 @@ const RootLayout = ({
 }): React.ReactNode => {
   return (
     <LenisProvider root>
-      <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
+      <html lang="en" className={`${GeistSans.variable} ${hackNf.variable}`}>
         <head />
         {process.env.NODE_ENV === 'production' ? <Analytics /> : null}
         <body className="overflow-x-hidden bg-primary font-sans text-white scrollbar-none">
