@@ -21,7 +21,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-poppins)'],
+        sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-hacknf)']
       },
       gridTemplateColumns: {

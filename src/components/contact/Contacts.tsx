@@ -1,11 +1,6 @@
 import { type Social, type ContactsProps } from '@/@types'
-import {
-  FiGithub,
-  FiInstagram,
-  FiLinkedin,
-  FiMail,
-  FiTwitter
-} from 'react-icons/fi'
+import { FiGithub, FiInstagram, FiLinkedin, FiMail } from 'react-icons/fi'
+import { RiTwitterXLine } from 'react-icons/ri'
 import { v4 as uuidv4 } from 'uuid'
 import ContactItem from './ContactItem'
 
@@ -21,7 +16,7 @@ const Contacts = ({
       link: link.gitHub
     },
     {
-      icon: <FiTwitter data-testid="contact-icon" size={iconSize} />,
+      icon: <RiTwitterXLine data-testid="contact-icon" size={iconSize} />,
       link: link.twitter
     },
     {

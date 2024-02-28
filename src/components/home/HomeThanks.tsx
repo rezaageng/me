@@ -68,7 +68,7 @@ const HomeThanks = ({ link }: Props): JSX.Element => {
       link: link.attributes.gitHub
     },
     {
-      name: 'Twitter',
+      name: 'X (Twitter)',
       link: link.attributes.twitter
     },
     {
