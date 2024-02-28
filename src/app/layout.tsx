@@ -65,7 +65,7 @@ const RootLayout = ({
       <html lang="en" className={`${poppins.variable} ${hackNf.variable}`}>
         <head />
         {process.env.NODE_ENV === 'production' ? <Analytics /> : null}
-        <body className="bg-primary font-sans text-white scrollbar-none">
+        <body className="overflow-x-hidden bg-primary font-sans text-white scrollbar-none">
           <PageProgressBar />
           <QueryProvider>
             <ReactQueryDevtools initialIsOpen={false} />
