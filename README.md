@@ -8,7 +8,7 @@
 
 ### Prerequisites
 
-1. [Node.js ](https://nodejs.org) (v16.14.0 or later)
+1. [Node.js ](https://nodejs.org) (v18.17.0 or later)
 2. [PNPM](https://pnpm.io/)
 3. An API (I use [Strapi](https://strapi.io/))
 
