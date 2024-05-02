@@ -8,11 +8,21 @@ import {
   motion,
   useInView
 } from 'framer-motion'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Terminal from '../terminal/Terminal'
+import { useKawaiiStore } from '@/stores/kawaii-store'
+import { useSearchParams } from 'next/navigation'
+import Image from 'next/image'
 
 const HomeIntro = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
   // * hooks
+  const [kawaii, setKawaii] = useKawaiiStore((state) => [
+    state.kawaii,
+    state.setKawaii
+  ])
+
+  const isKawaii = useSearchParams().get('kawaii')
+
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref)
 
@@ -35,6 +45,14 @@ const HomeIntro = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
     rotateX: useSmooth(scrollYProgress, [0, 0.2], [3, 0]),
     scale: useSmooth(scrollYProgress, [0, 0.2], [0.8, 1])
   }
+
+  // * lifecycle
+  useEffect(() => {
+    if (isKawaii !== 'true' && isKawaii !== 'false') return
+
+    setKawaii(isKawaii === 'true')
+  }, [isKawaii, setKawaii])
+
   return (
     <section
       ref={ref}
@@ -50,24 +68,43 @@ const HomeIntro = ({ data }: { data: HomeResponse['data'] }): JSX.Element => {
             }}
             className="fixed flex flex-col justify-center gap-2 px-6 py-4 sm:max-w-md lg:max-w-2xl"
           >
-            <motion.h1
-              initial={initial}
-              animate={animate}
-              transition={transition}
-              data-testid="home-title"
-              className="w-auto text-6xl font-bold lg:text-9xl"
-            >
-              {data?.attributes.title}
-            </motion.h1>
-            <motion.h2
-              initial={initial}
-              animate={animate}
-              transition={{ ...transition, delay: 0.2 }}
-              data-testid="home-subtitle"
-              className="font-light text-white/75 lg:text-2xl"
-            >
-              {data?.attributes.subtitle}
-            </motion.h2>
+            {kawaii ? (
+              <motion.div
+                initial={{ ...initial, scale: 0 }}
+                animate={{ ...animate, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="px-8"
+              >
+                <Image
+                  src="/assets/images/rezaa-kawaii.png"
+                  alt="kawaii logo"
+                  priority
+                  width={4057}
+                  height={2159}
+                />
+              </motion.div>
+            ) : (
+              <>
+                <motion.h1
+                  initial={initial}
+                  animate={animate}
+                  transition={transition}
+                  data-testid="home-title"
+                  className="w-auto text-6xl font-bold lg:text-9xl"
+                >
+                  {data?.attributes.title}
+                </motion.h1>
+                <motion.h2
+                  initial={initial}
+                  animate={animate}
+                  transition={{ ...transition, delay: 0.2 }}
+                  data-testid="home-subtitle"
+                  className="font-light text-white/75 lg:text-2xl"
+                >
+                  {data?.attributes.subtitle}
+                </motion.h2>
+              </>
+            )}
           </motion.div>
         </div>
         <div style={{ perspective: '20rem' }}>

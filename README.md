@@ -41,3 +41,15 @@
 pnpm build
 pnpm start
 ```
+
+## Kawaii Mode (可愛いモード)
+
+### Activate Kawaii Mode
+
+To activate Kawaii Mode, add `?kawaii=true` to the URL.
+`https://rezaa.me/?kawaii=true` Or click [here](https://rezaa.me/?kawaii=true)
+
+### Deactivate Kawaii Mode
+
+To deactivate Kawaii Mode, add `?kawaii=false` to the URL.
+`https://rezaa.me/?kawaii=false` Or click [here](https://rezaa.me/?kawaii=false)
