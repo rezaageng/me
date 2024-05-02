@@ -4,6 +4,12 @@ import HomeMain from '@/components/home/HomeMain'
 import { render, screen } from '@testing-library/react'
 import '@/__mocks__/intersectionObserverMock'
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => ({
+    get: () => 'false'
+  })
+}))
+
 test('should render background', () => {
   render(<HomeMain data={homeRes.data} />)
 
