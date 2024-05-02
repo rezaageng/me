@@ -4,6 +4,12 @@ import { render, screen, waitFor } from '@testing-library/react'
 import '@/__mocks__/intersectionObserverMock'
 import HomeIntro from '@/components/home/HomeIntro'
 
+jest.mock('next/navigation', () => ({
+  useSearchParams: () => ({
+    get: () => 'false'
+  })
+}))
+
 test('should render title', () => {
   render(<HomeIntro data={homeRes.data} />)
 
